@@ -1,0 +1,21 @@
+.Footer {
+  margin-top: 100px;
+  height: 400px;
+  background-color: #120042;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.FooterLogo {
+  /* padding-top: 50px; */
+  height: 100px;
+  color: white;
+}
+
+.FooterItems {
+  padding-right: 50px;
+  color: white;
+}

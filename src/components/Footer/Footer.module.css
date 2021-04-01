@@ -1,6 +1,6 @@
 .Footer {
-  margin-top: 100px;
-  height: 400px;
+  margin-top: 7rem;
+  height: 25rem;
   background-color: #120042;
   color: white;
   display: flex;
@@ -11,11 +11,13 @@
 
 .FooterLogo {
   /* padding-top: 50px; */
-  height: 100px;
+  height: 3rem;
+  margin-right: 2rem;
   color: white;
 }
 
 .FooterItems {
-  padding-right: 50px;
+  /* background-color: pink; */
+  padding-right: 3rem;
   color: white;
 }

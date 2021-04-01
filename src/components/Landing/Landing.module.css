@@ -1,0 +1,93 @@
+.LandingBanner {
+  height: 100vh;
+  background-color: #120042;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Logo {
+  height: 5rem;
+}
+
+.LandingBanner > h1 {
+  color: white;
+  font-weight: 200;
+  font-size: 1.4rem;
+}
+
+.LandingBanner > a {
+  margin-top: 4rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 00;
+  font-size: 1rem;
+  /* padding: 0 0 8px 0; */
+  border-bottom: 0.4em solid #17f4ff;
+}
+
+/* For future animation or CSS effects on the action link */
+.LandingBanner > a:hover {
+  /* border-bottom: 8px solid #17f4ff; */
+  padding: 0;
+}
+
+.LandingInfos {
+  margin: 5rem 0;
+  position: relative;
+}
+
+/* For media queries, the width can be changed in proportion to vh, and flex-direction can be column */
+.LandingInfo {
+  width: 50rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 5rem auto;
+  /* background: pink; */
+}
+
+.Description {
+  width: 40%;
+  padding: 2rem;
+  /* background: blue; */
+}
+
+.Description > h1 {
+  font-size: 2.5rem;
+}
+
+.Description > h1 > strong {
+  position: relative;
+}
+
+.Description > h1 > strong::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0.8rem;
+  bottom: 0.8rem;
+  z-index: -100;
+  margin: 0 -0.4em;
+  padding: 0em 0.4em;
+  border-radius: 0.8em 0.3em;
+  background: transparent;
+  background-image: linear-gradient(
+    to right,
+    rgba(23, 244, 255, 0.1),
+    rgba(23, 244, 255, 0.9) 4%,
+    rgba(23, 244, 255, 0.7)
+  );
+}
+
+.Description > p {
+  width: 80%;
+}
+
+.Illustration {
+  width: 40%;
+}

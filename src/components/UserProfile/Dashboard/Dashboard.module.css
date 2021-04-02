@@ -1,9 +1,10 @@
 .Dashboard {
   display: flex;
-  width: 50rem;
-  background-color: grey;
+  width: 100%;
+  /* background-color: grey; */
   gap: 1rem;
   margin: auto;
+  margin-bottom: 5rem;
 }
 
 .LeftCard {
@@ -16,13 +17,25 @@
 }
 
 .RightCard {
-  height: 25rem;
+  height: 26rem;
   flex: 1 1 30%;
+  margin-bottom: 0.5rem;
 }
 
 .RightCard h1 {
   margin: 1rem 0;
   font-size: 1.3rem;
+}
+
+.RightButtons {
+  width: 90%;
+  margin: auto;
+}
+
+.RightButtons a{
+  /* display: block; */
+  /* width: 100%; */
+  margin: auto;
 }
 
 

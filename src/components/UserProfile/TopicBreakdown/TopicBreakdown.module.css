@@ -1,0 +1,26 @@
+.TopicBreakdown {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+  background: grey;
+}
+
+.Left {
+  flex: 1 1 50%;
+  background: rgb(245, 222, 225);
+}
+
+.Right {
+  flex: 0 1 50%;
+  background: blue;
+}
+
+.Right > img {
+  width: 100%;
+}
+
+.Selector {
+  padding: 1em 1.5em;
+  width: 80%;
+}

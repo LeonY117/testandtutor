@@ -2,6 +2,7 @@ import React from "react";
 import Aux from "../../hoc/Aux";
 import UserInfo from "./UserInfo/UserInfo";
 import Dashboard from "./Dashboard/Dashboard";
+import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
 
 const userProfile = (props) => {
   return (
@@ -11,8 +12,8 @@ const userProfile = (props) => {
         date={props.examDate}
         subject={props.subject}
       />
-      <Dashboard suggestions={props.suggestedTopics}/>
-      <div>Topic Breakdown</div>
+      <Dashboard suggestions={props.suggestedTopics} />
+      <TopicBreakdown />
     </Aux>
   );
 };

@@ -69,7 +69,7 @@ class User extends Component {
         "Linear Correlation and Correlation Coefficient": 6,
       },
     },
-    subTopics: {
+    Topics: {
       "Functions and Equations": 6,
       Algebra: 5,
       Calculus: 4,
@@ -77,9 +77,9 @@ class User extends Component {
       Statics: 6,
     },
     suggestedTopics: {
-      "Scatter Diagrams and Line of Best Fit": 7,
+      "Scatter Diagrams and Line of Best Fit": 6,
       "Normal Distribution": 5,
-      "Trigonometric Equations": 4,
+      "Trigonometric Equations": 3,
       "Reciprocal and Rational Functions": 4,
       Exponents: 4,
     },

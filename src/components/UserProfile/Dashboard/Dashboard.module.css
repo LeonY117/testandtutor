@@ -1,0 +1,29 @@
+.Dashboard {
+  display: flex;
+  width: 50rem;
+  background-color: grey;
+  gap: 1rem;
+  margin: auto;
+}
+
+.LeftCard {
+  height: 35rem;
+  flex: 1 1 70%;
+}
+
+.RadarPlaceholder {
+  height: 80%;
+}
+
+.RightCard {
+  height: 25rem;
+  flex: 1 1 30%;
+}
+
+.RightCard h1 {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+
+
+

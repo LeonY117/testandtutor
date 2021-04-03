@@ -27,7 +27,7 @@
 
 .Right {
   flex: 0 1 50%;
-  background: blue;
+  /* background: blue; */
 }
 
 .Right > img {

@@ -3,21 +3,27 @@ import Card from "../../UI/Card/Card";
 import Content from "../../../hoc/Content/Content";
 import classes from "./TopicBreakdown.module.css";
 import radarPlaceholder from "../../../assets/images/radar.png";
+import Select from "../../Select/Select";
+import BreakdownDisplay from "./BreakdownDisplay/BreakdownDisplay";
 
 const topicBreakdown = (props) => {
+  const name = props.selectedTopicBreakdown.name;
+  const grade = props.selectedTopicBreakdown.grade;
   return (
     <Content>
       <Card>
         <div className={classes.TopicBreakdown}>
           <div className={classes.Left}>
             <h1>Topic Breakdown</h1>
-            <select className={classes.Selector}>
-              <option value="algebra">algebra</option>
-              <option value="functions">functions</option>
-              <option value="geometry">geometry</option>
-            </select>
-            <div>Grade: 7</div>
-            <div>topic breakdown</div>
+            <Select
+              options={Object.keys(props.topics)}
+              changed={props.selectChangedHandler}
+              default={name}
+            />
+            <p className={classes.Performance}>Average performance: {grade}</p>
+            <BreakdownDisplay
+              selectedTopicBreakdown={props.selectedTopicBreakdown}
+            />
           </div>
           <div className={classes.Right}>
             <img src={radarPlaceholder} />

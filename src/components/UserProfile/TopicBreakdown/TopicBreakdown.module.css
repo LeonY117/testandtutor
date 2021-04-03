@@ -3,13 +3,27 @@
   flex-direction: row;
   width: 100%;
   margin: auto;
-  background: grey;
+  /* background: grey; */
 }
 
 .Left {
   flex: 1 1 50%;
-  background: rgb(245, 222, 225);
+  height: 30rem;
+  overflow: scroll;
+  /* background: rgb(245, 222, 225); */
 }
+
+
+
+.Performance {
+  display: inline-block;
+  margin: 2rem auto;
+  /* background: blue; */
+  font-size: 1rem;
+  font-weight: 600;
+  /* margin-bottom: 3rem; */
+}
+
 
 .Right {
   flex: 0 1 50%;
@@ -18,9 +32,4 @@
 
 .Right > img {
   width: 100%;
-}
-
-.Selector {
-  padding: 1em 1.5em;
-  width: 80%;
 }

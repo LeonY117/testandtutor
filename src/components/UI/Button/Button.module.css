@@ -14,20 +14,21 @@
   background-color: #3366ff;
   color: white;
   border: 3px solid #3366ff;
-  transition: background-color 100ms ease-in-out
+  transition: background-color 100ms ease-in-out;
 }
 
-.Blue {
-    background-color: white;
-    color: #3366ff;
-    border: 3px solid #3366ff;
-  }
+.Blue:hover,
+.Blue:active {
+  background-color: white;
+  color: #3366ff;
+  border: 3px solid #3366ff;
+}
 
 .White {
   background-color: white;
   color: #3366ff;
   border: 3px solid #3366ff;
-  transition: background-color 100ms ease-in-out
+  transition: background-color 100ms ease-in-out;
 }
 
 .White:hover,

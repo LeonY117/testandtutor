@@ -3,7 +3,7 @@ import UserProfile from "../../components/UserProfile/UserProfile";
 
 class User extends Component {
   state = {
-    username: "Leon Yao",
+    username: "Binu",
     subject: "IB Mathematics SL",
     examDate: "19th June",
     averageGrade: 6,
@@ -52,12 +52,12 @@ class User extends Component {
         "Area of a Triangle": 5,
         "Circular Functions and Transformation": 6,
       },
-      Statics: {
+      Statistics: {
         "Probability Basics(Definition, Complementary Events)": 5,
         "Mean, Median, Mode": 6,
         "Box-and-Whisker Plots": 5,
         "Quartiles and Interquartile range": 5,
-        "Venn Diagrams": 4,
+        "Venn Diagrams": 3,
         "Binomial Distribution": 5,
         "Independent Events": 6,
         "Cumulative Frequency": 7,
@@ -69,12 +69,13 @@ class User extends Component {
         "Linear Correlation and Correlation Coefficient": 6,
       },
     },
-    Topics: {
+    selectedTopic: "Functions and Equations",
+    topics: {
       "Functions and Equations": 6,
       Algebra: 5,
       Calculus: 4,
       "Geometry and Trigonometry": 6,
-      Statics: 6,
+      Statistics: 6,
     },
     suggestedTopics: {
       "Scatter Diagrams and Line of Best Fit": 6,
@@ -86,14 +87,28 @@ class User extends Component {
     recentTests: ["14587", "24567", "92840"],
     scoreHistory: [50, 51, 68, 72, 80],
   };
+
+  selectChangedHandler = (event) => {
+    this.setState({ selectedTopic: event.target.value });
+  };
+
   render() {
+    const selectedTopicBreakdown = {
+      name: this.state.selectedTopic,
+      grade: this.state.topics[this.state.selectedTopic],
+      breakdown: this.state.subTopics[this.state.selectedTopic],
+    };
+
     return (
       <UserProfile
         username={this.state.username}
         subject={this.state.subject}
         examDate={this.state.examDate}
         averageGrade={this.state.averageGrade}
+        topics={this.state.topics}
         subTopics={this.state.subTopics}
+        selectedTopicBreakdown={selectedTopicBreakdown}
+        selectChangedHandler={this.selectChangedHandler}
         scoreHistory={this.state.scoreHistory}
         suggestedTopics={this.state.suggestedTopics}
       />

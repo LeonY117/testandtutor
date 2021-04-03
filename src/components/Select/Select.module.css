@@ -1,0 +1,46 @@
+.customSelect {
+  position: relative;
+  width: 80%;
+}
+
+.customSelect select {
+  font-size: 1rem;
+  padding: 1em 1.5em;
+  border: 1px solid lightgrey;
+  width: 100%;
+}
+
+.customSelect option {
+  font-size: 1rem;
+  padding: 1em 1.5em;
+  border: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.customArrow {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  right: 0;
+  display: block;
+  background: white;
+  height: 100%;
+  width: 3rem;
+  pointer-events: none;
+  border: 1px solid lightgrey;
+}
+
+.customArrow::after {
+  --size: 0.5em;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid rgb(200, 200, 200);
+}

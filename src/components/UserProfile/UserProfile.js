@@ -3,7 +3,7 @@ import Aux from "../../hoc/Aux";
 import UserInfo from "./UserInfo/UserInfo";
 import Dashboard from "./Dashboard/Dashboard";
 import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
-import TestPrompter from './TestPrompter/TestPrompter'
+import TestPrompter from "./TestPrompter/TestPrompter";
 
 const userProfile = (props) => {
   return (
@@ -13,13 +13,16 @@ const userProfile = (props) => {
         date={props.examDate}
         subject={props.subject}
       />
-      <Dashboard suggestions={props.suggestedTopics} />
+      <Dashboard
+        suggestions={props.suggestedTopics}
+        testButtonClicked={props.testButtonClicked}
+      />
       <TopicBreakdown
         selectChangedHandler={props.selectChangedHandler}
         topics={props.topics}
         selectedTopicBreakdown={props.selectedTopicBreakdown}
       />
-      <TestPrompter />
+      <TestPrompter testButtonClicked={props.testButtonClicked} />
     </Aux>
   );
 };

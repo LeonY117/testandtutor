@@ -17,12 +17,8 @@ const testPrompter = () => {
           </div>
           <div className={classes.Buttons}>
             <div className={classes.ButtonWrapper}>
-              <a href='/'>
-                <Button color="blue">Take skillset test</Button>
-              </a>
-              <a href='/'>
-                <Button color="blue">Create Custom Test</Button>
-              </a>
+              <Button color="blue">Take skillset test</Button>
+              <Button color="blue">Create Custom Test</Button>
             </div>
           </div>
         </div>

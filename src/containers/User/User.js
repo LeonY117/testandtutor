@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserProfile from "../../components/UserProfile/UserProfile";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 class User extends Component {
   state = {
@@ -92,6 +93,10 @@ class User extends Component {
     this.setState({ selectedTopic: event.target.value });
   };
 
+  testButtonClicked = () => {
+    this.props.history.push(this.props.match.url + "/test");
+  };
+
   render() {
     const selectedTopicBreakdown = {
       name: this.state.selectedTopic,
@@ -100,18 +105,40 @@ class User extends Component {
     };
 
     return (
-      <UserProfile
-        username={this.state.username}
-        subject={this.state.subject}
-        examDate={this.state.examDate}
-        averageGrade={this.state.averageGrade}
-        topics={this.state.topics}
-        subTopics={this.state.subTopics}
-        selectedTopicBreakdown={selectedTopicBreakdown}
-        selectChangedHandler={this.selectChangedHandler}
-        scoreHistory={this.state.scoreHistory}
-        suggestedTopics={this.state.suggestedTopics}
-      />
+      <Switch>
+        <Route
+          path={this.props.match.url + "/profile"}
+          render={(props) => (
+            <UserProfile
+              {...props}
+              username={this.state.username}
+              subject={this.state.subject}
+              examDate={this.state.examDate}
+              averageGrade={this.state.averageGrade}
+              testButtonClicked={this.testButtonClicked}
+              topics={this.state.topics}
+              subTopics={this.state.subTopics}
+              selectedTopicBreakdown={selectedTopicBreakdown}
+              selectChangedHandler={this.selectChangedHandler}
+              scoreHistory={this.state.scoreHistory}
+              suggestedTopics={this.state.suggestedTopics}
+            />
+          )}
+        />
+        <Redirect from="/" exact to="/user/profile" />
+      </Switch>
+      // <UserProfile
+      //   username={this.state.username}
+      //   subject={this.state.subject}
+      //   examDate={this.state.examDate}
+      //   averageGrade={this.state.averageGrade}
+      //   topics={this.state.topics}
+      //   subTopics={this.state.subTopics}
+      //   selectedTopicBreakdown={selectedTopicBreakdown}
+      //   selectChangedHandler={this.selectChangedHandler}
+      //   scoreHistory={this.state.scoreHistory}
+      //   suggestedTopics={this.state.suggestedTopics}
+      // />
     );
   }
 }

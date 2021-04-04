@@ -27,12 +27,13 @@ const dashboard = (props) => {
             </Card>
           </div>
           <div className={classes.RightButtons}>
-            <a href="/">
-              <Button color="white">Take recommended test</Button>
-            </a>
-            <a href="/">
-              <Button color="white">Create custom test</Button>
-            </a>
+            <Button color="white" clicked={props.testButtonClicked}>
+              Take recommended test
+            </Button>
+
+            <Button color="white" clicked={props.testButtonClicked}>
+              Create custom test
+            </Button>
           </div>
         </div>
       </div>

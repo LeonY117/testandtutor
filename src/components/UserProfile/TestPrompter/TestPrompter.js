@@ -4,7 +4,7 @@ import Button from "../../UI/Button/Button";
 import Content from "../../../hoc/Content/Content";
 import Card from "../../UI/Card/Card";
 
-const testPrompter = () => {
+const testPrompter = (props) => {
   return (
     <Content>
       <Card>
@@ -17,8 +17,12 @@ const testPrompter = () => {
           </div>
           <div className={classes.Buttons}>
             <div className={classes.ButtonWrapper}>
-              <Button color="blue">Take skillset test</Button>
-              <Button color="blue">Create Custom Test</Button>
+              <Button color="blue" clicked={props.testButtonClicked}>
+                Take skillset test
+              </Button>
+              <Button color="blue" clicked={props.testButtonClicked}>
+                Create Custom Test
+              </Button>
             </div>
           </div>
         </div>

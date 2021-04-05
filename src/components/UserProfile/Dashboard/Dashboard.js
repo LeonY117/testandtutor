@@ -2,9 +2,9 @@ import classes from "./Dashboard.module.css";
 import React from "react";
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
-import RadarPlaceholder from "../../../assets/images/radar.png";
 import SubTopics from "./SubTopics/SubTopics";
 import Content from "../../../hoc/Content/Content";
+import Radar from "../../Radar/Radar";
 
 const dashboard = (props) => {
   return (
@@ -12,11 +12,9 @@ const dashboard = (props) => {
       <div className={classes.Dashboard}>
         <div className={classes.LeftCard}>
           <Card>
-            <img
-              className={classes.RadarPlaceholder}
-              src={RadarPlaceholder}
-              draggable="false"
-            />
+            <div className={classes.Radar}>
+              <Radar topics={props.topics} showText/>
+            </div>
           </Card>
         </div>
         <div className={classes.RightSide}>

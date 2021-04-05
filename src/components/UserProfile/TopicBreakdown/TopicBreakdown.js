@@ -2,9 +2,9 @@ import React from "react";
 import Card from "../../UI/Card/Card";
 import Content from "../../../hoc/Content/Content";
 import classes from "./TopicBreakdown.module.css";
-import radarPlaceholder from "../../../assets/images/radar.png";
 import Select from "../../Select/Select";
 import BreakdownDisplay from "./BreakdownDisplay/BreakdownDisplay";
+import Radar from "../../Radar/Radar";
 
 const topicBreakdown = (props) => {
   const name = props.selectedTopicBreakdown.name;
@@ -20,13 +20,17 @@ const topicBreakdown = (props) => {
               changed={props.selectChangedHandler}
               default={name}
             />
-            <p className={classes.Performance}>Average performance: {grade}</p>
+            {/* <p className={classes.Performance}>Average performance: {grade}</p> */}
             <BreakdownDisplay
               selectedTopicBreakdown={props.selectedTopicBreakdown}
             />
           </div>
           <div className={classes.Right}>
-            <img src={radarPlaceholder} />
+            <div className={classes.Radar}>
+              <Radar topics={props.topics} highlightTopic={name}/>
+            </div>
+            <h1>{name}</h1>
+            <p>Average Performance: {grade}</p>
           </div>
         </div>
       </Card>

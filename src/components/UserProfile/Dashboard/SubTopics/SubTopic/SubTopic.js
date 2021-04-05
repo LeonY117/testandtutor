@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./SubTopic.module.css";
 
 const subTopic = (props) => {
-  const gradeColorMapper = {
+  const GRADECOLORMAPPER = {
     7: "#5ADBCE",
     6: "#48C8EF",
     5: "#3A63CC",
@@ -12,7 +12,7 @@ const subTopic = (props) => {
     1: "#89344B",
   };
   let color = "#89344B";
-  color = gradeColorMapper[props.score];
+  color = GRADECOLORMAPPER[props.score];
   return (
     <div className={classes.SubTopic} style={{ 'backgroundColor': color }}>
       <p>{props.topicName}</p>

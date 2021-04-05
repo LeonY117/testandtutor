@@ -12,6 +12,11 @@
   flex: 1 1 70%;
 }
 
+.Radar {
+  height: 100%;
+  /* background: pink; */
+}
+
 .RadarPlaceholder {
   height: 80%;
 }

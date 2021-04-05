@@ -16,6 +16,7 @@ const userProfile = (props) => {
       <Dashboard
         suggestions={props.suggestedTopics}
         testButtonClicked={props.testButtonClicked}
+        topics={props.topics}
       />
       <TopicBreakdown
         selectChangedHandler={props.selectChangedHandler}

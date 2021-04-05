@@ -1,0 +1,15 @@
+.TestInfo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* background: pink; */
+}
+
+.TestInfo p {
+  flex: 1 1 10%;
+}
+
+.Button {
+  flex: 1 1 10%;
+  /* margin: 0 3rem; */
+}

@@ -2,17 +2,17 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 30rem;
   margin: auto;
   /* background: grey; */
 }
 
 .Left {
   flex: 1 1 50%;
-  height: 30rem;
+  height: 100%;
   overflow: scroll;
   /* background: rgb(245, 222, 225); */
 }
-
 
 
 .Performance {
@@ -27,9 +27,20 @@
 
 .Right {
   flex: 0 1 50%;
+  text-align: center;
   /* background: blue; */
 }
 
-.Right > img {
-  width: 100%;
+.Right h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.Right p {
+  margin: 0.5rem;
+}
+
+.Radar {
+  height: 85%;
+  /* background: pink; */
 }

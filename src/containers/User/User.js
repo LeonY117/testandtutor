@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserProfile from "../../components/UserProfile/UserProfile";
+import SelectTest from "../../components/SelectTest/SelectTest";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class User extends Component {
@@ -72,11 +73,11 @@ class User extends Component {
     },
     selectedTopic: "Functions and Equations",
     topics: {
-      "Functions and Equations": 6,
-      Algebra: 5,
-      Calculus: 4,
-      "Geometry and Trigonometry": 6,
-      Statistics: 6,
+      "Functions and Equations": 5,
+      Algebra: 6,
+      "Geometry and Trigonometry": 7,
+      Calculus: 5,
+      Statistics: 7,
     },
     suggestedTopics: {
       "Scatter Diagrams and Line of Best Fit": 6,
@@ -125,7 +126,11 @@ class User extends Component {
             />
           )}
         />
-        <Redirect from="/" exact to="/user/profile" />
+        <Route
+          path={this.props.match.url + "/test"}
+          render={(props) => <SelectTest />}
+        />
+        <Redirect from="/user" exact to="/user/profile" />
       </Switch>
       // <UserProfile
       //   username={this.state.username}

@@ -53,6 +53,7 @@
 .Description {
   width: 40%;
   padding: 2rem;
+  flex: 1 1 50%;
   /* background: blue; */
 }
 
@@ -79,15 +80,21 @@
   background-image: linear-gradient(
     to right,
     rgba(23, 244, 255, 0.1),
-    rgba(23, 244, 255, 0.9) 4%,
-    rgba(23, 244, 255, 0.7)
+    rgba(23, 244, 255, 0.9) 10%,
+    rgba(23, 244, 255, 0.7) 90%,
+    rgb(22, 189, 227)
   );
 }
 
-.Description > p {
-  width: 80%;
+/* .Description > p {
+} */
+
+.CardWrapper {
+  box-sizing: border-box;
+  width: 20rem;
+  flex: 1 1 50%;
 }
 
 .Illustration {
-  width: 40%;
+  width: 100%;
 }

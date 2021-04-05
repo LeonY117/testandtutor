@@ -99,21 +99,21 @@ class User extends Component {
       "2abc": {
         name: "Test 2",
         status: "finished",
-        length: 120,
-        totalScore: 120,
+        length: 60,
+        totalScore: 100,
         score: 70,
       },
       "3abc": {
         name: "Test 3",
         status: "unfinished",
-        length: 120,
+        length: 80,
         totalScore: 120,
         score: null,
       },
       "4abc": {
         name: "Test 4",
         status: "unfinished",
-        length: 120,
+        length: 100,
         totalScore: 120,
         score: null,
       },
@@ -124,11 +124,11 @@ class User extends Component {
     this.setState({ selectedTopic: event.target.value });
   };
 
-  testSelectButtonClicked = (paperID) => {
+  testSelectButtonClickedHandler = (paperID) => {
     console.log("backend request required for " + paperID);
   };
 
-  takeTestButtonClicked = () => {
+  takeTestButtonClickedHandler = () => {
     this.props.history.push(this.props.match.url + "/test");
   };
 
@@ -150,9 +150,8 @@ class User extends Component {
               subject={this.state.subject}
               examDate={this.state.examDate}
               averageGrade={this.state.averageGrade}
-              testButtonClicked={this.takeTestButtonClicked}
+              testButtonClicked={this.takeTestButtonClickedHandler}
               topics={this.state.topics}
-              subTopics={this.state.subTopics}
               selectedTopicBreakdown={selectedTopicBreakdown}
               selectChangedHandler={this.selectChangedHandler}
               scoreHistory={this.state.scoreHistory}
@@ -162,10 +161,10 @@ class User extends Component {
         />
         <Route
           path={this.props.match.url + "/test"}
-          render={(props) => (
+          render={() => (
             <SelectTest
               tests={this.state.tests}
-              testSelectButtonClicked={this.testSelectButtonClicked}
+              testSelectButtonClicked={this.testSelectButtonClickedHandler}
             />
           )}
         />

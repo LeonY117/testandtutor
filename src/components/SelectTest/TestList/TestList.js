@@ -13,7 +13,7 @@ const testList = (props) => {
       let buttonStyle = "orange";
       if (status === "finished") {
         score = test.totalScore + "/" + test.score;
-        buttonInfo = "see results";
+        buttonInfo = "See results";
         buttonStyle = "white";
       }
       return (

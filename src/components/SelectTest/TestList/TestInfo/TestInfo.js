@@ -9,7 +9,12 @@ const testInfo = (props) => {
       <p>{props.length}</p>
       <p>{props.score}</p>
       <div className={classes.Button}>
-        <Button color="white">{props.buttonInfo}</Button>
+        <Button
+          clicked={props.buttonClicked}
+          color={props.buttonStyle ? props.buttonStyle : "white"}
+        >
+          {props.buttonInfo}
+        </Button>
       </div>
     </div>
   );

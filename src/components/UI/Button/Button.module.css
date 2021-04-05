@@ -36,3 +36,20 @@
   background-color: #3366ff;
   color: white;
 }
+
+.Orange {
+  background-color: white;
+  color: #FF9533;
+  border: 3px solid #FF9533;
+  transition: background-color 100ms ease-in-out;
+}
+
+.Orange:hover,
+.Orange:active {
+  background-color: #FF9533;
+  color: white;
+}
+
+.TextBlack {
+  color:black
+}

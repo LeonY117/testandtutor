@@ -88,13 +88,47 @@ class User extends Component {
     },
     recentTests: ["14587", "24567", "92840"],
     scoreHistory: [50, 51, 68, 72, 80],
+    tests: {
+      "1abc": {
+        name: "Test 1",
+        status: "finished",
+        length: 120,
+        totalScore: 120,
+        score: 70,
+      },
+      "2abc": {
+        name: "Test 2",
+        status: "finished",
+        length: 120,
+        totalScore: 120,
+        score: 70,
+      },
+      "3abc": {
+        name: "Test 3",
+        status: "unfinished",
+        length: 120,
+        totalScore: 120,
+        score: null,
+      },
+      "4abc": {
+        name: "Test 4",
+        status: "unfinished",
+        length: 120,
+        totalScore: 120,
+        score: null,
+      },
+    },
   };
 
   selectChangedHandler = (event) => {
     this.setState({ selectedTopic: event.target.value });
   };
 
-  testButtonClicked = () => {
+  testSelectButtonClicked = (paperID) => {
+    console.log("backend request required for " + paperID);
+  };
+
+  takeTestButtonClicked = () => {
     this.props.history.push(this.props.match.url + "/test");
   };
 
@@ -116,7 +150,7 @@ class User extends Component {
               subject={this.state.subject}
               examDate={this.state.examDate}
               averageGrade={this.state.averageGrade}
-              testButtonClicked={this.testButtonClicked}
+              testButtonClicked={this.takeTestButtonClicked}
               topics={this.state.topics}
               subTopics={this.state.subTopics}
               selectedTopicBreakdown={selectedTopicBreakdown}
@@ -128,7 +162,12 @@ class User extends Component {
         />
         <Route
           path={this.props.match.url + "/test"}
-          render={(props) => <SelectTest />}
+          render={(props) => (
+            <SelectTest
+              tests={this.state.tests}
+              testSelectButtonClicked={this.testSelectButtonClicked}
+            />
+          )}
         />
         <Redirect from="/user" exact to="/user/profile" />
       </Switch>

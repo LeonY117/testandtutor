@@ -5,6 +5,8 @@ const button = (props) => {
   let buttonClass = [classes.Button, classes.Blue].join(" ");
   if (props.color === "white") {
     buttonClass = [classes.Button, classes.White].join(" ");
+  } else if (props.color === "orange") {
+    buttonClass = [classes.Button, classes.Orange].join(" ");
   }
   return (
     <button className={buttonClass} onClick={props.clicked}>

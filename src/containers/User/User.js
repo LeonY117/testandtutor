@@ -73,7 +73,7 @@ class User extends Component {
     },
     selectedTopic: "Functions and Equations",
     topics: {
-      "Functions and Equations": 5,
+      "Functions and Equations": 4,
       Algebra: 6,
       "Geometry and Trigonometry": 7,
       Calculus: 5,

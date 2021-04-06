@@ -54,6 +54,7 @@ const landing = (props) => {
               />
             </Card>
           </div>
+
           <div className={classes.Description}>
             <h1>
               <strong>Personalised</strong> <br />
@@ -77,7 +78,7 @@ const landing = (props) => {
               performance in each topic.
             </p>
           </div>
-          <div className={classes.CardWrapper} style={{padding: '2rem'}}>
+          <div className={classes.CardWrapper} style={{ padding: "2rem" }}>
             <Card>
               <img
                 alt={"Illustration of a list of suggested topics"}
@@ -104,7 +105,8 @@ const landing = (props) => {
           </div>
           <div className={classes.Description}>
             <h1>
-              Track your <strong>predicted grade</strong>
+              Track your <br />
+              <strong>predicted grade</strong>
             </h1>
             <p>
               The statistical model uses your performances in each topic to

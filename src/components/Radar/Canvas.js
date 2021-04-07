@@ -2,8 +2,7 @@ import React, { useRef, useEffect } from "react";
 import classes from "./Radar.module.css";
 
 function resizeCanvas(canvas) {
-  const { width, height } = canvas.getBoundingClientRect();
-
+  let { width, height } = canvas.getBoundingClientRect();
   if (canvas.width !== width || canvas.height !== height) {
     const { devicePixelRatio: ratio = 1 } = window;
     const context = canvas.getContext("2d");
@@ -28,7 +27,6 @@ function resizeCanvas(canvas) {
 // }
 
 // export default Canvas;
-
 const Canvas = (props) => {
   const { draw, ...rest } = props;
   const canvasRef = useRef(null);
@@ -56,7 +54,7 @@ const Canvas = (props) => {
     };
   }, [draw]);
 
-  return <canvas ref={canvasRef} {...rest} className={classes.Canvas} />;
+  return <canvas ref={canvasRef} {...rest} className={classes.Canvas}/>;
 };
 
 export default Canvas;

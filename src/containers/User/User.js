@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import SelectTest from "../../components/SelectTest/SelectTest";
+import TestPaper from "../TestPaper/TestPaper";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class User extends Component {
@@ -74,7 +75,7 @@ class User extends Component {
     selectedTopic: "Functions and Equations",
     topics: {
       "Functions and Equations": 4,
-      Algebra: 6,
+      Algebra: 3,
       "Geometry and Trigonometry": 7,
       Calculus: 5,
       Statistics: 7,
@@ -125,6 +126,7 @@ class User extends Component {
   };
 
   testSelectButtonClickedHandler = (paperID) => {
+    this.props.history.push(this.props.match.url + "/test/" + paperID);
     console.log("backend request required for " + paperID);
   };
 
@@ -161,12 +163,17 @@ class User extends Component {
         />
         <Route
           path={this.props.match.url + "/test"}
+          exact
           render={() => (
             <SelectTest
               tests={this.state.tests}
               testSelectButtonClicked={this.testSelectButtonClickedHandler}
             />
           )}
+        />
+        <Route
+          path={this.props.match.url + "/test/:id"}
+          render={(props) => <TestPaper {...props} />}
         />
         <Redirect from="/user" exact to="/user/profile" />
       </Switch>

@@ -80,10 +80,8 @@ const radar = (props) => {
   };
 
   const draw = (ctx, ratio) => {
-    // console.log("painting");
     const cx = ctx.canvas.width / 2 / ratio;
     const cy = ctx.canvas.height / 2 / ratio;
-
     drawBackgroundCircles(cx, cy, ctx);
     let angleCount = 0;
     for (let topic in props.topics) {

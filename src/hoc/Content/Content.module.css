@@ -4,3 +4,9 @@
 }
 
 /* Add media queries here */
+
+@media (max-width: 600px) {
+  .Content {
+    width: 90%;
+  }
+}

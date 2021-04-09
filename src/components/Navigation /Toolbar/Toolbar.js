@@ -12,7 +12,7 @@ const toolbar = (props) => {
           <Logo color="black" />
         </Link>
       </div>
-      <NavigationItems />
+      <NavigationItems mode={props.mode}/>
     </header>
   );
 };

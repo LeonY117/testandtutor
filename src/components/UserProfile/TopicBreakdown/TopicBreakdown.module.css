@@ -40,6 +40,10 @@
   margin: 0.5rem;
 }
 
+.Select {
+  width: 80%;
+}
+
 .Radar {
   height: 85%;
   /* background: pink; */

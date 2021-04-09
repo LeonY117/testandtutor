@@ -10,6 +10,14 @@
   z-index: 500;
 }
 
+.Round {
+  border-radius: 50px;
+}
+
+.Button:focus {
+  outline: none;
+}
+
 .Blue {
   background-color: #3366ff;
   color: white;
@@ -18,7 +26,8 @@
 }
 
 .Blue:hover,
-.Blue:active {
+.Blue:active,
+.Blue:focus {
   background-color: white;
   color: #3366ff;
   border: 3px solid #3366ff;
@@ -32,24 +41,25 @@
 }
 
 .White:hover,
-.White:active {
+.White:active .White:focus {
   background-color: #3366ff;
   color: white;
 }
 
 .Orange {
   background-color: white;
-  color: #FF9533;
-  border: 3px solid #FF9533;
+  color: #ff9533;
+  border: 3px solid #ff9533;
   transition: background-color 100ms ease-in-out;
 }
 
 .Orange:hover,
-.Orange:active {
-  background-color: #FF9533;
+.Orange:active,
+.Orange:focus {
+  background-color: #ff9533;
   color: white;
 }
 
 .TextBlack {
-  color:black
+  color: black;
 }

@@ -1,0 +1,25 @@
+.Login {
+  margin-top: 10rem;
+}
+
+.CardWrapper {
+  width: 20rem;
+  margin: auto;
+}
+
+.InputFields {
+  margin-bottom: 1rem;
+}
+
+.ShowPassword {
+  display: block;
+}
+
+.ShowPassword > p {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.Warning {
+    color: red;
+}

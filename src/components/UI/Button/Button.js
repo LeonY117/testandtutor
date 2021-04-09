@@ -8,6 +8,11 @@ const button = (props) => {
   } else if (props.color === "orange") {
     buttonClass = [classes.Button, classes.Orange].join(" ");
   }
+
+  if (props.round) {
+    buttonClass += [buttonClass, classes.Round].join(" ")
+  }
+  
   return (
     <button className={buttonClass} onClick={props.clicked}>
       {props.children}

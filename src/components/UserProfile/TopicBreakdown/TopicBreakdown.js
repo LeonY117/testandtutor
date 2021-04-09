@@ -15,11 +15,13 @@ const topicBreakdown = (props) => {
         <div className={classes.TopicBreakdown}>
           <div className={classes.Left}>
             <h1>Topic Breakdown</h1>
-            <Select
-              options={Object.keys(props.topics)}
-              changed={props.selectChangedHandler}
-              default={name}
-            />
+            <div className={classes.Select}>
+              <Select
+                options={Object.keys(props.topics)}
+                changed={props.selectChangedHandler}
+                default={name}
+              />
+            </div>
             {/* <p className={classes.Performance}>Average performance: {grade}</p> */}
             <BreakdownDisplay
               selectedTopicBreakdown={props.selectedTopicBreakdown}
@@ -27,7 +29,7 @@ const topicBreakdown = (props) => {
           </div>
           <div className={classes.Right}>
             <div className={classes.Radar}>
-              <Radar topics={props.topics} highlightTopic={name}/>
+              <Radar topics={props.topics} highlightTopic={name} />
             </div>
             <h1>{name}</h1>
             <p>Average Performance: {grade}</p>

@@ -1,13 +1,25 @@
 .customSelect {
   position: relative;
-  width: 80%;
+  width: 100%;
 }
 
 .customSelect select {
   font-size: 1rem;
   padding: 1em 1.5em;
-  border: 1px solid lightgrey;
+  border: 1px solid grey;
+  margin: 1px 0;
   width: 100%;
+  border-radius: 50px;
+}
+
+.customSelect select::-ms-expand {
+  display: none;
+}
+
+.customSelect select:focus {
+  outline: none;
+  margin: 0;
+  border: 2px solid #3456bf;
 }
 
 .customSelect option {
@@ -21,14 +33,15 @@
 .customArrow {
   position: absolute;
   box-sizing: border-box;
-  top: 0;
-  right: 0;
+  top: 5%;
+  right: 0.12em;
   display: block;
   background: white;
-  height: 100%;
+  height: 90%;
   width: 3rem;
   pointer-events: none;
-  border: 1px solid lightgrey;
+  border-radius: 50px;
+  /* border: 1px solid lightgrey; */
 }
 
 .customArrow::after {

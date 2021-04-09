@@ -1,0 +1,34 @@
+.Signup {
+    margin-top: 10rem;
+  }
+  
+  .CardWrapper {
+    width: 40rem;
+    margin: auto;
+  }
+  
+  .InputFields {
+    margin-bottom: 1rem;
+  }
+
+  .Names {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .ShowPassword {
+    display: block;
+  }
+  
+  .ShowPassword > p {
+    display: inline-block;
+    margin-left: 5px;
+  }
+  
+  .Warning {
+      color: red;
+  }
+  

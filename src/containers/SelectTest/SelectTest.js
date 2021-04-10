@@ -44,6 +44,7 @@ class selectTest extends Component {
 
   testSelectButtonClickedHandler = (paperID) => {
     console.log(this.props)
+    paperID = 'd76eb100-c70a-4c87-af37-40f26c2ea87b'
     this.props.history.push(this.props.match.url+'/'+paperID);
     console.log("backend request required for " + paperID);
   };

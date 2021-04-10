@@ -14,12 +14,17 @@ class App extends Component {
     userId: null,
     accessToken: null,
     loggedIn: false,
-    mode: 'visitor',
+    mode: "visitor",
   };
 
   loginSuccessHandler = (id, token) => {
     console.log(this.state.loggedIn);
-    this.setState({ userId: id, accessToken: token, loggedIn: true, mode: 'user' });
+    this.setState({
+      userId: id,
+      accessToken: token,
+      loggedIn: true,
+      mode: "user",
+    });
     // console.log(this.state.userId, this.state.accessToken);
     console.log("logged in!");
   };
@@ -32,7 +37,7 @@ class App extends Component {
     }
     let redirectFromUser = null;
     if (this.state.loggedIn === false) {
-      redirectFromUser = <Redirect from='/user' to='/login' />
+      redirectFromUser = <Redirect from="/user" to="/login" />;
     }
     return (
       <Layout mode={this.state.mode}>
@@ -57,7 +62,13 @@ class App extends Component {
           <Route
             exact
             path="/user/test/:id"
-            render={(props) => <TestPaper {...props} />}
+            render={(props) => (
+              <TestPaper
+                {...props}
+                userId={this.state.userId}
+                accessToken={this.state.accessToken}
+              />
+            )}
           />
           <Route
             path="/user"

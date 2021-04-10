@@ -1,0 +1,12 @@
+.Part {
+    display: flex;
+    justify-content: space-between;
+}
+
+.PartLabel {
+  display: inline-block;
+  margin: 0 1rem;
+}
+.PartBody {
+  display: inline-block;
+}

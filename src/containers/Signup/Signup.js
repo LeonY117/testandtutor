@@ -118,7 +118,7 @@ class signup extends Component {
                   />
                 </div>
 
-                <p>Curriculum </p>
+                <p style={{margin: "1rem 0 0.5rem 0"}}>Curriculum </p>
                 <Select
                   changed={(e) => this.inputChangedHandler("curriculum", e)}
                   options={["AA SL", "AI SL", "AA HL", "AI HL "]}

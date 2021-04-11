@@ -19,6 +19,7 @@ const questions = (props) => {
           number={number}
           parts={parts}
           key={number}
+          showMarkscheme={props.showMarkscheme}
         />
       );
     });

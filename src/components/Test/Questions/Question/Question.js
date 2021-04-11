@@ -18,17 +18,26 @@ const question = (props) => {
       />
     );
   });
+
+  let markscheme = null;
+  if (props.showMarkscheme) {
+    markscheme = <div className={classes.Markscheme}>Placeholder for MS</div>;
+  }
+  
   return (
     <Content>
       <Card>
-        <div className={classes.Question}>
-          <p className={classes.marks}>[Maximum marks: {props.marks}]</p>
-          <Latex>
-            <h1 className={classes.title}>
-              Q{props.number}. {props.body}
-            </h1>
-          </Latex>
-          {renderedParts}
+        <div className={classes.QuestionMarkscheme}>
+          <div className={classes.Question}>
+            <p className={classes.marks}>[Maximum marks: {props.marks}]</p>
+            <Latex>
+              <h1 className={classes.title}>
+                Q{props.number}. {props.body}
+              </h1>
+            </Latex>
+            {renderedParts}
+          </div>
+          {markscheme}
         </div>
       </Card>
     </Content>

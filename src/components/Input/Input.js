@@ -8,7 +8,7 @@ const inputComponent = (props) => {
   }
   return (
     <div className={classes.InputComponent}>
-      <p>{props.inputName}</p>
+      <p className={classes.InputName}>{props.inputName}</p>
       <input
         type={props.type}
         value={props.value}

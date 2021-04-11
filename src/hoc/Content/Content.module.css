@@ -5,8 +5,20 @@
 
 /* Add media queries here */
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .Content {
     width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .Content {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .Content {
+    width: 80%;
   }
 }

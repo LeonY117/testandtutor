@@ -3,13 +3,23 @@ import classes from "./Radar.module.css";
 
 function resizeCanvas(canvas) {
   let { width, height } = canvas.getBoundingClientRect();
+  console.log('width: ', width, 'height, ', height)
+  const BASE_DIMENSION=496
   if (canvas.width !== width || canvas.height !== height) {
     const { devicePixelRatio: ratio = 1 } = window;
+    const adjustmentRatio = BASE_DIMENSION/width*ratio*1.5;
+
+    console.log(ratio)
+    console.log(width)
+    console.log(adjustmentRatio)
+
     const context = canvas.getContext("2d");
-    canvas.width = width * ratio;
-    canvas.height = height * ratio;
-    context.scale(ratio, ratio);
-    return ratio;
+    canvas.width = width * adjustmentRatio;
+    canvas.height = height * adjustmentRatio;
+    console.log(canvas.getBoundingClientRect())
+    // Used to scale up the resolution
+    context.scale(ratio*1.5, ratio*1.5);
+    return ratio*1.5;
   }
 
   return false;
@@ -54,7 +64,7 @@ const Canvas = (props) => {
     };
   }, [draw]);
 
-  return <canvas ref={canvasRef} {...rest} className={classes.Canvas}/>;
+  return <canvas ref={canvasRef} {...rest} className={classes.Canvas} />;
 };
 
 export default Canvas;

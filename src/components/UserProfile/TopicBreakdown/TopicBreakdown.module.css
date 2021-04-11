@@ -14,7 +14,6 @@
   /* background: rgb(245, 222, 225); */
 }
 
-
 .Performance {
   display: inline-block;
   margin: 2rem auto;
@@ -23,7 +22,6 @@
   font-weight: 600;
   /* margin-bottom: 3rem; */
 }
-
 
 .Right {
   flex: 0 1 50%;
@@ -47,4 +45,31 @@
 .Radar {
   height: 85%;
   /* background: pink; */
+}
+
+@media (max-width: 600px) {
+  .TopicBreakdown {
+    flex-direction: column;
+    height: 60rem;
+  }
+
+  .Left {
+    flex: 1 1 100%;
+    height: 20rem;
+    order: 2;
+  }
+
+  .Left > h1 {
+    text-align: center;
+  }
+
+  .Select {
+    margin: auto;
+  }
+
+  .Radar {
+    flex: 1 1 100%;
+    height: 20rem;
+    order: 1;
+  }
 }

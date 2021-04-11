@@ -21,5 +21,12 @@
 }
 
 .Warning {
-    color: red;
+  color: red;
+}
+
+@media (max-width: 600px) {
+  .CardWrapper {
+    width: 90%;
+    max-width: 20rem;
+  }
 }

@@ -1,6 +1,7 @@
 .Dashboard {
   display: flex;
   width: 100%;
+  justify-content: space-between;
   /* background-color: grey; */
   gap: 1rem;
   margin: auto;
@@ -8,7 +9,7 @@
 }
 
 .LeftCard {
-  height: 35rem;
+  /* Height is dynamically set by JS */
   flex: 1 1 70%;
 }
 
@@ -18,12 +19,13 @@
   /* background: pink; */
 }
 
-.RadarPlaceholder {
-  height: 80%;
+.RightSide {
+  width: 20rem;
 }
 
 .RightCard {
   height: 26rem;
+  flex: 1 1 20%;
   /* flex: 1 1 30%; */
   margin-bottom: 0.5rem;
 }
@@ -38,20 +40,50 @@
   margin: 1rem auto 0 auto;
 }
 
-.RightButtons a{
+.RightButtons a {
   /* display: block; */
   /* width: 100%; */
   margin: auto;
   /* margin-top: 1rem; */
 }
 
-@media(max-width: 600px) {
+@media (max-width: 768px) {
   .Dashboard {
     flex-direction: column;
     /* background-color: grey; */
   }
   .RightSide {
-    padding: 0 10vw;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin: auto;
+  }
+
+  .RightCard {
+    flex: 1 1 60%;
+  }
+
+  .RightButtons {
+    flex: 1 1 40%;
+  }
+
+  .LeftCard {
+    width: 100%;
+    margin: auto;
   }
 }
 
+@media (max-width: 600px) {
+  .Dashboard {
+    flex-direction: column;
+    /* background-color: grey; */
+  }
+  .RightSide {
+    width: 100%;
+    margin: auto;
+  }
+  .LeftCard {
+    width: 100%;
+    margin: auto;
+  }
+}

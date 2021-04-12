@@ -1,4 +1,4 @@
-import classes from "./Radar.module.css";
+// import classes from "./Radar.module.css";
 import React, { Component } from 'react';
 import Canvas from "./Canvas";
 

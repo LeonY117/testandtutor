@@ -1,4 +1,8 @@
 .ButtonWrapper {
-    width: 10rem;
-    margin: auto;
+  width: 10rem;
+  margin: auto;
+}
+
+.SummaryTable {
+  margin-left: 2rem;
 }

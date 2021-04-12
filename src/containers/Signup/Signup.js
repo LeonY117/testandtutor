@@ -47,7 +47,7 @@ class signup extends Component {
       firstName: this.state.userData.firstName,
       lastName: this.state.userData.lastName,
       curriculum: this.state.userData.curriculum,
-      role: 'student',
+      role: "student",
     };
 
     const warningsCopy = { ...this.state.warnings };
@@ -66,10 +66,10 @@ class signup extends Component {
     this.setState({ warnings: warningsCopy });
 
     if (valid) {
-      console.log("all good, sending user data");
-      console.log("Request to back end", data);
+      // console.log("all good, sending user data");
+      // console.log("Request to back end", data);
       axios
-        .post("users/register", {'data': data})
+        .post("users/register", { data: data })
         .then((response) => {
           console.log(response);
         })
@@ -77,10 +77,14 @@ class signup extends Component {
           console.log(error);
         });
     } else {
-      console.log(data);
-      console.log("displaying warnings");
-      console.log(this.state.warnings);
+      // console.log(data);
+      // console.log("displaying warnings");
+      // console.log(this.state.warnings);
     }
+  };
+  submitHandler = (event) => {
+    this.buttonClickedHandler();
+    event.preventDefault();
   };
 
   render() {
@@ -94,64 +98,66 @@ class signup extends Component {
         <Content>
           <Card>
             <div className={classes.CardWrapper}>
-              <h1>Sign up</h1>
-              <div className={classes.InputFields}>
-                <Input
-                  inputName="Email"
-                  type="text"
-                  changed={(e) => this.inputChangedHandler("email", e)}
-                  warning={this.state.warnings["email"]}
-                />
-                <div className={classes.Names}>
+              <form onSubmit={this.submitHandler}>
+                <h1>Sign up</h1>
+                <div className={classes.InputFields}>
                   <Input
-                    inputName="First Name"
+                    inputName="Email"
                     type="text"
-                    changed={(e) => this.inputChangedHandler("firstName", e)}
-                    warning={this.state.warnings["firstName"]}
+                    changed={(e) => this.inputChangedHandler("email", e)}
+                    warning={this.state.warnings["email"]}
+                  />
+                  <div className={classes.Names}>
+                    <Input
+                      inputName="First Name"
+                      type="text"
+                      changed={(e) => this.inputChangedHandler("firstName", e)}
+                      warning={this.state.warnings["firstName"]}
+                    />
+
+                    <Input
+                      inputName="Last Name"
+                      type="text"
+                      changed={(e) => this.inputChangedHandler("lastName", e)}
+                      warning={this.state.warnings["lastName"]}
+                    />
+                  </div>
+
+                  <p style={{ margin: "1rem 0 0.5rem 0" }}>Curriculum </p>
+                  <Select
+                    changed={(e) => this.inputChangedHandler("curriculum", e)}
+                    options={["AA SL", "AI SL", "AA HL", "AI HL "]}
                   />
 
                   <Input
-                    inputName="Last Name"
-                    type="text"
-                    changed={(e) => this.inputChangedHandler("lastName", e)}
-                    warning={this.state.warnings["lastName"]}
+                    inputName="Password"
+                    type={passwordInputType}
+                    changed={(e) => this.inputChangedHandler("password", e)}
+                    warning={this.state.warnings["password"]}
                   />
+                  <p style={{ fontSize: "12px" }}>
+                    Your password should be at least 8 characters long with a
+                    symbol, upper and lower case letters and a number
+                  </p>
+                  <Input
+                    inputName="Confirm Password"
+                    type={passwordInputType}
+                    changed={(e) =>
+                      this.inputChangedHandler("passwordConfirm", e)
+                    }
+                    warning={this.state.warnings["passwordConfirm"]}
+                  />
+
+                  <div className={classes.ShowPassword}>
+                    <input type="checkbox" onClick={this.showPasswordHandler} />
+                    <p>Show password</p>
+                  </div>
                 </div>
 
-                <p style={{margin: "1rem 0 0.5rem 0"}}>Curriculum </p>
-                <Select
-                  changed={(e) => this.inputChangedHandler("curriculum", e)}
-                  options={["AA SL", "AI SL", "AA HL", "AI HL "]}
-                />
-
-                <Input
-                  inputName="Password"
-                  type={passwordInputType}
-                  changed={(e) => this.inputChangedHandler("password", e)}
-                  warning={this.state.warnings["password"]}
-                />
-                <p style={{ fontSize: "12px" }}>
-                  Your password should be at least 8 characters long with a
-                  symbol, upper and lower case letters and a number
-                </p>
-                <Input
-                  inputName="Confirm Password"
-                  type={passwordInputType}
-                  changed={(e) =>
-                    this.inputChangedHandler("passwordConfirm", e)
-                  }
-                  warning={this.state.warnings["passwordConfirm"]}
-                />
-
-                <div className={classes.ShowPassword}>
-                  <input type="checkbox" onClick={this.showPasswordHandler} />
-                  <p>Show password</p>
-                </div>
-              </div>
-
-              <Button round clicked={this.buttonClickedHandler}>
-                Sign up
-              </Button>
+                <Button round clicked={this.buttonClickedHandler}>
+                  Sign up
+                </Button>
+              </form>
             </div>
           </Card>
         </Content>

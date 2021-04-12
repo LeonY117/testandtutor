@@ -4,6 +4,7 @@ import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import Button from "../../components/UI/Button/Button";
+import Submit from "../../components/Submit/Submit";
 import classes from "./Login.module.css";
 import axios from "../../axios";
 
@@ -58,6 +59,11 @@ class login extends Component {
     //catch own errors
   };
 
+  submitHandler = (event) => {
+    this.buttonClickedHandler()
+    event.preventDefault();
+  }
+
   render() {
     let passwordInputType = "password";
     if (this.state.showPassword) {
@@ -76,24 +82,29 @@ class login extends Component {
           {this.state.loading ? <Loading /> : null}
           <div className={classes.CardWrapper}>
             <Card>
-              <h1>Log in </h1>
-              <div className={classes.InputFields}>
-                <p>Username: </p>
-                <Input type="text" changed={this.usernameInputChangedHandler} />
-                <p>Password:</p>
-                <Input
-                  type={passwordInputType}
-                  changed={this.passwordInputChangedHandler}
-                />
-                <div className={classes.ShowPassword}>
-                  <input type="checkbox" onClick={this.showPasswordHandler} />
-                  <p>Show password</p>
+              <form onSubmit={this.submitHandler}>
+                <h1>Log in </h1>
+                <div className={classes.InputFields}>
+                  <p>Username: </p>
+                  <Input
+                    type="text"
+                    changed={this.usernameInputChangedHandler}
+                  />
+                  <p>Password:</p>
+                  <Input
+                    type={passwordInputType}
+                    changed={this.passwordInputChangedHandler}
+                  />
+                  <div className={classes.ShowPassword}>
+                    <input type="checkbox" onClick={this.showPasswordHandler} />
+                    <p>Show password</p>
+                  </div>
                 </div>
-              </div>
-              {warningMessage}
-              <Button round clicked={this.buttonClickedHandler}>
-                Log in
-              </Button>
+                {warningMessage}
+                <Button round clicked={this.buttonClickedHandler}>
+                  Log in
+                </Button>
+              </form>
             </Card>
           </div>
         </Content>

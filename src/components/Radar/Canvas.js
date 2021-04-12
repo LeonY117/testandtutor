@@ -3,28 +3,27 @@ import classes from "./Radar.module.css";
 
 function resizeCanvas(canvas) {
   let { width, height } = canvas.getBoundingClientRect();
-  console.log('width: ', width, 'height, ', height)
-  const BASE_DIMENSION=496
+  // console.log('width: ', width, 'height, ', height)
+  const BASE_DIMENSION = 496;
   if (canvas.width !== width || canvas.height !== height) {
     const { devicePixelRatio: ratio = 1 } = window;
-    const adjustmentRatio = BASE_DIMENSION/width*ratio*1.5;
+    const adjustmentRatio = (BASE_DIMENSION / width) * ratio * 1.5;
 
-    console.log(ratio)
-    console.log(width)
-    console.log(adjustmentRatio)
+    // console.log(ratio)
+    // console.log(width)
+    // console.log(adjustmentRatio)
 
     const context = canvas.getContext("2d");
     canvas.width = width * adjustmentRatio;
     canvas.height = height * adjustmentRatio;
-    console.log(canvas.getBoundingClientRect())
+    // console.log(canvas.getBoundingClientRect())
     // Used to scale up the resolution
-    context.scale(ratio*1.5, ratio*1.5);
-    return ratio*1.5;
+    context.scale(ratio * 1.5, ratio * 1.5);
+    return ratio * 1.5;
   }
 
   return false;
 }
-
 // function getMousePos(canvas, event) {
 //   var rect = canvas.getBoundingClientRect(), // abs. size of element
 //     scaleX = canvas.width / rect.width, // relationship bitmap vs. element for X
@@ -59,11 +58,11 @@ const Canvas = (props) => {
     // canvas.addEventListener("mousemove", (e) => {
     //   getMousePos(canvas, e)
     // });
+
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
   }, [draw]);
-
   return <canvas ref={canvasRef} {...rest} className={classes.Canvas} />;
 };
 

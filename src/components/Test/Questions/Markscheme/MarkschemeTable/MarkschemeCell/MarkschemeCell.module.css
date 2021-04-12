@@ -1,0 +1,34 @@
+.Cell {
+  display: flex;
+  flex-direction: column;
+  width: 5rem;
+  justify-content: center;
+}
+
+.Label {
+  padding: 1rem;
+  border: 1px solid grey;
+  margin: 0;
+  margin-left: -1px;
+  font-weight: 600;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  /* margin: 0; */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* margin: 0; */
+}
+
+.Input {
+  padding: 1rem;
+  border: 1px solid grey;
+  margin: 0;
+  margin-top: -1px;
+  margin-left: -1px;
+}

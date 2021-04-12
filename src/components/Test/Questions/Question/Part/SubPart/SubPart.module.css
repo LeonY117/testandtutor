@@ -1,10 +1,9 @@
-.Part {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    /* background: lightgreen; */
-    margin: 0.5rem 0
+.SubPart {
+  display: flex;
+  justify-content: space-between;
+  /* background: lightgreen; */
+  margin-left: -0rem;
+  margin: 0.25rem 0;
 }
 
 .LabelBodyWrapper {
@@ -15,21 +14,17 @@
   flex: 1 1 100%;
 }
 
-.PartLabel {
-  margin: 0 1em;
+.Label {
+  margin: 0.25rem 1rem;
   /* background: pink; */
   height: 100%;
   width: 2rem;
 }
 
-.PartBody {
+.Body {
   /* background: lightblue; */
   height: 100%;
   flex: 1 1 100%;
-}
-
-.PartBody p {
-  margin: 0;
 }
 
 .Mark {

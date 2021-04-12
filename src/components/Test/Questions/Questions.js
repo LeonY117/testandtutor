@@ -1,13 +1,12 @@
 import React from "react";
 import Question from "./Question/Question";
-import classes from './Questions.module.css'
+import classes from "./Questions.module.css";
 
 const questions = (props) => {
   let renderedQuestions = null;
-
+  const testBodyCopy = [...props.testBody]
   if (props.testBody) {
-    renderedQuestions = Object.keys(props.testBody).map((i) => {
-      let questionContent = props.testBody[i][0];
+    renderedQuestions = testBodyCopy.map((questionContent) => {
       let marks = questionContent.maximum_marks;
       let body = questionContent.question_body;
       let number = questionContent.question_number;
@@ -20,6 +19,8 @@ const questions = (props) => {
           parts={parts}
           key={number}
           showMarkscheme={props.showMarkscheme}
+          inputChanged = {props.inputChanged}
+          msMarks={props.marks}
         />
       );
     });

@@ -1,0 +1,31 @@
+.Submit {
+  padding: 1.2em 1em;
+  border: none;
+  margin: 0.4em auto;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 500;
+  border-radius: 50px;
+}
+
+.Submit:focus {
+  outline: none;
+}
+
+.Blue {
+  background-color: #3366ff;
+  color: white;
+  border: 3px solid #3366ff;
+  transition: background-color 100ms ease-in-out;
+}
+
+.Blue:hover,
+.Blue:active,
+.Blue:focus {
+  background-color: white;
+  color: #3366ff;
+  border: 3px solid #3366ff;
+}

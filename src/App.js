@@ -43,7 +43,7 @@ class App extends Component {
       <Layout mode={this.state.mode}>
         <Switch>
           {redirectFromLogin}
-          {redirectFromUser}
+          {/* {redirectFromUser} */}
           <Route path="/" exact component={Landing} />
           <Route
             path="/login"

@@ -20,112 +20,61 @@ function compare(a, b) {
 class testPaper extends Component {
   state = {
     paperId: null,
-    testBody: [],
+    testBody: {},
+    marks: {},
     showMarkscheme: false,
     loading: true,
-    marks: {},
   };
 
-  /* 
-  testBody: [
-    {
-      maximum_marks: 8
-      question_body: 'blabla',
-      question_number: 1,
-      title: 'blabla'
-      parts: [
-        {
-          id: dajfklsd;a,
-          marks: 2,
-          part: 1,
-          title: 'solve blabla'
-        }
-        {
-          id: dajfklsd;a,
-          marks: 2,
-          part: 2,
-          title: 'solve blabla'
-        }
-        {
-          id: dajfklsd;a,
-          marks: 2,
-          part: 3,
-          title: 'solve blabla'
-        }
-      ]
-    }
-  ]
-  */
-
   componentDidMount() {
-    // console.log(this.props);
-    // const data = {
-    //   data: { testId: this.props.match.params.id },
-    // };
-
-    console.log("request for list of question Ids");
-    const fakeResponse = this.props.match.params.id;
-    console.log("temporary question (just 1):" + fakeResponse);
-
-    // const questionIdsCopy = [...this.state.questionIds]
-    // for (let questionId in fakeResponse) {
-    //   questionIdsCopy.push(questionId)
-    // }
-    // this.setState({questionIds: questionIdsCopy})
-
     let testBodyCopy = null;
+    const marksCopy = {};
+
+    const fakeId = this.props.match.params.id;
+    console.log("request this question id" + fakeId);
+
     const headers = {
       headers: { Authorization: `Bearer ${this.props.accessToken}` },
     };
-    // Don't need to loop
 
     axios
-      .post("/questions/test", { data: { testId: fakeResponse } }, headers)
+      .post("/questions/test", { data: { testId: fakeId } }, headers)
       .then((response) => {
         if (response.data.hasOwnProperty("errors")) {
+          // Show user different messages depending on error
           console.log("errors!");
           console.log(response.data.errors);
         } else {
-          // console.log(response.data.data)
-          // testBodyCopy.push(response.data.data);
-          console.log(response.data.data);
-          // [...props.testBody].sort(compare)
-          let testBodyCopy = [...response.data.data].sort(compare);
-          console.log(testBodyCopy);
-          let marksCopy = {};
+          console.log(response.data);
+          testBodyCopy = [...response.data.data].sort(compare);
 
           for (let i in testBodyCopy) {
             // initiate empty question object
-            marksCopy[i] = {};
             let question = testBodyCopy[i];
-            // console.log(question);
-            Object.keys(question.parts).map((key) => {
-              let partNum = key;
+            marksCopy[i] = { id: question.id, parts: {} };
+            for (let partKey in Object.keys(question.parts)) {
               // Generate template for part marks
-              marksCopy[i][partNum] = {
-                maximum_marks: question.parts[key].marks,
+              let part = { ...question.parts[partKey] };
+              marksCopy[i].parts[partKey] = {
+                maximum_marks: part.marks,
                 marks: 0,
                 subparts: {},
               };
-
-              if (question.parts[key].subparts.length > 0) {
-                let subparts = question.parts[key].subparts;
-                Object.keys(subparts).map((key) => {
-                  // Generate template for subpart marks
-                  marksCopy[i][partNum]["subparts"][key] = {
-                    maximum_marks: subparts[key].marks,
-                    marks: 0,
-                  };
-                });
+              let subparts = { ...part.subparts };
+              for (let key in Object.keys(subparts)) {
+                marksCopy[i].parts[partKey]["subparts"][key] = {
+                  maximum_marks: subparts[key].marks,
+                  marks: 0,
+                };
               }
-            });
+            }
           }
-          // console.log(testBodyCopy)
           this.setState({
             testBody: testBodyCopy,
             loading: false,
             marks: marksCopy,
           });
+          console.log(marksCopy);
         }
       })
       .catch((error) => {
@@ -139,7 +88,7 @@ class testPaper extends Component {
   };
 
   submitHandler = () => {
-    console.log('submit to backend!')
+    console.log("submit to backend!");
     console.log(this.state.marks);
   };
 
@@ -150,7 +99,10 @@ class testPaper extends Component {
     if (value < 0) {
       return 0;
     }
-    return value;
+    if (value === null || isNaN(value) || value === "" || value === " ") {
+      return 0;
+    }
+    return parseInt(value);
   }
 
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {

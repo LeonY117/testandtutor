@@ -3,6 +3,7 @@ import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
 import TestList from "../../components/SelectTest/TestList/TestList";
 import classes from "./SelectTest.module.css";
+import axios from "axios";
 
 class selectTest extends Component {
   state = {
@@ -39,13 +40,17 @@ class selectTest extends Component {
   };
 
   componentDidMount() {
-
+    axios
+      .post("/tests/available_tests/", { data: { userId: this.props.userId } })
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   testSelectButtonClickedHandler = (paperID) => {
-    console.log(paperID)
+    console.log(paperID);
     // paperID = 'd76eb100-c70a-4c87-af37-40f26c2ea87b'
-    this.props.history.push(this.props.match.url+'/'+paperID);
+    this.props.history.push(this.props.match.url + "/" + paperID);
     // console.log("backend request required for " + paperID);
   };
 

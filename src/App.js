@@ -18,7 +18,7 @@ class App extends Component {
   };
 
   loginSuccessHandler = (id, token) => {
-    console.log(this.state.loggedIn);
+    // console.log(this.state.loggedIn);
     this.setState({
       userId: id,
       accessToken: token,
@@ -26,7 +26,7 @@ class App extends Component {
       mode: "user",
     });
     // console.log(this.state.userId, this.state.accessToken);
-    console.log("logged in!");
+    console.log("logged in!" + this.state.loggedIn);
   };
 
   render() {

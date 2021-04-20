@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import MarkschemeCell from "./MarkschemeCell/MarkschemeCell";
 import classes from "./MarkschemeTable.module.css";
 
@@ -25,27 +25,27 @@ function characterize(num) {
 }
 const markschemeTable = (props) => {
   let cells = null;
-  let questionNumber = props.questionNumber
   let qKey = (props.questionNumber - 1).toString();
 
-  cells = Object.keys(props.marks[qKey]).map((key) => {
+  cells = Object.keys(props.marks[qKey].parts).map((key) => {
     // console.log("Part: ", key);
     let partLabel = characterize(parseInt(key) + 1);
     let partKey = key; //to be passed down to the lower level
     // console.log(props.marks[qKey][key].subparts);
-    if (Object.keys(props.marks[qKey][key].subparts).length === 0) {
+    if (Object.keys(props.marks[qKey].parts[key].subparts).length === 0) {
       return (
         <MarkschemeCell
           label={props.questionNumber + partLabel}
-          marks={props.marks[qKey][key].maximum_marks}
+          marks={props.marks[qKey].parts[key].maximum_marks}
           key={props.questionNumber + partLabel}
           changed={(e) => props.inputChanged(e, qKey, key, null)}
-          value={props.marks[qKey][key].marks}
+          value={props.marks[qKey].parts[key].marks}
+          max={props.marks[qKey].parts[key].maximum_marks}
         />
       );
     } else {
       // if there are subparts, render only the subpart cells
-      let subparts = props.marks[qKey][partKey].subparts;
+      let subparts = props.marks[qKey].parts[partKey].subparts;
       return Object.keys(subparts).map((key) => {
         // subpart label format: 1a, i
         let sublabel = romanize(parseInt(key) + 1);
@@ -56,6 +56,7 @@ const markschemeTable = (props) => {
             key={props.questionNumber + partLabel + ", " + sublabel}
             changed={(e) => props.inputChanged(e, qKey, partKey, key)}
             value={subparts[key].marks}
+            max={subparts[key].maximum_marks}
           />
         );
       });

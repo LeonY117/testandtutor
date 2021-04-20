@@ -9,7 +9,7 @@ import img from "../../../../assets/images/radar.png";
 
 function stringToImg(string) {
   // console.log(string);
-  return <img src={img} />;
+  return <img src={img} alt={"hello"} />;
 }
 
 const question = (props) => {
@@ -64,7 +64,7 @@ const question = (props) => {
   // }
 
   return (
-    <Content>
+    <div style={{marginBottom: '3rem'}}>
       <Card>
         <div className={classes.QuestionMarkscheme}>
           <div className={classes.Question}>
@@ -81,7 +81,7 @@ const question = (props) => {
           {markscheme}
         </div>
       </Card>
-    </Content>
+    </div>
   );
 };
 

@@ -4,7 +4,6 @@ import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import Button from "../../components/UI/Button/Button";
-import Submit from "../../components/Submit/Submit";
 import classes from "./Login.module.css";
 import axios from "../../axios";
 

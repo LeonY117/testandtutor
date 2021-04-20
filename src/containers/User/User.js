@@ -10,7 +10,7 @@ class User extends Component {
     redirect: false,
     loading: true,
     data: {
-      username: "Binu",
+      username: "Student",
       subject: "IB Mathematics SL",
       examDate: "19th June",
       averageGrade: 6,
@@ -101,26 +101,30 @@ class User extends Component {
       data: { userId: this.props.userId },
     };
 
+    console.log("posting this data from user: ");
+    console.log(data);
+
     const headers = {
       headers: { Authorization: `Bearer ${this.props.accessToken}` },
     };
 
     axios
-      .post("/profiles/userprofile", data, headers)
+      .post("/profiles/userprofile", data, headers, { withCredentials: true })
       .then((response) => {
         console.log(response);
         this.setState({ loading: false });
       })
       .catch((error) => {
-        console.log("error!");
+        // console.log("error!");
+        console.log("cannot get user info ");
         this.setState({ redirect: true });
       });
   }
 
   selectChangedHandler = (event) => {
-    const dataCopy = {...this.state.data}
-    dataCopy['selectedTopic'] = event.target.value
-    this.setState({ data:dataCopy });
+    const dataCopy = { ...this.state.data };
+    dataCopy["selectedTopic"] = event.target.value;
+    this.setState({ data: dataCopy });
   };
 
   takeTestButtonClickedHandler = () => {
@@ -138,7 +142,7 @@ class User extends Component {
 
     if (this.state.redirect === true) {
       console.log("need to redirect user to log in page");
-      userProfile = <Redirect from="/user" to="/login" />;
+      // userProfile = <Redirect from="/user" to="/login" />;
     }
 
     if (this.state.loading === false) {

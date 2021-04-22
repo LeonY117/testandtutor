@@ -38,30 +38,35 @@ class login extends Component {
       data: { email: this.state.username, password: this.state.password },
     };
     this.setState({ loading: true });
-    axios.post("/auth/login", loginData).then((response) => {
-      const data = response.data;
-      if (data.hasOwnProperty("errors")) {
-        this.setState({
-          warning: true,
-          errorMessage: data.errors[0].source.detail,
-        });
-        this.setState({ loading: false });
-      } else {
-        console.log(response);
-        this.props.loginSuccessHandler(data.data.userId, data.data.accessToken);
-        // this.setState({
-        //   userId: data.data.userId,
-        //   accessToken: data.data.accessToken,
-        // });
-      }
-    });
+    axios
+      .post("/auth/login", loginData, { withCredentials: true })
+      .then((response) => {
+        const data = response.data;
+        if (data.hasOwnProperty("errors")) {
+          this.setState({
+            warning: true,
+            errorMessage: data.errors[0].source.detail,
+          });
+          this.setState({ loading: false });
+        } else {
+          console.log(response);
+          this.props.loginSuccessHandler(
+            data.data.userId,
+            data.data.accessToken
+          );
+          // this.setState({
+          //   userId: data.data.userId,
+          //   accessToken: data.data.accessToken,
+          // });
+        }
+      });
     //catch own errors
   };
 
   submitHandler = (event) => {
-    this.buttonClickedHandler()
+    this.buttonClickedHandler();
     event.preventDefault();
-  }
+  };
 
   render() {
     let passwordInputType = "password";

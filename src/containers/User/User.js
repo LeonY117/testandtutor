@@ -109,7 +109,7 @@ class User extends Component {
     };
 
     axios
-      .post("/profiles/userprofile", data, headers, { withCredentials: true })
+      .post("/profiles/userprofile", data, { withCredentials: true })
       .then((response) => {
         console.log(response);
         this.setState({ loading: false });

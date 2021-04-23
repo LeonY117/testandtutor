@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: -100
 }
 
 .Logo {
@@ -24,15 +25,12 @@
   color: white;
   font-weight: 400;
   font-size: 1rem;
-  /* padding: 0 0 8px 0; */
+  /* background: grey; */
+  /* padding: 1rem; */
   border-bottom: 0.4em solid #17f4ff;
 }
 
 /* For future animation or CSS effects on the action link */
-.LandingBanner > a:hover {
-  /* border-bottom: 8px solid #17f4ff; */
-  padding: 0;
-}
 
 .LandingInfos {
   margin: 5rem 0;
@@ -100,6 +98,30 @@
   width: 100%;
 }
 
+/* .ActionButton {
+  position: relative;
+  color: white;
+  z-index: 10
+}
+
+.ActionButton::after {
+  content: "";
+  background: rgba(23, 244, 255, 1);
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  width: 100%;
+  height: 0rem;
+  z-index: -1;
+  transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
+}
+
+.ActionButton:hover:after {
+  left: 0;
+  height: 1rem;
+  width: 100%;
+} */
+
 @media (max-width: 1000px) {
   .LandingInfo {
     width: 40rem;
@@ -118,8 +140,7 @@
   }
 }
 
-@media (max-width:600px) {
-
+@media (max-width: 600px) {
   .Logo {
     height: 3rem;
   }
@@ -167,5 +188,4 @@
     flex: 1 1 100%;
     order: -1;
   }
-
 }

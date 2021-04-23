@@ -35,9 +35,8 @@ class selectTest extends Component {
           testsCopy[test.id]["score"] = test.last_attempt
             ? test.last_attempt.score
             : null;
-          testsCopy[test.id]["totalScore"] = 120; //test.totalScore
+          testsCopy[test.id]["totalScore"] = test.max_marks; //test.totalScore
         }
-        console.log(testsCopy);
         this.setState({ tests: testsCopy, loading: false });
       });
   }

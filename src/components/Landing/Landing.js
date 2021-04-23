@@ -17,7 +17,9 @@ const landing = (props) => {
           <Logo />
         </div>
         <h1>Personalised Study Planner for IB Mathematics</h1>
-        <a href="/">GET EXCLUSIVE ACCESS NOW</a>
+        <a className={classes.ActionButton} href="/">
+          GET EXCLUSIVE ACCESS NOW
+        </a>
       </div>
 
       <div className={classes.LandingInfos}>

@@ -66,16 +66,16 @@ class testPaper extends Component {
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
     const marksCopy = { ...this.state.marks };
     if (subpartIndex !== null) {
-      marksCopy[questionIndex][partIndex].subparts[
+      marksCopy[questionIndex].parts[partIndex].subparts[
         subpartIndex
       ].marks = this.boundValue(
         event.target.value,
-        marksCopy[questionIndex][partIndex].subparts[subpartIndex].maximum_marks
+        marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].maximum_marks
       );
     } else {
-      marksCopy[questionIndex][partIndex].marks = this.boundValue(
+      marksCopy[questionIndex].parts[partIndex].marks = this.boundValue(
         event.target.value,
-        marksCopy[questionIndex][partIndex].maximum_marks
+        marksCopy[questionIndex].parts[partIndex].maximum_marks
       );
     }
     // console.log(marksCopy[questionIndex]);
@@ -109,7 +109,7 @@ class testPaper extends Component {
           console.log(response.data.errors);
         } else {
           console.log(response.data);
-          testBodyCopy = [...response.data.data].sort(compare);
+          testBodyCopy = [...response.data.data.questions].sort(compare);
 
           for (let i in testBodyCopy) {
             // initiate empty question object

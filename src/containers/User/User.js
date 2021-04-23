@@ -99,6 +99,15 @@ class User extends Component {
     },
   };
 
+  selectChangedHandler = (event) => {
+    const dataCopy = { ...this.state.data };
+    dataCopy["selectedTopic"] = event.target.value;
+    this.setState({ data: dataCopy });
+  };
+
+  takeTestButtonClickedHandler = () => {
+    this.props.history.push(this.props.match.url + "/test");
+  };
   componentDidUpdate() {
     if (!this.state.userId) {
       this.props.expired();
@@ -106,7 +115,6 @@ class User extends Component {
   }
 
   componentDidMount() {
-    console.log("user profile mounted");
     window.scrollTo(0, 0);
     const data = {
       data: { userId: this.state.userId },
@@ -115,7 +123,6 @@ class User extends Component {
     // const headers = {
     //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
     // };
-    console.log("setting state in user");
     axios
       .post("/profiles/userprofile", data)
       .then((response) => {
@@ -151,7 +158,6 @@ class User extends Component {
           dataCopy.suggestedTopics = suggestedTopics;
 
           this.setState({ loading: false, data: dataCopy });
-          console.log("state in user is set");
         }
       })
       .catch((error) => {
@@ -160,17 +166,6 @@ class User extends Component {
         this.setState({ redirect: true });
       });
   }
-
-  selectChangedHandler = (event) => {
-    const dataCopy = { ...this.state.data };
-    dataCopy["selectedTopic"] = event.target.value;
-    this.setState({ data: dataCopy });
-  };
-
-  takeTestButtonClickedHandler = () => {
-    this.props.history.push(this.props.match.url + "/test");
-  };
-
   render() {
     const selectedTopicBreakdown = {
       name: this.state.data.selectedTopic,
@@ -207,7 +202,7 @@ class User extends Component {
     }
 
     if (this.state.redirect === true) {
-      console.log('going to redirect back go login')
+      console.log("going to redirect back go login");
       userProfile = <Redirect from="/user" to="/login" />;
     }
 

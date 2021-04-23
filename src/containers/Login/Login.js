@@ -47,11 +47,8 @@ class login extends Component {
             loading: false,
           });
         } else {
-          console.log(response);
-          this.props.loginSuccessHandler(
-            data.data.userId
-          );
           this.setState({ loading: true });
+          this.props.loginSuccessHandler(data.data.userId);
         }
       });
     //catch own errors
@@ -59,10 +56,6 @@ class login extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-  }
-
-  componentDidUpdate() {
-    console.log("login updates");
   }
 
   render() {

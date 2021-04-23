@@ -5,9 +5,11 @@ import classes from "./TestInfo.module.css";
 const testInfo = (props) => {
   return (
     <div className={classes.TestInfo}>
-      <p>{props.name}</p>
-      <p>{props.length}</p>
-      <p>{props.score}</p>
+      <div className={classes.Texts}>
+        <p className={classes.Name}>{props.name}</p>
+        <p className={classes.Length}>{props.length}</p>
+        <p className={classes.Score}>{props.score}</p>
+      </div>
       <div className={classes.Button}>
         <Button
           clicked={props.buttonClicked}

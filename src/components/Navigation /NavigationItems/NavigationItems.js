@@ -10,7 +10,6 @@ const navigationItems = (props) => {
     </ul>
   );
   if (props.mode === "user") {
-    console.log('user mode!')
     nav = (
       <ul className={classes.NavigationItems}>
         <NavigationItem link="/user">Dashboard</NavigationItem>

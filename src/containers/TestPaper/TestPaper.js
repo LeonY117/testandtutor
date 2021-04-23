@@ -94,7 +94,7 @@ class testPaper extends Component {
     const marksCopy = {};
 
     const fakeId = this.props.match.params.id;
-    console.log("request this question id" + fakeId);
+    console.log("request this question id: " + fakeId);
 
     // const headers = {
     //   headers: { Authorization: `Bearer ${this.props.accessToken}` },

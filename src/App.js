@@ -23,9 +23,6 @@ class App extends Component {
     this.setState({
       loggedIn: true,
     });
-
-    // console.log(this.state.userId, this.state.accessToken);
-    console.log("logged in!" + this.state.loggedIn);
   };
 
   logoutHandler = () => {
@@ -49,12 +46,10 @@ class App extends Component {
     let redirectFromLogin = null;
     // shouldn't be ever clicked as there are no login links availble once user logs in
     if (this.state.loggedIn) {
-      console.log('will redirect from login to user')
       redirectFromLogin = <Redirect from="/login" to="/user/profile" />;
     }
     let redirectFromUser = null;
     if (this.state.loggedIn === false) {
-      console.log('will redirect from user to login ')
       redirectFromUser = <Redirect from="/user" to="/login" />;
     }
     return (

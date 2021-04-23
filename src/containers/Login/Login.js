@@ -36,7 +36,6 @@ class login extends Component {
     const loginData = {
       data: { email: this.state.username, password: this.state.password },
     };
-    this.setState({ loading: true });
     axios
       .post("/auth/login", loginData, { withCredentials: true })
       .then((response) => {
@@ -50,22 +49,22 @@ class login extends Component {
         } else {
           console.log(response);
           this.props.loginSuccessHandler(
-            data.data.userId,
-            data.data.accessToken
+            data.data.userId
           );
+          this.setState({ loading: true });
         }
       });
     //catch own errors
   };
 
-  submitHandler = (event) => {
-    this.buttonClickedHandler();
-    event.preventDefault();
-  };
-
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+
+  componentDidUpdate() {
+    console.log("login updates");
+  }
+
   render() {
     let passwordInputType = "password";
     if (this.state.showPassword) {
@@ -84,29 +83,24 @@ class login extends Component {
           {this.state.loading ? <Loading /> : null}
           <div className={classes.CardWrapper}>
             <Card>
-              <form onSubmit={this.submitHandler}>
-                <h1>Log in </h1>
-                <div className={classes.InputFields}>
-                  <p>Username: </p>
-                  <Input
-                    type="text"
-                    changed={this.usernameInputChangedHandler}
-                  />
-                  <p>Password:</p>
-                  <Input
-                    type={passwordInputType}
-                    changed={this.passwordInputChangedHandler}
-                  />
-                  <div className={classes.ShowPassword}>
-                    <input type="checkbox" onClick={this.showPasswordHandler} />
-                    <p>Show password</p>
-                  </div>
+              <h1>Log in </h1>
+              <div className={classes.InputFields}>
+                <p>Username: </p>
+                <Input type="text" changed={this.usernameInputChangedHandler} />
+                <p>Password:</p>
+                <Input
+                  type={passwordInputType}
+                  changed={this.passwordInputChangedHandler}
+                />
+                <div className={classes.ShowPassword}>
+                  <input type="checkbox" onClick={this.showPasswordHandler} />
+                  <p>Show password</p>
                 </div>
-                {warningMessage}
-                <Button round clicked={this.buttonClickedHandler}>
-                  Log in
-                </Button>
-              </form>
+              </div>
+              {warningMessage}
+              <Button round clicked={this.buttonClickedHandler}>
+                Log in
+              </Button>
             </Card>
           </div>
         </Content>

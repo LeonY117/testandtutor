@@ -106,6 +106,7 @@ class User extends Component {
   }
 
   componentDidMount() {
+    console.log("user profile mounted");
     window.scrollTo(0, 0);
     const data = {
       data: { userId: this.state.userId },
@@ -114,7 +115,7 @@ class User extends Component {
     // const headers = {
     //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
     // };
-
+    console.log("setting state in user");
     axios
       .post("/profiles/userprofile", data)
       .then((response) => {
@@ -150,6 +151,7 @@ class User extends Component {
           dataCopy.suggestedTopics = suggestedTopics;
 
           this.setState({ loading: false, data: dataCopy });
+          console.log("state in user is set");
         }
       })
       .catch((error) => {
@@ -205,23 +207,11 @@ class User extends Component {
     }
 
     if (this.state.redirect === true) {
+      console.log('going to redirect back go login')
       userProfile = <Redirect from="/user" to="/login" />;
     }
 
     return <div>{userProfile}</div>;
-
-    // <UserProfile
-    //   username={this.state.data.username}
-    //   subject={this.state.data.subject}
-    //   examDate={this.state.data.examDate}
-    //   averageGrade={this.state.data.averageGrade}
-    //   topics={this.state.data.topics}
-    //   subTopics={this.state.data.subTopics}
-    //   selectedTopicBreakdown={selectedTopicBreakdown}
-    //   selectChangedHandler={this.selectChangedHandler}
-    //   scoreHistory={this.state.data.scoreHistory}
-    //   suggestedTopics={this.state.data.suggestedTopics}
-    // />
   }
 }
 

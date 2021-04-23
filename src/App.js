@@ -47,14 +47,14 @@ class App extends Component {
 
   render() {
     let redirectFromLogin = null;
-    let redirectFromSignup = null;
     // shouldn't be ever clicked as there are no login links availble once user logs in
     if (this.state.loggedIn) {
-      redirectFromLogin = <Redirect from="/login" to="/user" />;
-      redirectFromSignup = <Redirect from="/signup" to="/user" />
+      console.log('will redirect from login to user')
+      redirectFromLogin = <Redirect from="/login" to="/user/profile" />;
     }
     let redirectFromUser = null;
     if (this.state.loggedIn === false) {
+      console.log('will redirect from user to login ')
       redirectFromUser = <Redirect from="/user" to="/login" />;
     }
     return (
@@ -62,7 +62,6 @@ class App extends Component {
         <Switch>
           {redirectFromUser}
           {redirectFromLogin}
-          {redirectFromSignup}
           <Route path="/" exact component={Landing} />
           <Route
             path="/login"

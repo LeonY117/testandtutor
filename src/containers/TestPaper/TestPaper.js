@@ -28,6 +28,60 @@ class testPaper extends Component {
     loading: true,
   };
 
+  testCompletedHandler = () => {
+    console.log("completed test");
+    this.setState({ showMarkscheme: true });
+  };
+
+  submitHandler = () => {
+    const answer = [...Object.values(this.state.marks)];
+
+    const data = {
+      data: {
+        userId: this.state.userId,
+        testId: this.state.paperId,
+        answers: answer,
+      },
+    };
+    console.log("submit to backend!");
+    console.log(data);
+    axios.post("/tests/submit_test", data).then((response) => {
+      console.log(response);
+    });
+  };
+
+  boundValue(value, max) {
+    if (value > max) {
+      return max;
+    }
+    if (value < 0) {
+      return 0;
+    }
+    if (value === null || isNaN(value) || value === "" || value === " ") {
+      return 0;
+    }
+    return parseInt(value);
+  }
+
+  inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
+    const marksCopy = { ...this.state.marks };
+    if (subpartIndex !== null) {
+      marksCopy[questionIndex][partIndex].subparts[
+        subpartIndex
+      ].marks = this.boundValue(
+        event.target.value,
+        marksCopy[questionIndex][partIndex].subparts[subpartIndex].maximum_marks
+      );
+    } else {
+      marksCopy[questionIndex][partIndex].marks = this.boundValue(
+        event.target.value,
+        marksCopy[questionIndex][partIndex].maximum_marks
+      );
+    }
+    // console.log(marksCopy[questionIndex]);
+    this.setState({ marks: marksCopy });
+  };
+
   componentDidUpdate() {
     if (!this.state.userId) {
       this.props.expired();
@@ -97,56 +151,6 @@ class testPaper extends Component {
         console.log(error);
       });
   }
-
-  testCompletedHandler = () => {
-    console.log("completed test");
-    this.setState({ showMarkscheme: true });
-  };
-
-  submitHandler = () => {
-    const answer = [...Object.values(this.state.marks)];
-
-    const data = {
-      userId: this.props.userId,
-      testId: this.state.paperId,
-      answers: answer,
-    };
-    console.log("submit to backend!");
-    console.log(data);
-  };
-
-  boundValue(value, max) {
-    if (value > max) {
-      return max;
-    }
-    if (value < 0) {
-      return 0;
-    }
-    if (value === null || isNaN(value) || value === "" || value === " ") {
-      return 0;
-    }
-    return parseInt(value);
-  }
-
-  inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
-    const marksCopy = { ...this.state.marks };
-    if (subpartIndex !== null) {
-      marksCopy[questionIndex][partIndex].subparts[
-        subpartIndex
-      ].marks = this.boundValue(
-        event.target.value,
-        marksCopy[questionIndex][partIndex].subparts[subpartIndex].maximum_marks
-      );
-    } else {
-      marksCopy[questionIndex][partIndex].marks = this.boundValue(
-        event.target.value,
-        marksCopy[questionIndex][partIndex].maximum_marks
-      );
-    }
-    // console.log(marksCopy[questionIndex]);
-    this.setState({ marks: marksCopy });
-  };
-
   render() {
     let markscheme = null;
     if (this.state.showMarkscheme) {

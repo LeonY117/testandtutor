@@ -28,7 +28,7 @@ const part = (props) => {
             {subparts}
           </div>
         </div>
-        {props.marks > 0 ? (
+        {Object.keys(props.subparts).length === 0 ? (
           <p className={classes.Mark}>[{props.marks}]</p>
         ) : null}
       </div>

@@ -1,50 +1,51 @@
 import React, { Component } from "react";
 import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
+import Loading from "../../components/Loading/Loading";
 import TestList from "../../components/SelectTest/TestList/TestList";
 import classes from "./SelectTest.module.css";
-import axios from "axios";
+import axios from "../../axios";
+import Cookies from "js-cookie";
 
 class selectTest extends Component {
   state = {
-    tests: {
-      "d76eb100-c70a-4c87-af37-40f26c2ea87b": {
-        name: "Test 1",
-        status: "finished",
-        length: 120,
-        totalScore: 120,
-        score: 70,
-      },
-      "2abc": {
-        name: "Test 2",
-        status: "finished",
-        length: 60,
-        totalScore: 100,
-        score: 70,
-      },
-      "3abc": {
-        name: "Test 3",
-        status: "unfinished",
-        length: 80,
-        totalScore: 120,
-        score: null,
-      },
-      "4abc": {
-        name: "Test 4",
-        status: "unfinished",
-        length: 100,
-        totalScore: 120,
-        score: null,
-      },
-    },
+    userId: Cookies.get("userId"),
+    loading: true,
+    tests: {},
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0)
+    console.log({ data: { userId: this.state.userId } });
     axios
-      .post("/tests/available_tests/", { data: { userId: this.props.userId } })
+      .post("/tests/available_tests", { data: { userId: this.state.userId } })
       .then((response) => {
-        console.log(response);
+        const responseData = response.data.data;
+        console.log(responseData);
+        const testsCopy = {};
+
+        for (let i in responseData) {
+          let test = responseData[i];
+          testsCopy[test.id] = {};
+          testsCopy[test.id]["name"] = test.title;
+          testsCopy[test.id]["status"] = test.last_attempt
+            ? "finished"
+            : "unfinished";
+          testsCopy[test.id]["length"] = test.duration;
+          testsCopy[test.id]["score"] = test.last_attempt
+            ? test.last_attempt.score
+            : null;
+          testsCopy[test.id]["totalScore"] = 120; //test.totalScore
+        }
+        console.log(testsCopy);
+        this.setState({ tests: testsCopy, loading: false });
       });
+  }
+
+  componentDidUpdate() {
+    if (!this.state.userId) {
+      this.props.expired();
+    }
   }
 
   testSelectButtonClickedHandler = (paperID) => {
@@ -55,19 +56,23 @@ class selectTest extends Component {
   };
 
   render() {
-    return (
-      <Content>
-        <div className={classes.SkillsetTest}>
-          <h1>Skillset Test</h1>
-          <Card>
-            <TestList
-              tests={this.state.tests}
-              testSelectButtonClicked={this.testSelectButtonClickedHandler}
-            />
-          </Card>
-        </div>
-      </Content>
-    );
+    let list = <Loading />;
+    if (this.state.loading === false) {
+      list = (
+        <Content>
+          <div className={classes.SkillsetTest}>
+            <h1>Skillset Test</h1>
+            <Card>
+              <TestList
+                tests={this.state.tests}
+                testSelectButtonClicked={this.testSelectButtonClickedHandler}
+              />
+            </Card>
+          </div>
+        </Content>
+      );
+    }
+    return <div>{list}</div>;
   }
 }
 

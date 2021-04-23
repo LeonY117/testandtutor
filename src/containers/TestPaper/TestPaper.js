@@ -6,6 +6,7 @@ import Content from "../../hoc/Content/Content";
 import classes from "./TestPaper.module.css";
 import Loading from "../../components/Loading/Loading";
 import MarkschemeTable from "../../components/Test/Questions/Markscheme/MarkschemeTable/MarkschemeTable";
+import Cookies from "js-cookie";
 
 function compare(a, b) {
   if (a.maximum_marks > b.maximum_marks) {
@@ -19,6 +20,7 @@ function compare(a, b) {
 
 class testPaper extends Component {
   state = {
+    userId: Cookies.get("userId"),
     paperId: null,
     testBody: {},
     marks: {},
@@ -26,19 +28,26 @@ class testPaper extends Component {
     loading: true,
   };
 
+  componentDidUpdate() {
+    if (!this.state.userId) {
+      this.props.expired();
+    }
+  }
+
   componentDidMount() {
+    window.scrollTo(0, 0);
     let testBodyCopy = null;
     const marksCopy = {};
 
     const fakeId = this.props.match.params.id;
     console.log("request this question id" + fakeId);
 
-    const headers = {
-      headers: { Authorization: `Bearer ${this.props.accessToken}` },
-    };
+    // const headers = {
+    //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
+    // };
 
     axios
-      .post("/questions/test", { data: { testId: fakeId } }, headers)
+      .post("/questions/test", { data: { testId: fakeId } })
       .then((response) => {
         if (response.data.hasOwnProperty("errors")) {
           // Show user different messages depending on error
@@ -51,18 +60,23 @@ class testPaper extends Component {
           for (let i in testBodyCopy) {
             // initiate empty question object
             let question = testBodyCopy[i];
-            marksCopy[i] = { id: question.id, parts: {} };
+            marksCopy[i] = {
+              id: question.id,
+              parts: Array(Object.keys(question.parts).length),
+            };
             for (let partKey in Object.keys(question.parts)) {
               // Generate template for part marks
               let part = { ...question.parts[partKey] };
+              let subparts = { ...part.subparts };
               marksCopy[i].parts[partKey] = {
+                id: part.id,
                 maximum_marks: part.marks,
                 marks: 0,
-                subparts: {},
+                subparts: Array(Object.keys(subparts).length),
               };
-              let subparts = { ...part.subparts };
               for (let key in Object.keys(subparts)) {
                 marksCopy[i].parts[partKey]["subparts"][key] = {
+                  number: parseInt(key) + 1,
                   maximum_marks: subparts[key].marks,
                   marks: 0,
                 };
@@ -73,6 +87,7 @@ class testPaper extends Component {
             testBody: testBodyCopy,
             loading: false,
             marks: marksCopy,
+            paperId: fakeId,
           });
           console.log(marksCopy);
         }
@@ -82,14 +97,22 @@ class testPaper extends Component {
         console.log(error);
       });
   }
+
   testCompletedHandler = () => {
     console.log("completed test");
     this.setState({ showMarkscheme: true });
   };
 
   submitHandler = () => {
+    const answer = [...Object.values(this.state.marks)];
+
+    const data = {
+      userId: this.props.userId,
+      testId: this.state.paperId,
+      answers: answer,
+    };
     console.log("submit to backend!");
-    console.log(this.state.marks);
+    console.log(data);
   };
 
   boundValue(value, max) {

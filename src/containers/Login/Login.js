@@ -11,7 +11,6 @@ class login extends Component {
   state = {
     username: null,
     password: null,
-    auth: false,
     warning: false,
     errorMessage: null,
     showPassword: false,
@@ -46,18 +45,14 @@ class login extends Component {
           this.setState({
             warning: true,
             errorMessage: data.errors[0].source.detail,
+            loading: false,
           });
-          this.setState({ loading: false });
         } else {
           console.log(response);
           this.props.loginSuccessHandler(
             data.data.userId,
             data.data.accessToken
           );
-          // this.setState({
-          //   userId: data.data.userId,
-          //   accessToken: data.data.accessToken,
-          // });
         }
       });
     //catch own errors
@@ -68,6 +63,9 @@ class login extends Component {
     event.preventDefault();
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     let passwordInputType = "password";
     if (this.state.showPassword) {

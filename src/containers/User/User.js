@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cookies from "js-cookie";
 import Loading from "../../components/Loading/Loading";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -9,6 +10,8 @@ class User extends Component {
   state = {
     redirect: false,
     loading: true,
+    userId: Cookies.get("userId"),
+    selectedTopic: "Functions and Equations",
     data: {
       username: "Student",
       subject: "IB Mathematics SL",
@@ -96,23 +99,58 @@ class User extends Component {
     },
   };
 
+  componentDidUpdate() {
+    if (!this.state.userId) {
+      this.props.expired();
+    }
+  }
+
   componentDidMount() {
+    window.scrollTo(0, 0);
     const data = {
-      data: { userId: this.props.userId },
+      data: { userId: this.state.userId },
     };
 
-    console.log("posting this data from user: ");
-    console.log(data);
-
-    const headers = {
-      headers: { Authorization: `Bearer ${this.props.accessToken}` },
-    };
+    // const headers = {
+    //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
+    // };
 
     axios
-      .post("/profiles/userprofile", data, { withCredentials: true })
+      .post("/profiles/userprofile", data)
       .then((response) => {
-        console.log(response);
-        this.setState({ loading: false });
+        if (response.data.hasOwnProperty("errors")) {
+          console.log("session expired");
+          this.setState({ redirect: true });
+        } else {
+          const responseData = response.data.data;
+          const dataCopy = { ...this.state.data };
+
+          const topics = {};
+          const subtopics = {};
+          for (let i in responseData.topicScores) {
+            let topic = responseData.topicScores[i];
+            topics[topic.title] = parseInt(topic.score);
+            subtopics[topic.title] = {};
+            for (let j in topic.subTopicScores) {
+              let sub = topic.subTopicScores[j];
+              subtopics[topic.title][sub.title] = parseInt(sub.score);
+            }
+          }
+
+          const suggestedTopics = {};
+          for (let i in responseData.suggestSubtopics) {
+            let sub = responseData.suggestSubtopics[i];
+            suggestedTopics[sub.title] = parseInt(sub.score);
+          }
+
+          dataCopy.username = responseData.first_name;
+          dataCopy.subject = responseData.curriculum;
+          dataCopy.topics = topics;
+          dataCopy.subTopics = subtopics;
+          dataCopy.suggestedTopics = suggestedTopics;
+
+          this.setState({ loading: false, data: dataCopy });
+        }
       })
       .catch((error) => {
         // console.log("error!");
@@ -140,13 +178,7 @@ class User extends Component {
 
     let userProfile = <Loading />;
 
-    if (this.state.redirect === true) {
-      console.log("need to redirect user to log in page");
-      // userProfile = <Redirect from="/user" to="/login" />;
-    }
-
     if (this.state.loading === false) {
-      console.log("should render component now ");
       userProfile = (
         <Switch>
           <Route
@@ -170,6 +202,10 @@ class User extends Component {
           <Redirect from="/user" exact to="/user/profile" />
         </Switch>
       );
+    }
+
+    if (this.state.redirect === true) {
+      userProfile = <Redirect from="/user" to="/login" />;
     }
 
     return <div>{userProfile}</div>;

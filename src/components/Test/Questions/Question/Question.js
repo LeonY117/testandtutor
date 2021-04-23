@@ -1,7 +1,6 @@
 import React from "react";
 import Part from "./Part/Part";
 import Latex from "../../../../hoc/Latex/Latex";
-import Content from "../../../../hoc/Content/Content";
 import Card from "../../../../components/UI/Card/Card";
 import classes from "./Question.module.css";
 import Markscheme from "../Markscheme/Markscheme";

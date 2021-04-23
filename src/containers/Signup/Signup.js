@@ -6,9 +6,10 @@ import Card from "../../components/UI/Card/Card";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Signup.module.css";
 import Select from "../../components/Select/Select";
+
 class signup extends Component {
   state = {
-    auth: false,
+    signedup: false,
     showPassword: false,
     warnings: {
       email: null,
@@ -71,7 +72,13 @@ class signup extends Component {
       axios
         .post("users/register", { data: data })
         .then((response) => {
-          console.log(response);
+          if (response.data.hasOwnProperty("errors")) {
+            console.log("error");
+          } else {
+            console.log(response);
+            // this.props.loginSuccessHandler(response.data.data.id)
+            this.setState({ redirect: true, signedup: true });
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -86,6 +93,9 @@ class signup extends Component {
     this.buttonClickedHandler();
     event.preventDefault();
   };
+  loginButtonClicked = () => {
+    this.props.history.push("/login")
+  }
 
   render() {
     let passwordInputType = "password";
@@ -93,73 +103,81 @@ class signup extends Component {
       passwordInputType = "text";
     }
 
+    let signup = (
+      <div className={classes.SuccessPrompt}>
+        <h3>Signup successful, please log in!</h3>
+        <Button className={classes.LoginButton} clicked = {this.loginButtonClicked}>Login</Button>
+      </div>
+    );
+
+    if (!this.state.signedup) {
+      signup = (
+        <div className={classes.CardWrapper}>
+          <form onSubmit={this.submitHandler}>
+            <h1>Sign up</h1>
+            <div className={classes.InputFields}>
+              <Input
+                inputName="Email"
+                type="text"
+                changed={(e) => this.inputChangedHandler("email", e)}
+                warning={this.state.warnings["email"]}
+              />
+              <div className={classes.Names}>
+                <Input
+                  inputName="First Name"
+                  type="text"
+                  changed={(e) => this.inputChangedHandler("firstName", e)}
+                  warning={this.state.warnings["firstName"]}
+                />
+
+                <Input
+                  inputName="Last Name"
+                  type="text"
+                  changed={(e) => this.inputChangedHandler("lastName", e)}
+                  warning={this.state.warnings["lastName"]}
+                />
+              </div>
+
+              <p style={{ margin: "1rem 0 0.5rem 0" }}>Curriculum </p>
+              <Select
+                changed={(e) => this.inputChangedHandler("curriculum", e)}
+                options={["AA SL", "AI SL", "AA HL", "AI HL "]}
+              />
+
+              <Input
+                inputName="Password"
+                type={passwordInputType}
+                changed={(e) => this.inputChangedHandler("password", e)}
+                warning={this.state.warnings["password"]}
+              />
+              <p style={{ fontSize: "12px" }}>
+                Your password should be at least 8 characters long with a
+                symbol, upper and lower case letters and a number
+              </p>
+              <Input
+                inputName="Confirm Password"
+                type={passwordInputType}
+                changed={(e) => this.inputChangedHandler("passwordConfirm", e)}
+                warning={this.state.warnings["passwordConfirm"]}
+              />
+
+              <div className={classes.ShowPassword}>
+                <input type="checkbox" onClick={this.showPasswordHandler} />
+                <p>Show password</p>
+              </div>
+            </div>
+
+            <Button round clicked={this.buttonClickedHandler}>
+              Sign up
+            </Button>
+          </form>
+        </div>
+      );
+    }
     return (
       <div className={classes.Signup}>
         <Content>
-          <Card>
-            <div className={classes.CardWrapper}>
-              <form onSubmit={this.submitHandler}>
-                <h1>Sign up</h1>
-                <div className={classes.InputFields}>
-                  <Input
-                    inputName="Email"
-                    type="text"
-                    changed={(e) => this.inputChangedHandler("email", e)}
-                    warning={this.state.warnings["email"]}
-                  />
-                  <div className={classes.Names}>
-                    <Input
-                      inputName="First Name"
-                      type="text"
-                      changed={(e) => this.inputChangedHandler("firstName", e)}
-                      warning={this.state.warnings["firstName"]}
-                    />
-
-                    <Input
-                      inputName="Last Name"
-                      type="text"
-                      changed={(e) => this.inputChangedHandler("lastName", e)}
-                      warning={this.state.warnings["lastName"]}
-                    />
-                  </div>
-
-                  <p style={{ margin: "1rem 0 0.5rem 0" }}>Curriculum </p>
-                  <Select
-                    changed={(e) => this.inputChangedHandler("curriculum", e)}
-                    options={["AA SL", "AI SL", "AA HL", "AI HL "]}
-                  />
-
-                  <Input
-                    inputName="Password"
-                    type={passwordInputType}
-                    changed={(e) => this.inputChangedHandler("password", e)}
-                    warning={this.state.warnings["password"]}
-                  />
-                  <p style={{ fontSize: "12px" }}>
-                    Your password should be at least 8 characters long with a
-                    symbol, upper and lower case letters and a number
-                  </p>
-                  <Input
-                    inputName="Confirm Password"
-                    type={passwordInputType}
-                    changed={(e) =>
-                      this.inputChangedHandler("passwordConfirm", e)
-                    }
-                    warning={this.state.warnings["passwordConfirm"]}
-                  />
-
-                  <div className={classes.ShowPassword}>
-                    <input type="checkbox" onClick={this.showPasswordHandler} />
-                    <p>Show password</p>
-                  </div>
-                </div>
-
-                <Button round clicked={this.buttonClickedHandler}>
-                  Sign up
-                </Button>
-              </form>
-            </div>
-          </Card>
+          <Card>{signup}</Card>
         </Content>
       </div>
     );

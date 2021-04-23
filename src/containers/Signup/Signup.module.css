@@ -33,6 +33,12 @@
   color: red;
 }
 
+.SuccessPrompt {
+  max-width: 500px;
+  text-align: center;
+  margin: auto;
+}
+
 @media (max-width: 1000px) {
   .CardWrapper {
     width: 80%;

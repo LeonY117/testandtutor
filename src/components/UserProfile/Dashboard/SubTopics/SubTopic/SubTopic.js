@@ -10,6 +10,7 @@ const subTopic = (props) => {
     3: "#89344B",
     2: "#89344B",
     1: "#89344B",
+    0: "#89344B",
   };
   let color = "#89344B";
   color = GRADECOLORMAPPER[props.score];

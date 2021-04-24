@@ -36,6 +36,7 @@ class login extends Component {
     const loginData = {
       data: { email: this.state.username, password: this.state.password },
     };
+    this.setState({ loading: true });
     axios
       .post("/auth/login", loginData, { withCredentials: true })
       .then((response) => {
@@ -47,7 +48,6 @@ class login extends Component {
             loading: false,
           });
         } else {
-          this.setState({ loading: true });
           this.props.loginSuccessHandler(data.data.userId);
         }
       });

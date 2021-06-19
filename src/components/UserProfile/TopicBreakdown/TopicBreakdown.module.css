@@ -11,7 +11,13 @@
   flex: 1 1 50%;
   height: 100%;
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
   /* background: rgb(245, 222, 225); */
+}
+
+.Left::-webkit-scrollbar { 
+  display: none; 
 }
 
 .Performance {

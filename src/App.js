@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+
 import Cookies from "js-cookie";
 import Layout from "./hoc/Layout/Layout";
-import Landing from "./components/Landing/Landing";
 import User from "./containers/User/User";
 import Login from "./containers/Login/Login";
 import Logout from "./containers/Logout/Logout";
 import Signup from "./containers/Signup/Signup";
 import SelectTest from "./containers/SelectTest/SelectTest";
 import TestPaper from "./containers/TestPaper/TestPaper";
+import Landing from "./components/Landing/Landing";
 // import axios from "./axios";
-import { Route, Switch, Redirect } from "react-router-dom";
 
 class App extends Component {
   state = {

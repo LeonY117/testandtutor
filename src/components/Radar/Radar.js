@@ -10,9 +10,10 @@ class Radar extends Component {
       6: "#48C8EF",
       5: "#3A63CC",
       4: "#D274E5",
-      3: "#89344B",
-      2: "#89344B",
-      1: "#89344B",
+      3: "#E23287",
+      2: "#E23287",
+      1: "#E23287",
+      0: "#B1B1B1"
     };
 
     const drawInnerBorders = (cx, cy, ctx, grade, count) => {
@@ -37,16 +38,21 @@ class Radar extends Component {
     };
 
     const drawSector = (cx, cy, ctx, grade, count) => {
+      let sectorColor = GRADECOLORMAPPER[grade]
+      let radius = grade
       if (grade > 7) {
-        grade = 7;
+        radius = 7;
+      } else if (grade === 0) {
+        radius = 0.5
       }
-      ctx.fillStyle = GRADECOLORMAPPER[grade];
+
+      ctx.fillStyle = sectorColor;
       ctx.beginPath();
       ctx.lineTo(cx, cy);
       ctx.arc(
         cx,
         cy,
-        grade * RADIUS,
+        radius * RADIUS,
         (count / 5) * 2 * Math.PI - Math.PI / 2,
         ((count + 1) / 5) * 2 * Math.PI - Math.PI / 2
       );
@@ -64,12 +70,16 @@ class Radar extends Component {
     };
 
     const drawHighlightedSector = (cx, cy, ctx, grade, count) => {
+      let radius = grade;
+      if (grade === 0) {
+        radius = 0.5
+      }
       ctx.beginPath();
       ctx.lineTo(cx, cy);
       ctx.arc(
         cx,
         cy,
-        grade * RADIUS,
+        radius * RADIUS,
         (count / 5) * 2 * Math.PI - Math.PI / 2,
         ((count + 1) / 5) * 2 * Math.PI - Math.PI / 2
       );

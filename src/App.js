@@ -19,7 +19,7 @@ class App extends Component {
 
   loginSuccessHandler = (id) => {
     // console.log(this.state.loggedIn);
-    Cookies.set("userId", id, { expires: (1 / 1440) * 0.5 });
+    // Cookies.set("userId", id, { expires: (1 / 1440) * 0.5 });
 
     this.setState({
       loggedIn: true,
@@ -28,6 +28,7 @@ class App extends Component {
 
   logoutHandler = () => {
     Cookies.remove("userId");
+    Cookies.remove("refreshToken")
     this.setState({
       loggedIn: false,
     });
@@ -38,7 +39,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (Cookies.get("userId")) {
+    if (Cookies.get("userId") && Cookies.get("refreshToken")) {
       this.setState({ loggedIn: true });
     }
   }

@@ -164,6 +164,7 @@ class User extends Component {
         // console.log("error!");
         console.log("cannot get user info ");
         this.setState({ redirect: true });
+        this.props.expired()
       });
   }
   render() {

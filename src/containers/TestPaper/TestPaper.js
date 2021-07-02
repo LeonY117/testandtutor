@@ -47,6 +47,8 @@ class testPaper extends Component {
     console.log(data);
     axios.post("/tests/submit_test", data).then((response) => {
       console.log(response);
+    }).catch((error) => {
+      this.props.expired()
     });
   };
 

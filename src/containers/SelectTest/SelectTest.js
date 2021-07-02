@@ -38,6 +38,8 @@ class selectTest extends Component {
           testsCopy[test.id]["totalScore"] = test.max_marks; //test.totalScore
         }
         this.setState({ tests: testsCopy, loading: false });
+      }).catch((error)=> {
+        this.props.expired()
       });
   }
 

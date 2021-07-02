@@ -6,7 +6,9 @@ import axios from "../../axios";
 import Loading from "../../components/Loading/Loading";
 
 class Logout extends Component {
+
   state = { userId: Cookies.get("userId"), loggedOut: false };
+  
   componentDidMount() {
     const postData = { data: { userId: this.state.userId } };
     console.log(postData);

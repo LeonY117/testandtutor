@@ -42,25 +42,15 @@ const question = (props) => {
     );
   }
 
-  let body = props.body;
-  let bodyCopy = body.split("\\\\n");
-  // console.log(bodyCopy);
-  for (let i = 0; i < bodyCopy.length; i++) {
-    let item = bodyCopy[i];
-    if (item.substring(0, 4) === "<img") {
-      bodyCopy[i] = stringToImg(item);
+  let bodyArray = props.body.map((item)=> {
+    if (item.type === 'string') {
+      return (<p className={classes.questionBody}>{item.content}</p>)
     }
-  }
-  // console.log(bodyCopy)
-  // let move = false;
-  // for (let i =0; i < body.length-2; i++) {
-  //   if (body[i] === '\\' && body[i+1] ==='\\' && body[i+2] === 'n') {
-  //     console.log('found')
-  //   }
-  //   if (move) {
-
-  //   }
-  // }
+    else if (item.type === 'image') {
+      return (<p className={classes.questionBodyImage}>image: {item.alt}</p>)
+    }
+  })
+  
 
   return (
     <div style={{marginBottom: '3rem'}}>
@@ -68,11 +58,11 @@ const question = (props) => {
         <div className={classes.QuestionMarkscheme}>
           <div className={classes.Question}>
             <p className={classes.marks}>[Maximum marks: {props.marks}]</p>
-            <Latex>
-              <h1 className={classes.title}>
-                Q{props.number}. {props.body}
-                {/* <img src={img} /> */}
-              </h1>
+            <Latex className={classes.title}>
+              <p className = {classes.questionNumber}>
+                Q{props.number}.&nbsp;
+              </p>
+              {bodyArray}
             </Latex>
             {renderedParts}
           </div>

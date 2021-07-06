@@ -12,9 +12,25 @@
   flex: 1 1 100%;
 }
 
-.title {
+.questionNumber {
   font-size: 1em;
   font-weight: 400;
+  display: inline;
+  margin: 0;
+}
+
+.questionBody {
+  font-size: 1em;
+  font-weight: 400;
+  display: inline;
+  margin: 0;
+}
+
+.questionBodyImage {
+  text-align: center;
+  border: 1px solid black;
+  display: block;
+  padding: 1rem 0;
 }
 
 @media (max-width: 700px) {

@@ -8,6 +8,74 @@ import Loading from "../../components/Loading/Loading";
 import MarkschemeTable from "../../components/Test/Questions/Markscheme/MarkschemeTable/MarkschemeTable";
 import Cookies from "js-cookie";
 
+const dummyMarkscheme = {
+  id: 1234,
+  content: [
+    { type: "string", content: "this is a line of markscheme" },
+    { type: "image" },
+  ],
+  values: [
+    { type: "M", value: 1 },
+    { type: "R", value: 1 },
+  ],
+  parts: [
+    {
+      id: 1345,
+      part: 1,
+      content: [
+        {
+          type: "string",
+          content: "this is a line of markscheme in the parts",
+        },
+      ],
+      values: [{ type: "M", value: 1 }],
+      subparts: [],
+    },
+    {
+      id: 78653,
+      part: 2,
+      content: [
+        {
+          type: "string",
+          content: "this is line 2 of the markscheme in the parts",
+        },
+      ],
+      values: [{ type: "M", value: 1 }],
+      subparts: [],
+    },
+    {
+      id: 79864545,
+      part: 3,
+      content: [],
+      values: [],
+      subparts: [
+        {
+          id: 1894563,
+          subpart: 1,
+          content: [
+            {
+              type: "string",
+              content: "this is a line of markscheme in the subpart",
+            },
+          ],
+          values: [{ type: "R", value: 1 }],
+        },
+        {
+          id: 7894563,
+          subpart: 2,
+          content: [
+            {
+              type: "string",
+              content: "this is a line of markscheme in the subpart",
+            },
+          ],
+          values: [{ type: "M", value: 1 }],
+        },
+      ],
+    },
+  ],
+};
+
 function compare(a, b) {
   if (a.maximum_marks > b.maximum_marks) {
     return -1;
@@ -45,11 +113,14 @@ class testPaper extends Component {
     };
     console.log("submit to backend!");
     console.log(data);
-    axios.post("/tests/submit_test", data).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      this.props.expired()
-    });
+    axios
+      .post("/tests/submit_test", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        this.props.expired();
+      });
   };
 
   boundValue(value, max) {
@@ -68,12 +139,12 @@ class testPaper extends Component {
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
     const marksCopy = { ...this.state.marks };
     if (subpartIndex !== null) {
-      marksCopy[questionIndex].parts[partIndex].subparts[
-        subpartIndex
-      ].marks = this.boundValue(
-        event.target.value,
-        marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].maximum_marks
-      );
+      marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].marks =
+        this.boundValue(
+          event.target.value,
+          marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
+            .maximum_marks
+        );
     } else {
       marksCopy[questionIndex].parts[partIndex].marks = this.boundValue(
         event.target.value,
@@ -114,6 +185,8 @@ class testPaper extends Component {
           testBodyCopy = [...response.data.data.questions].sort(compare);
 
           for (let i in testBodyCopy) {
+            // This line will be removed once backend is updated with markscheme data
+            testBodyCopy[i]["markscheme"] = dummyMarkscheme;
             // initiate empty question object
             let question = testBodyCopy[i];
             marksCopy[i] = {
@@ -146,6 +219,7 @@ class testPaper extends Component {
             paperId: fakeId,
           });
           console.log(marksCopy);
+          console.log(testBodyCopy);
         }
       })
       .catch((error) => {
@@ -157,7 +231,7 @@ class testPaper extends Component {
     let markscheme = null;
     if (this.state.showMarkscheme) {
       // need proper call here
-      markscheme = this.state.testBody;
+      markscheme = dummyMarkscheme;
     }
 
     let tables = null;
@@ -181,7 +255,6 @@ class testPaper extends Component {
           <Content>
             <Questions
               testBody={this.state.testBody}
-              markscheme={markscheme}
               marks={this.state.marks}
               showMarkscheme={this.state.showMarkscheme}
               inputChanged={this.inputChangedHandler}

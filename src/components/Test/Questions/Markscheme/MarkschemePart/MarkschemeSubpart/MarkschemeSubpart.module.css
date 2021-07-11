@@ -1,0 +1,55 @@
+.Subpart {
+  display: flex;
+  justify-content: space-between;
+
+  /* background: lightgreen; */
+  margin-left: -0rem;
+  margin: 0rem 0;
+}
+
+.LabelBodyWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  /* background: grey; */
+  flex: 1 1 100%;
+}
+
+.Label {
+  margin: 0rem 0rem;
+  /* background: pink; */
+  height: 100%;
+  width: 2rem;
+}
+
+.Body {
+  /* background: lightblue; */
+  height: 100%;
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+.subPartBody {
+  margin: 0;
+}
+
+.subPartImage {
+  text-align: center;
+  border: 1px solid black;
+  display: block;
+  padding: 1rem 0;
+  margin: 0 0.5em;
+}
+
+.Mark {
+  margin: 0;
+}
+
+.Value {
+  text-align: right;
+  width: 1.6em;
+  font-weight: 600;
+  display: inline-block;
+  /* background: lightgreen; */
+  margin: 0;
+}

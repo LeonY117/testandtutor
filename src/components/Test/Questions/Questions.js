@@ -4,13 +4,14 @@ import classes from "./Questions.module.css";
 
 const questions = (props) => {
   let renderedQuestions = null;
-  const testBodyCopy = [...props.testBody]
+  const testBodyCopy = [...props.testBody];
   if (props.testBody) {
     renderedQuestions = testBodyCopy.map((questionContent) => {
       let marks = questionContent.maximum_marks;
       let body = questionContent.question_body;
       let number = questionContent.question_number;
       let parts = questionContent.parts;
+      let markscheme = questionContent.markscheme;
       return (
         <Question
           marks={marks}
@@ -18,8 +19,9 @@ const questions = (props) => {
           number={number}
           parts={parts}
           key={number}
+          markscheme={markscheme}
           showMarkscheme={props.showMarkscheme}
-          inputChanged = {props.inputChanged}
+          inputChanged={props.inputChanged}
           msMarks={props.marks}
         />
       );

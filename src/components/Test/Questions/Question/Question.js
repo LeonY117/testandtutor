@@ -33,7 +33,7 @@ const question = (props) => {
       <div className={classes.Markscheme}>
         <Markscheme
           inputChanged={props.inputChanged}
-          markscheme={null}
+          markscheme={props.markscheme}
           marks={props.msMarks} //sorry about the bad prop names
           parts={props.parts}
           questionNumber={props.number}

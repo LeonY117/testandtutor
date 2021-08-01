@@ -8,7 +8,7 @@
 
 .MarkschemeContent {
   flex: 1 1 100%;
-  margin-right: 0.5em;
+  /* margin-right: 0.5em; */
 }
 
 .MsBody {
@@ -30,6 +30,7 @@
   flex-direction: row;
   /* background: lightpink; */
   margin: 0;
+  margin-left: 0.5em;
 }
 
 .Value {
@@ -39,6 +40,18 @@
   display: inline-block;
   /* background: lightgreen; */
   margin: 0;
+}
+
+.Implicit {
+  width: 2.5em;
+}
+
+.Implicit::before {
+  content: '('
+}
+
+.Implicit::after {
+  content: ')'
 }
 
 .Part {
@@ -62,6 +75,7 @@
   flex-direction: row;
   align-items: flex-start;
   /* background: lightyellow; */
+  justify-content: space-between;
 }
 
 .Label {
@@ -77,4 +91,10 @@
 
 .SubPartLabel {
   margin: 0 0;
+}
+
+.BodyMarkWrapper {
+  display: flex;
+  flex-direction: row;
+  /* background: pink; */
 }

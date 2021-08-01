@@ -5,6 +5,7 @@ import SubPart from "./SubPart/SubPart";
 
 const part = (props) => {
   let subparts = null;
+  let body = null;
   subparts = props.subparts.map((subpart) => {
     return (
       <SubPart
@@ -15,6 +16,15 @@ const part = (props) => {
       />
     );
   });
+
+  body = props.body.map((item)=> {
+    if (item.type === 'string') {
+      return (<p className={classes.questionBody}>{item.content}</p>)
+    }
+    else if (item.type === 'image') {
+      return (<p className={classes.questionBodyImage}>image: {item.alt}</p>)
+    }
+  })
   return (
     <Latex>
       <div className={classes.Part}>
@@ -24,7 +34,7 @@ const part = (props) => {
           </p>
           {/* <p className={classes.PartBody}>{props.title}</p> */}
           <div className={classes.PartBody}>
-            <p>{props.body}</p>
+            {body}
             {subparts}
           </div>
         </div>

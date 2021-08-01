@@ -12,11 +12,14 @@ const dummyMarkscheme = {
   id: 1234,
   content: [
     { type: "string", content: "this is a line of markscheme" },
-    { type: "image" },
+    { type: "string", content: "this is another line of the markscheme" },
+    { type: "image", path: "/path/to/image", alt: "the alt of the image" },
   ],
   values: [
-    { type: "M", value: 1 },
-    { type: "R", value: 1 },
+    { type: "M", value: 1, implicit: false, index: 0 },
+    { type: "R", value: 1, implicit: false, index: 0 },
+    { type: "R", value: 2, implicit: false, index: 1 },
+    { type: "R", value: 2, implicit: true, index: 2 },
   ],
   parts: [
     {
@@ -27,8 +30,15 @@ const dummyMarkscheme = {
           type: "string",
           content: "this is a line of markscheme in the parts",
         },
+        {
+          type: "string",
+          content: "this is another line of markscheme in the parts",
+        },
       ],
-      values: [{ type: "M", value: 1 }],
+      values: [
+        { type: "M", value: 1, implicit: false, index: 0 },
+        { type: "M", value: 1, implicit: false, index: 1 },
+      ],
       subparts: [],
     },
     {
@@ -40,7 +50,7 @@ const dummyMarkscheme = {
           content: "this is line 2 of the markscheme in the parts",
         },
       ],
-      values: [{ type: "M", value: 1 }],
+      values: [{ type: "M", value: 1, implicit: true, index: 0 }],
       subparts: [],
     },
     {
@@ -58,7 +68,7 @@ const dummyMarkscheme = {
               content: "this is a line of markscheme in the subpart",
             },
           ],
-          values: [{ type: "R", value: 1 }],
+          values: [{ type: "R", value: 1, implicit: false, index: 0 }],
         },
         {
           id: 7894563,
@@ -68,8 +78,15 @@ const dummyMarkscheme = {
               type: "string",
               content: "this is a line of markscheme in the subpart",
             },
+            {
+              type: "string",
+              content: "this is a line of markscheme in the subpart",
+            },
           ],
-          values: [{ type: "M", value: 1 }],
+          values: [
+            { type: "M", value: 1, implicit: false, index: 0 },
+            { type: "R", value: 1, implicit: true, index: 1 },
+          ],
         },
       ],
     },

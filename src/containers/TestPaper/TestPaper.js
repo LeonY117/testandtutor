@@ -9,13 +9,13 @@ import MarkschemeTable from "../../components/Test/Questions/Markscheme/Marksche
 import Cookies from "js-cookie";
 
 const dummyMarkscheme = {
-  id: 1234,
-  content: [
+  question_id: 1234,
+  markscheme_body: [
     { type: "string", content: "this is a line of markscheme" },
     { type: "string", content: "this is another line of the markscheme" },
     { type: "image", path: "/path/to/image", alt: "the alt of the image" },
   ],
-  values: [
+  marks: [
     { type: "M", value: 1, implicit: false, index: 0 },
     { type: "R", value: 1, implicit: false, index: 0 },
     { type: "R", value: 2, implicit: false, index: 1 },
@@ -23,9 +23,8 @@ const dummyMarkscheme = {
   ],
   parts: [
     {
-      id: 1345,
-      part: 1,
-      content: [
+      part_id: 1345,
+      markscheme_body: [
         {
           type: "string",
           content: "this is a line of markscheme in the parts",
@@ -35,45 +34,41 @@ const dummyMarkscheme = {
           content: "this is another line of markscheme in the parts",
         },
       ],
-      values: [
+      marks: [
         { type: "M", value: 1, implicit: false, index: 0 },
         { type: "M", value: 1, implicit: false, index: 1 },
       ],
       subparts: [],
     },
     {
-      id: 78653,
-      part: 2,
-      content: [
+      part_id: 78653,
+      markscheme_body: [
         {
           type: "string",
           content: "this is line 2 of the markscheme in the parts",
         },
       ],
-      values: [{ type: "M", value: 1, implicit: true, index: 0 }],
+      marks: [{ type: "M", value: 1, implicit: true, index: 0 }],
       subparts: [],
     },
     {
-      id: 79864545,
-      part: 3,
-      content: [],
-      values: [],
+      part_id: 79864545,
+      markscheme_body: [],
+      marks: [],
       subparts: [
         {
-          id: 1894563,
-          subpart: 1,
-          content: [
+          subpart_id: 1894563,
+          markscheme_body: [
             {
               type: "string",
               content: "this is a line of markscheme in the subpart",
             },
           ],
-          values: [{ type: "R", value: 1, implicit: false, index: 0 }],
+          marks: [{ type: "R", value: 1, implicit: false, index: 0 }],
         },
         {
-          id: 7894563,
-          subpart: 2,
-          content: [
+          subpart_id: 7894563,
+          markscheme_body: [
             {
               type: "string",
               content: "this is a line of markscheme in the subpart",
@@ -83,7 +78,7 @@ const dummyMarkscheme = {
               content: "this is a line of markscheme in the subpart",
             },
           ],
-          values: [
+          marks: [
             { type: "M", value: 1, implicit: false, index: 0 },
             { type: "R", value: 1, implicit: true, index: 1 },
           ],
@@ -245,12 +240,6 @@ class testPaper extends Component {
       });
   }
   render() {
-    let markscheme = null;
-    if (this.state.showMarkscheme) {
-      // need proper call here
-      markscheme = dummyMarkscheme;
-    }
-
     let tables = null;
     if (this.state.marks && this.state.showMarkscheme) {
       tables = Object.keys(this.state.marks).map((questionKey) => {

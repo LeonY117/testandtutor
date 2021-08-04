@@ -12,12 +12,12 @@ const markscheme = (props) => {
 
   let values = {};
 
-  for (let i = 0; i < props.markscheme.content.length; i++) {
+  for (let i = 0; i < props.markscheme.markscheme_body.length; i++) {
     values[i] = undefined;
   }
 
-  for (let i in props.markscheme.values) {
-    let item = props.markscheme.values[i];
+  for (let i in props.markscheme.marks) {
+    let item = props.markscheme.marks[i];
     if (values[item.index] === undefined) {
       values[item.index] = [
         {
@@ -35,7 +35,7 @@ const markscheme = (props) => {
     }
   }
   if (props.markscheme.parts.length != 0) {
-    markscheme = props.markscheme.content.map((item, i) => {
+    markscheme = props.markscheme.markscheme_body.map((item, i) => {
       let marks = null;
       if (values[i] !== undefined) {
         marks = values[i].map((item) => {
@@ -69,12 +69,12 @@ const markscheme = (props) => {
     });
   }
 
-  let parts = props.markscheme.parts.map((part) => {
+  let parts = props.markscheme.parts.map((part, i) => {
     return (
       <MarkschemePart
         id={part.id}
         markscheme = {part}
-        number = {part.part}
+        number = {i+1}
         subparts={part.subparts}
       />
     );
@@ -83,6 +83,7 @@ const markscheme = (props) => {
   console.log(props.markscheme);
   return (
     <div>
+      <h3>Markscheme</h3>
       <Latex>
         <div className={classes.Markscheme}>
           <div className={classes.MarkschemeContent}>

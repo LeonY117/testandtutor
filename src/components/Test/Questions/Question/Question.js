@@ -36,7 +36,7 @@ const question = (props) => {
           markscheme={props.markscheme}
           marks={props.msMarks} //sorry about the bad prop names
           parts={props.parts}
-          questionNumber={props.number}
+          questionNumber={props.number} 
         />
       </div>
     );
@@ -66,7 +66,6 @@ const question = (props) => {
             </Latex>
             {renderedParts}
           </div>
-
           {markscheme}
         </div>
       </Card>

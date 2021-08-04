@@ -17,14 +17,13 @@ const part = (props) => {
     );
   });
 
-  body = props.body.map((item)=> {
-    if (item.type === 'string') {
-      return (<p className={classes.questionBody}>{item.content}</p>)
+  body = props.body.map((item) => {
+    if (item.type === "string") {
+      return <p className={classes.questionBody}>{item.content}</p>;
+    } else if (item.type === "image") {
+      return <p className={classes.questionBodyImage}>image: {item.alt}</p>;
     }
-    else if (item.type === 'image') {
-      return (<p className={classes.questionBodyImage}>image: {item.alt}</p>)
-    }
-  })
+  });
   return (
     <Latex>
       <div className={classes.Part}>

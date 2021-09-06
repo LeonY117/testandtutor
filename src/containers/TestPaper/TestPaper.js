@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "../../axios";
+import Test from "../../components/Test/Test";
 import Questions from "../../components/Test/Questions/Questions";
 import Button from "../../components/UI/Button/Button";
 import Content from "../../hoc/Content/Content";
@@ -151,12 +152,13 @@ class testPaper extends Component {
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
     const userMarksCopy = { ...this.state.userMarks };
     if (subpartIndex !== null) {
-      userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].userMarks =
-        this.boundValue(
-          event.target.value,
-          userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
-            .maximum_marks
-        );
+      userMarksCopy[questionIndex].parts[partIndex].subparts[
+        subpartIndex
+      ].userMarks = this.boundValue(
+        event.target.value,
+        userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
+          .maximum_marks
+      );
     } else {
       userMarksCopy[questionIndex].parts[partIndex].userMarks = this.boundValue(
         event.target.value,
@@ -198,7 +200,7 @@ class testPaper extends Component {
 
           for (let i in testBodyCopy) {
             // This line will be removed once backend is updated with markscheme data
-            // The markscheme attribute should already be contained in the question 
+            // The markscheme attribute should already be contained in the question
             testBodyCopy[i]["markscheme"] = dummyMarkscheme;
             // initiate empty question object
             let question = testBodyCopy[i];
@@ -261,6 +263,12 @@ class testPaper extends Component {
       paper = (
         <div>
           <Content>
+            <Test
+              testBody={this.state.testBody}
+              userMarks={this.state.userMarks}
+              showMarkscheme={this.state.showMarkscheme}
+              inputChanged={this.inputChangedHandler}
+            />
             {/* <Questions
               testBody={this.state.testBody}
               userMarks={this.state.userMarks}

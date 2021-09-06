@@ -23,39 +23,44 @@ function romanize(num) {
 function characterize(num) {
   return String.fromCharCode(96 + num);
 }
+
+
 const markschemeTable = (props) => {
   let cells = null;
   let qKey = (props.questionNumber - 1).toString();
 
-  cells = Object.keys(props.marks[qKey].parts).map((key) => {
+
+  console.log('debugging from msTable')
+  console.log(props.userMarks)
+  cells = Object.keys(props.userMarks[qKey].parts).map((key) => {
     // console.log("Part: ", key);
     let partLabel = characterize(parseInt(key) + 1);
     let partKey = key; //to be passed down to the lower level
     // console.log(props.marks[qKey][key].subparts);
-    if (Object.keys(props.marks[qKey].parts[key].subparts).length === 0) {
+    if (Object.keys(props.userMarks[qKey].parts[key].subparts).length === 0) {
       return (
         <MarkschemeCell
           label={props.questionNumber + partLabel}
-          marks={props.marks[qKey].parts[key].maximum_marks}
+          userMarks={props.userMarks[qKey].parts[key].maximum_marks}
           key={props.questionNumber + partLabel}
           changed={(e) => props.inputChanged(e, qKey, key, null)}
-          value={props.marks[qKey].parts[key].marks}
-          max={props.marks[qKey].parts[key].maximum_marks}
+          value={props.userMarks[qKey].parts[key].userMarks}
+          max={props.userMarks[qKey].parts[key].maximum_marks}
         />
       );
     } else {
       // if there are subparts, render only the subpart cells
-      let subparts = props.marks[qKey].parts[partKey].subparts;
+      let subparts = props.userMarks[qKey].parts[partKey].subparts;
       return Object.keys(subparts).map((key) => {
         // subpart label format: 1a, i
         let sublabel = romanize(parseInt(key) + 1);
         return (
           <MarkschemeCell
             label={props.questionNumber + partLabel + ", " + sublabel}
-            marks={subparts[key].maximum_marks}
+            userMarks={subparts[key].maximum_marks}
             key={props.questionNumber + partLabel + ", " + sublabel}
             changed={(e) => props.inputChanged(e, qKey, partKey, key)}
-            value={subparts[key].marks}
+            value={subparts[key].userMarks}
             max={subparts[key].maximum_marks}
           />
         );

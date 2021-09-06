@@ -6,11 +6,6 @@ import classes from "./Question.module.css";
 import Markscheme from "../Markscheme/Markscheme";
 import img from "../../../../assets/images/radar.png";
 
-function stringToImg(string) {
-  // console.log(string);
-  return <img src={img} alt={"hello"} />;
-}
-
 const question = (props) => {
   let renderedParts = null;
 

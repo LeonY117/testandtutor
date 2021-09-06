@@ -103,7 +103,7 @@ class testPaper extends Component {
     userId: Cookies.get("userId"),
     paperId: null,
     testBody: {},
-    marks: {},
+    userMarks: {},
     showMarkscheme: false,
     loading: true,
   };
@@ -114,7 +114,7 @@ class testPaper extends Component {
   };
 
   submitHandler = () => {
-    const answer = [...Object.values(this.state.marks)];
+    const answer = [...Object.values(this.state.userMarks)];
 
     const data = {
       data: {
@@ -149,22 +149,22 @@ class testPaper extends Component {
   }
 
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
-    const marksCopy = { ...this.state.marks };
+    const userMarksCopy = { ...this.state.userMarks };
     if (subpartIndex !== null) {
-      marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].marks =
+      userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex].userMarks =
         this.boundValue(
           event.target.value,
-          marksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
+          userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
             .maximum_marks
         );
     } else {
-      marksCopy[questionIndex].parts[partIndex].marks = this.boundValue(
+      userMarksCopy[questionIndex].parts[partIndex].userMarks = this.boundValue(
         event.target.value,
-        marksCopy[questionIndex].parts[partIndex].maximum_marks
+        userMarksCopy[questionIndex].parts[partIndex].maximum_marks
       );
     }
-    // console.log(marksCopy[questionIndex]);
-    this.setState({ marks: marksCopy });
+    // console.log(userMarksCopy[questionIndex]);
+    this.setState({ userMarks: userMarksCopy });
   };
 
   componentDidUpdate() {
@@ -176,7 +176,7 @@ class testPaper extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     let testBodyCopy = null;
-    const marksCopy = {};
+    const userMarksCopy = {};
 
     const fakeId = this.props.match.params.id;
     console.log("request this question id: " + fakeId);
@@ -198,10 +198,11 @@ class testPaper extends Component {
 
           for (let i in testBodyCopy) {
             // This line will be removed once backend is updated with markscheme data
+            // The markscheme attribute should already be contained in the question 
             testBodyCopy[i]["markscheme"] = dummyMarkscheme;
             // initiate empty question object
             let question = testBodyCopy[i];
-            marksCopy[i] = {
+            userMarksCopy[i] = {
               id: question.id,
               parts: Array(Object.keys(question.parts).length),
             };
@@ -209,17 +210,17 @@ class testPaper extends Component {
               // Generate template for part marks
               let part = { ...question.parts[partKey] };
               let subparts = { ...part.subparts };
-              marksCopy[i].parts[partKey] = {
+              userMarksCopy[i].parts[partKey] = {
                 id: part.id,
                 maximum_marks: part.marks,
-                marks: 0,
+                userMarks: 0,
                 subparts: Array(Object.keys(subparts).length),
               };
-              for (let key in Object.keys(subparts)) {
-                marksCopy[i].parts[partKey]["subparts"][key] = {
-                  number: parseInt(key) + 1,
-                  maximum_marks: subparts[key].marks,
-                  marks: 0,
+              for (let subpartKey in Object.keys(subparts)) {
+                userMarksCopy[i].parts[partKey]["subparts"][subpartKey] = {
+                  number: parseInt(subpartKey) + 1,
+                  maximum_marks: subparts[subpartKey].marks,
+                  userMarks: 0,
                 };
               }
             }
@@ -227,10 +228,10 @@ class testPaper extends Component {
           this.setState({
             testBody: testBodyCopy,
             loading: false,
-            marks: marksCopy,
+            userMarks: userMarksCopy,
             paperId: fakeId,
           });
-          console.log(marksCopy);
+          console.log(userMarksCopy);
           console.log(testBodyCopy);
         }
       })
@@ -240,13 +241,14 @@ class testPaper extends Component {
       });
   }
   render() {
+    // table at bottom
     let tables = null;
-    if (this.state.marks && this.state.showMarkscheme) {
-      tables = Object.keys(this.state.marks).map((questionKey) => {
+    if (this.state.userMarks && this.state.showMarkscheme) {
+      tables = Object.keys(this.state.userMarks).map((questionKey) => {
         return (
           <MarkschemeTable
             inputChanged={this.inputChangedHandler}
-            marks={this.state.marks}
+            userMarks={this.state.userMarks}
             questionNumber={parseInt(questionKey) + 1}
             key={questionKey}
           />
@@ -259,22 +261,19 @@ class testPaper extends Component {
       paper = (
         <div>
           <Content>
-            <Questions
+            {/* <Questions
               testBody={this.state.testBody}
-              marks={this.state.marks}
+              userMarks={this.state.userMarks}
               showMarkscheme={this.state.showMarkscheme}
               inputChanged={this.inputChangedHandler}
-            />
+            /> */}
             <div className={classes.SummaryTable}>{tables}</div>
-            <div className={classes.ButtonWrapper}>
-              {this.state.showMarkscheme ? null : (
-                <Button clicked={this.testCompletedHandler}>Complete</Button>
-              )}
-            </div>
             <div className={classes.ButtonWrapper}>
               {this.state.showMarkscheme ? (
                 <Button clicked={this.submitHandler}>Submit</Button>
-              ) : null}
+              ) : (
+                <Button clicked={this.testCompletedHandler}>Complete</Button>
+              )}
             </div>
           </Content>
         </div>

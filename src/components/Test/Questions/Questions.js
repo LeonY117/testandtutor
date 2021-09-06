@@ -22,7 +22,7 @@ const questions = (props) => {
           markscheme={markscheme}
           showMarkscheme={props.showMarkscheme}
           inputChanged={props.inputChanged}
-          msMarks={props.marks}
+          msMarks={props.userMarks}
         />
       );
     });

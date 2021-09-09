@@ -1,0 +1,51 @@
+.QuestionPart {
+  font-family: "Computer Modern Serif";
+  display: flex;
+  justify-content: space-between;
+  margin: 0.1em 0;
+}
+
+.PrefixBody {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.Prefix {
+  display: inline;
+  margin: 0 0.5em;
+}
+
+.QuestionBody {
+  margin: 0;
+  display: inline;
+  flex: 1 1 100%;
+}
+
+.QuestionBodyText {
+  font-size: 1em;
+  font-weight: 400;
+  display: inline;
+  margin: 0;
+}
+
+.QuestionBodyImage {
+  text-align: center;
+  border: 1px solid black;
+  display: block;
+  padding: 1rem 0;
+}
+
+.Marks {
+  display: inline;
+  margin: 0;
+  margin-left: 0.5em;
+}
+
+.Part {
+  margin-left: 1em;
+}
+
+.SubPart {
+  margin-left: 2em;
+}

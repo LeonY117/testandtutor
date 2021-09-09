@@ -6,7 +6,7 @@ import Button from "../../components/UI/Button/Button";
 import Content from "../../hoc/Content/Content";
 import classes from "./TestPaper.module.css";
 import Loading from "../../components/Loading/Loading";
-import MarkschemeTable from "../../components/Test/Questions/Markscheme/MarkschemeTable/MarkschemeTable";
+import MarkschemeTable from "../../components/Test/MarkschemeTable/MarkschemeTable";
 import Cookies from "js-cookie";
 
 const dummyMarkscheme = {

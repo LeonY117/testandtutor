@@ -1,0 +1,14 @@
+.QuestionMarkschemeWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: space-between;
+}
+
+.QuestionWrapper {
+  flex: 1 1 100%;
+}
+
+.MarkschemeWrapper {
+  flex: 1 1 100%;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Test.module.css";
+import Card from "../../components/UI/Card/Card";
 import Question from "./Question/Question";
 import Markscheme from "./Markscheme/Markscheme";
 import MarkschemeTable from "./MarkschemeTable/MarkschemeTable";
@@ -8,7 +9,7 @@ import MarkschemeTable from "./MarkschemeTable/MarkschemeTable";
 
 /*
 renders a list of questions for a given test
-controlls whether or not the markscheme table is visible
+displays/hides markscheme table depending on props.showMarkscheme
 
 PROPS
 testBody: contains both the question and the markscheme
@@ -23,18 +24,24 @@ const test = (props) => {
   if (props.testBody) {
     renderedQuestions = testBodyCopy.map((question) => {
       return (
-        <div>
-          <Question questionData={question} />
-          <div>
-            <Markscheme markschemeData={question.markscheme} />
-            {props.showMarkscheme ? (
-              <MarkschemeTable
-                inputChanged={props.inputChanged}
-                userMarks={props.userMarks}
-                questionNumber = {question.question_number}
-              />
-            ) : null}
-          </div>
+        <div style={{ marginBottom: "2rem" }}>
+          <Card>
+            <div className={classes.QuestionMarkschemeWrapper}>
+              <div className={classes.QuestionWrapper}>
+                <Question questionData={question} />
+              </div>
+              {props.showMarkscheme ? (
+                <div className={classes.MarkschemeWrapper}>
+                  <Markscheme markschemeData={question.markscheme} />
+                  <MarkschemeTable
+                    inputChanged={props.inputChanged}
+                    userMarks={props.userMarks}
+                    questionNumber={question.question_number}
+                  />
+                </div>
+              ) : null}
+            </div>
+          </Card>
         </div>
       );
     });

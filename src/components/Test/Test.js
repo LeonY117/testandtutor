@@ -22,9 +22,9 @@ const test = (props) => {
   let renderedQuestions = null;
   const testBodyCopy = [...props.testBody];
   if (props.testBody) {
-    renderedQuestions = testBodyCopy.map((question) => {
+    renderedQuestions = testBodyCopy.map((question, key) => {
       return (
-        <div style={{ marginBottom: "2rem" }}>
+        <div key={key} style={{ marginBottom: "2rem" }}>
           <Card>
             <div className={classes.QuestionMarkschemeWrapper}>
               <div className={classes.QuestionWrapper}>

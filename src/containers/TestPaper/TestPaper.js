@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "../../axios";
 import Test from "../../components/Test/Test";
-import Questions from "../../components/Test/Questions/Questions";
+// import Questions from "../../components/Test/Questions/Questions";
 import Button from "../../components/UI/Button/Button";
 import Content from "../../hoc/Content/Content";
 import classes from "./TestPaper.module.css";
@@ -249,10 +249,10 @@ class testPaper extends Component {
       tables = Object.keys(this.state.userMarks).map((questionKey) => {
         return (
           <MarkschemeTable
+            key={questionKey}
             inputChanged={this.inputChangedHandler}
             userMarks={this.state.userMarks}
             questionNumber={parseInt(questionKey) + 1}
-            key={questionKey}
           />
         );
       });

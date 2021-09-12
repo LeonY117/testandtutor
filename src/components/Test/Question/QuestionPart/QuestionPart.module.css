@@ -13,8 +13,11 @@
 
 .Prefix {
   display: inline;
-  margin: 0 0.5em;
+  width: 2em;
+  margin: 0;
 }
+
+
 
 .QuestionBody {
   margin: 0;
@@ -41,10 +44,10 @@
   margin: 0;
   margin-left: 0.5em;
 }
-
+/* 
 .Part {
   margin-left: 1em;
-}
+} */
 
 .SubPart {
   margin-left: 2em;

@@ -1,0 +1,87 @@
+.MarkschemePart {
+  display: flex;
+  flex-direction: row;
+  font-family: "Computer Modern Serif";
+  /* width: 100%; */
+  align-items: flex-start;
+  margin: 0.1em 0;
+
+  /* border: 1px solid blue; */
+}
+
+.Subpart {
+  margin-left: 2em;
+}
+
+.Prefix {
+  display: inline;
+  width: 2em;
+  margin: 0;
+  /* background: pink; */
+}
+
+.Pseudo {
+  width: 4em;
+  display: flex;
+  margin: 0;
+}
+
+.Pseudo p {
+  margin: 0;
+  /* background: green; */
+}
+
+.PseudoPrefix {
+  width: 2em;
+}
+
+.MsBody {
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.BodyMarkWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* background: yellow; */
+}
+
+.Body {
+  flex: 1 1 100%;
+  font-size: 1em;
+  font-weight: 400;
+  display: inline;
+  margin: 0;
+}
+
+.Image {
+  flex: 1 1 100%;
+  text-align: center;
+  border: 1px solid black;
+  display: block;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.Mark {
+  margin: 0;
+  font-weight: 600;
+}
+
+.Marks {
+  display: flex;
+  margin-left: 0.5em;
+}
+
+.Implicit {
+  width: 2.5em;
+}
+
+.Implicit::before {
+  content: "(";
+}
+
+.Implicit::after {
+  content: ")";
+}

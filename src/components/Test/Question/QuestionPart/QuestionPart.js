@@ -25,9 +25,11 @@ const questionPart = (props) => {
     classArray.push(classes.SubPart);
   }
 
-  prefixRender = (
-    <p className={classes.Prefix}>{getQuestionPrefix(props.index)} </p>
-  );
+  if (props.index[0] != null) {
+    prefixRender = (
+      <p className={classes.Prefix}>{getQuestionPrefix(props.index)} </p>
+    );
+  }
 
   bodyRender = body.map((item, key) => {
     if (item.type === "string") {
@@ -83,17 +85,13 @@ function romanize(num) {
 }
 
 function getQuestionPrefix(index) {
-  let string = "";
-  if (index[0] == null) {
+  if (index[1] != null) {
+    return romanize(index[1] + 1) + ".";
+  } else if (index[0] != null) {
+    return "(" + String.fromCharCode(96 + index[0] + 1) + ")";
+  } else if (index[0] == null) {
     return null;
   }
-  if (index[0] != null) {
-    string = String.fromCharCode(96 + index[0] + 1);
-  }
-  if (index[1] != null) {
-    string = romanize(index[1] + 1);
-  }
-  return "(" + string + ")";
 }
 
 export default questionPart;

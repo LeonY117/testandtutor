@@ -5,7 +5,7 @@ import QuestionPart from "./QuestionPart/QuestionPart";
 const question = (props) => {
   let body = props.questionData.question_body;
   let index = [null, null];
-  let mark =
+  let marks =
     props.parts && props.parts.length > 0
       ? null
       : props.questionData.maximum_marks;
@@ -21,16 +21,23 @@ const question = (props) => {
 
     let question_subparts = null;
     question_subparts = Object.keys(subparts).map((subKey) => {
+      let subpart = subparts[subKey];
+      let [index, body, marks] = [
+        [parseInt(key), parseInt(subKey)],
+        subpart.question_body,
+        subpart.marks,
+      ];
       return (
         <QuestionPart
-          index={[parseInt(key), parseInt(subKey)]}
-          body={subparts[subKey].question_body}
-          marks={subparts[subKey].marks}
+          key={key + subKey}
+          index={index}
+          body={body}
+          marks={marks}
         />
       );
     });
     return (
-      <div>
+      <div key={key}>
         <QuestionPart index={index} body={body} marks={marks} />
         {question_subparts}
       </div>
@@ -39,7 +46,7 @@ const question = (props) => {
 
   return (
     <div>
-      <QuestionPart index={index} body={body} mark={mark} />
+      <QuestionPart index={index} body={body} mark={marks} />
       {question_parts}
     </div>
   );

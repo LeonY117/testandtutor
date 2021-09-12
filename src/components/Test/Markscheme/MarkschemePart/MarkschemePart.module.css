@@ -14,25 +14,28 @@
 }
 
 .Prefix {
-  display: inline;
+  display: inline-block;
   width: 2em;
   margin: 0;
   /* background: pink; */
 }
 
-.Pseudo {
-  width: 4em;
-  display: flex;
-  margin: 0;
+.PrefixShort {
+  width: 1.5em;
 }
 
-.Pseudo p {
+.Pseudo {
+  /* width: 4em; */
+  display: flex;
   margin: 0;
   /* background: green; */
 }
 
 .PseudoPrefix {
+  display: inline;
   width: 2em;
+  margin: 0;
+  /* background: lightblue; */
 }
 
 .MsBody {

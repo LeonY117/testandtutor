@@ -20,16 +20,25 @@ const markschemePart = (props) => {
   }
 
   let prefixRender = null;
+//   used to reduce margin for i, ii, etc
+  let prefixClasses = [classes.Prefix]
+  if (props.index[1] != null) {
+      prefixClasses.push(classes.PrefixShort)
+  } 
   if (props.index[0] != null) {
     if (!pseudoPrefix) {
       prefixRender = (
-        <p className={classes.Prefix}>{getQuestionPrefix(props.index)} </p>
+        <div className={prefixClasses.join(' ')}>{getQuestionPrefix(props.index)} </div>
       );
     } else {
       prefixRender = (
         <div className={classes.Pseudo}>
-          <p className = {classes.PseudoPrefix}>{getQuestionPrefix([props.index[0], null])} </p>
-          <p>{getQuestionPrefix(props.index)} </p>
+          <div className={classes.PseudoPrefix}>
+            {getQuestionPrefix([props.index[0], null])}{" "}
+          </div>
+          <div className={prefixClasses.join(' ')}>
+            {getQuestionPrefix(props.index)}{" "}
+          </div>
         </div>
       );
     }
@@ -103,7 +112,7 @@ const markschemePart = (props) => {
   return (
     <Latex>
       <div className={classArray.join(" ")}>
-        {prefixRender}
+        <div>{prefixRender}</div>
         <div className={classes.MsBody}>{bodyMarkRender}</div>
       </div>
     </Latex>

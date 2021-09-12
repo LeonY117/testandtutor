@@ -21,23 +21,27 @@ const markscheme = (props) => {
     });
     return (
       <div>
-        <MarkschemePart
-          key={key}
-          index={[parseInt(key), null]}
-          body={part.markscheme_body}
-          marks={part.marks}
-        />
+        {subparts.length === 0 ? (
+          <MarkschemePart
+            key={key}
+            index={[parseInt(key), null]}
+            body={part.markscheme_body}
+            marks={part.marks}
+          />
+        ) : null}
         {ms_subparts}
       </div>
     );
   });
   return (
     <div>
-      <MarkschemePart
-        index={[null, null]}
-        body={markschemeData.markscheme_body}
-        marks={markschemeData.marks}
-      />
+      {parts.length === 0 ? (
+        <MarkschemePart
+          index={[null, null]}
+          body={markschemeData.markscheme_body}
+          marks={markschemeData.marks}
+        />
+      ) : null}
       {ms_parts}
     </div>
   );

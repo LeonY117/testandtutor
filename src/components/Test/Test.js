@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Test.module.css";
 import Card from "../../components/UI/Card/Card";
+import Content from "../../hoc/Content/Content";
 import Question from "./Question/Question";
 import Markscheme from "./Markscheme/Markscheme";
 import MarkschemeTable from "./MarkschemeTable/MarkschemeTable";
@@ -28,10 +29,12 @@ const test = (props) => {
           <Card>
             <div className={classes.QuestionMarkschemeWrapper}>
               <div className={classes.QuestionWrapper}>
+                <h2>Question {parseInt(key) + 1}</h2>
                 <Question questionData={question} />
               </div>
               {props.showMarkscheme ? (
                 <div className={classes.MarkschemeWrapper}>
+                  <h2>Markscheme</h2>
                   <Markscheme markschemeData={question.markscheme} />
                   <MarkschemeTable
                     inputChanged={props.inputChanged}
@@ -49,7 +52,11 @@ const test = (props) => {
     renderedQuestions = <p>Something went wrong</p>;
   }
 
-  return <div className={classes.Test}>{renderedQuestions}</div>;
+  return (
+    <Content>
+      <div className={classes.Test}>{renderedQuestions}</div>
+    </Content>
+  );
 };
 
 export default test;

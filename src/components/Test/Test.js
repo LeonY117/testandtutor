@@ -21,9 +21,8 @@ inputChanged: for updating table cells
 */
 const test = (props) => {
   let renderedQuestions = null;
-  const testBodyCopy = [...props.testBody];
   if (props.testBody) {
-    renderedQuestions = testBodyCopy.map((question, key) => {
+    renderedQuestions = props.testBody.map((question, key) => {
       return (
         <div key={key} style={{ marginBottom: "2rem" }}>
           <Card>

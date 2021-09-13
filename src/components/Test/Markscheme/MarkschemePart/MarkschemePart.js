@@ -20,15 +20,17 @@ const markschemePart = (props) => {
   }
 
   let prefixRender = null;
-//   used to reduce margin for i, ii, etc
-  let prefixClasses = [classes.Prefix]
+  //   used to reduce margin for i, ii, etc
+  let prefixClasses = [classes.Prefix];
   if (props.index[1] != null) {
-      prefixClasses.push(classes.PrefixShort)
-  } 
+    prefixClasses.push(classes.PrefixShort);
+  }
   if (props.index[0] != null) {
     if (!pseudoPrefix) {
       prefixRender = (
-        <div className={prefixClasses.join(' ')}>{getQuestionPrefix(props.index)} </div>
+        <div className={prefixClasses.join(" ")}>
+          {getQuestionPrefix(props.index)}{" "}
+        </div>
       );
     } else {
       prefixRender = (
@@ -36,7 +38,7 @@ const markschemePart = (props) => {
           <div className={classes.PseudoPrefix}>
             {getQuestionPrefix([props.index[0], null])}{" "}
           </div>
-          <div className={prefixClasses.join(' ')}>
+          <div className={prefixClasses.join(" ")}>
             {getQuestionPrefix(props.index)}{" "}
           </div>
         </div>
@@ -107,6 +109,8 @@ const markschemePart = (props) => {
           <div className={classes.Marks}>{marks}</div>
         </div>
       );
+    } else {
+      return null;
     }
   });
   return (

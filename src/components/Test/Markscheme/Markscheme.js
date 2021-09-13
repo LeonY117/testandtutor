@@ -12,7 +12,7 @@ const markscheme = (props) => {
     ms_subparts = subparts.map((subpart, subKey) => {
       return (
         <MarkschemePart
-          key={key + subKey}
+          key={key.toString() + subKey.toString()}
           index={[parseInt(key), parseInt(subKey)]}
           body={subpart.markscheme_body}
           marks={subpart.marks}

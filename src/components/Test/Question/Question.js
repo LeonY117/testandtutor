@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./Question.module.css";
 import QuestionPart from "./QuestionPart/QuestionPart";
 
 const question = (props) => {

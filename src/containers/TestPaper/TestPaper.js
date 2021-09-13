@@ -233,8 +233,8 @@ class testPaper extends Component {
             userMarks: userMarksCopy,
             paperId: fakeId,
           });
-          console.log(userMarksCopy);
-          console.log(testBodyCopy);
+          // console.log(userMarksCopy);
+          // console.log(testBodyCopy);
         }
       })
       .catch((error) => {

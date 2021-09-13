@@ -35,7 +35,6 @@ const markschemeTable = (props) => {
     if (Object.keys(props.userMarks[qKey].parts[key].subparts).length === 0) {
       return (
         <MarkschemeCell
-          key={key}
           label={props.questionNumber + partLabel}
           userMarks={props.userMarks[qKey].parts[key].maximum_marks}
           key={props.questionNumber + partLabel}
@@ -52,7 +51,6 @@ const markschemeTable = (props) => {
         let sublabel = romanize(parseInt(key) + 1);
         return (
           <MarkschemeCell
-            key={key}
             label={props.questionNumber + partLabel + ", " + sublabel}
             userMarks={subparts[key].maximum_marks}
             key={props.questionNumber + partLabel + ", " + sublabel}

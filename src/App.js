@@ -13,9 +13,12 @@ import Landing from "./components/Landing/Landing";
 // import axios from "./axios";
 
 class App extends Component {
-  state = {
-    loggedIn: false,
-  };
+  constructor() {
+    super();
+    if (Cookies.get("userId")) {
+      this.state = { loggedIn: true };
+    }
+  }
 
   loginSuccessHandler = (id) => {
     // console.log(this.state.loggedIn);
@@ -28,7 +31,7 @@ class App extends Component {
 
   logoutHandler = () => {
     Cookies.remove("userId");
-    Cookies.remove("refreshToken")
+    Cookies.remove("refreshToken");
     this.setState({
       loggedIn: false,
     });
@@ -37,12 +40,6 @@ class App extends Component {
   sessionExpired = () => {
     this.setState({ loggedIn: false });
   };
-
-  componentDidMount() {
-    if (Cookies.get("userId") && Cookies.get("refreshToken")) {
-      this.setState({ loggedIn: true });
-    }
-  }
 
   render() {
     let redirectFromLogin = null;

@@ -20,10 +20,9 @@ const markscheme = (props) => {
       );
     });
     return (
-      <div>
+      <div key={key}>
         {subparts.length === 0 ? (
           <MarkschemePart
-            key={key}
             index={[parseInt(key), null]}
             body={part.markscheme_body}
             marks={part.marks}

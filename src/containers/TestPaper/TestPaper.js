@@ -136,6 +136,12 @@ class testPaper extends Component {
       });
   };
 
+  sum = (items, prop) => {
+    return items.reduce(function (a, b) {
+      return a + b[prop];
+    }, 0);
+  };
+
   boundValue(value, max) {
     if (value > max) {
       return max;
@@ -195,45 +201,51 @@ class testPaper extends Component {
           console.log("errors!");
           console.log(response.data.errors);
         } else {
+          console.log("from TestPaper.js:");
           console.log(response.data);
           testBodyCopy = [...response.data.data.questions].sort(compare);
 
           for (let i in testBodyCopy) {
             // This line will be removed once backend is updated with markscheme data
             // The markscheme attribute should already be contained in the question
-            testBodyCopy[i]["markscheme"] = dummyMarkscheme;
+            if (!testBodyCopy[i]["markscheme"]) {
+              testBodyCopy[i]["markscheme"] = dummyMarkscheme;
+            }
             // initiate empty question object
+            let markscheme = { ...testBodyCopy[i]["markscheme"] };
             let question = testBodyCopy[i];
             userMarksCopy[i] = {
               id: question.id,
-              parts: Array(Object.keys(question.parts).length),
+              parts: Array(Object.keys(markscheme.parts).length),
             };
-            for (let partKey in Object.keys(question.parts)) {
+            for (let partKey in Object.keys(markscheme.parts)) {
               // Generate template for part marks
-              let part = { ...question.parts[partKey] };
+              let part = { ...markscheme.parts[partKey] };
               let subparts = { ...part.subparts };
               userMarksCopy[i].parts[partKey] = {
                 id: part.id,
-                maximum_marks: part.marks,
+                maximum_marks: this.sum(part.marks, "value"),
                 userMarks: 0,
                 subparts: Array(Object.keys(subparts).length),
               };
               for (let subpartKey in Object.keys(subparts)) {
                 userMarksCopy[i].parts[partKey]["subparts"][subpartKey] = {
                   number: parseInt(subpartKey) + 1,
-                  maximum_marks: subparts[subpartKey].marks,
+                  maximum_marks: this.sum(subparts[subpartKey].marks, "value"),
                   userMarks: 0,
                 };
               }
             }
           }
+          console.log(testBodyCopy);
           this.setState({
             testBody: testBodyCopy,
             loading: false,
             userMarks: userMarksCopy,
             paperId: fakeId,
           });
-          // console.log(userMarksCopy);
+
+          console.log(userMarksCopy);
           // console.log(testBodyCopy);
         }
       })
@@ -269,12 +281,6 @@ class testPaper extends Component {
               showMarkscheme={this.state.showMarkscheme}
               inputChanged={this.inputChangedHandler}
             />
-            {/* <Questions
-              testBody={this.state.testBody}
-              userMarks={this.state.userMarks}
-              showMarkscheme={this.state.showMarkscheme}
-              inputChanged={this.inputChangedHandler}
-            /> */}
             <div className={classes.SummaryTable}>{tables}</div>
             <div className={classes.ButtonWrapper}>
               {this.state.showMarkscheme ? (

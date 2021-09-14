@@ -12,12 +12,29 @@
 }
 
 .Prefix {
+  display: inline-block;
+  width: 2em;
+  margin: 0;
+  /* background: pink; */
+}
+
+.PrefixShort {
+  width: 1.5em;
+}
+
+.Pseudo {
+  /* width: 4em; */
+  display: flex;
+  margin: 0;
+  /* background: green; */
+}
+
+.PseudoPrefix {
   display: inline;
   width: 2em;
   margin: 0;
+  /* background: lightblue; */
 }
-
-
 
 .QuestionBody {
   margin: 0;

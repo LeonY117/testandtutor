@@ -22,13 +22,41 @@ const questionPart = (props) => {
   if (props.index[0] != null && props.index[1] === null) {
     classArray.push(classes.Part);
   } else if (props.index[0] != null && props.index[1] != null) {
-    classArray.push(classes.SubPart);
+    if (!props.pseudoPrefix) {
+      classArray.push(classes.SubPart);
+    }
   }
 
+  // if (props.index[0] != null) {
+  //   prefixRender = (
+  //     <p className={classes.Prefix}>{getQuestionPrefix(props.index)} </p>
+  //   );
+  // }
+
+  //   used to reduce margin for i, ii, etc
+  let prefixClasses = [classes.Prefix];
+  if (props.index[1] != null) {
+    prefixClasses.push(classes.PrefixShort);
+  }
   if (props.index[0] != null) {
-    prefixRender = (
-      <p className={classes.Prefix}>{getQuestionPrefix(props.index)} </p>
-    );
+    if (!props.pseudoPrefix) {
+      prefixRender = (
+        <div className={prefixClasses.join(" ")}>
+          {getQuestionPrefix(props.index)}{" "}
+        </div>
+      );
+    } else {
+      prefixRender = (
+        <div className={classes.Pseudo}>
+          <div className={classes.PseudoPrefix}>
+            {getQuestionPrefix([props.index[0], null])}{" "}
+          </div>
+          <div className={prefixClasses.join(" ")}>
+            {getQuestionPrefix(props.index)}{" "}
+          </div>
+        </div>
+      );
+    }
   }
 
   bodyRender = body.map((item, key) => {

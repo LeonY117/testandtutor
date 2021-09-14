@@ -32,12 +32,15 @@ const question = (props) => {
           index={index}
           body={body}
           marks={marks}
+          pseudoPrefix={part.question_body.length === 0 && subKey === '0'}
         />
       );
     });
     return (
       <div key={key}>
-        <QuestionPart index={index} body={body} marks={marks} />
+        {body.length > 0 ? (
+          <QuestionPart index={index} body={body} marks={marks} />
+        ) : null}
         {question_subparts}
       </div>
     );
@@ -45,7 +48,9 @@ const question = (props) => {
 
   return (
     <div>
-      <QuestionPart index={index} body={body} mark={marks} />
+      {body.length > 0 ? (
+        <QuestionPart index={index} body={body} marks={marks} />
+      ) : null}
       {question_parts}
     </div>
   );

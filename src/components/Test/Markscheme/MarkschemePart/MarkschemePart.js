@@ -92,8 +92,6 @@ const markschemePart = (props) => {
           </p>
         );
       });
-    } else {
-      return null;
     }
     if (item.type === "string") {
       return (

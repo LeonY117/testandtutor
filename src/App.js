@@ -17,6 +17,8 @@ class App extends Component {
     super();
     if (Cookies.get("userId")) {
       this.state = { loggedIn: true };
+    } else {
+      this.state = { loggedIn: false };
     }
   }
 

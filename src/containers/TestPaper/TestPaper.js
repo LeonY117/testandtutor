@@ -137,6 +137,9 @@ class testPaper extends Component {
   };
 
   sum = (items, prop) => {
+    if (items === []) {
+      return 0;
+    }
     return items.reduce(function (a, b) {
       return a + b[prop];
     }, 0);
@@ -208,7 +211,8 @@ class testPaper extends Component {
           for (let i in testBodyCopy) {
             // This line will be removed once backend is updated with markscheme data
             // The markscheme attribute should already be contained in the question
-            if (!testBodyCopy[i]["markscheme"]) {
+            // if (!testBodyCopy[i]["markscheme"]) {
+            if (i === "0" || i === "1") {
               testBodyCopy[i]["markscheme"] = dummyMarkscheme;
             }
             // initiate empty question object

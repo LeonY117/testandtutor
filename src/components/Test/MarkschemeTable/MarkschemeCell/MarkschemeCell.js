@@ -13,7 +13,7 @@ const markschemeCell = (props) => {
           onChange={props.changed}
           value={Number(props.value).toString() || 0}
         ></input>
-        <span className={classes.Max} >/{props.max}</span>
+        <span className={classes.Max} >/ {props.max}</span>
       </div>
     </div>
   );

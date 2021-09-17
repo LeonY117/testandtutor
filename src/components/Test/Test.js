@@ -38,7 +38,7 @@ const test = (props) => {
                   <MarkschemeTable
                     inputChanged={props.inputChanged}
                     userMarks={props.userMarks}
-                    questionNumber={question.question_number}
+                    questionNumber={parseInt(key)+1}
                   />
                 </div>
               ) : null}

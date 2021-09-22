@@ -1,7 +1,10 @@
+.Monofont {
+  font-family: "Computer Modern Serif";
+}
+
 .MarkschemePart {
   display: flex;
   flex-direction: row;
-  font-family: "Computer Modern Serif";
   /* width: 100%; */
   align-items: flex-start;
   margin: 0.1em 0;
@@ -89,4 +92,10 @@
 
 .Implicit::after {
   content: ")";
+}
+
+.MarkSum {
+  margin: 0;
+  margin-bottom: 1em;
+  text-align: right;
 }

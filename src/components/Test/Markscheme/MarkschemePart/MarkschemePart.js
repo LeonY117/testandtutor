@@ -55,7 +55,7 @@ const markschemePart = (props) => {
     }, 0);
   };
 
-  const totalMarks = String(sum(props.marks, "value")) + " marks";
+  const totalMarks = sum(props.marks, "value");
 
   // the way marks are mapped to the markscheme_body is very ad hoc,
   // here we just do a bit of reorganization to the data to make rendering
@@ -88,18 +88,18 @@ const markschemePart = (props) => {
   let bodyMarkRender = props.body.map((item, i) => {
     let marks = null;
     if (values[i] !== undefined) {
-      marks = values[i].map((item, key) => {
+      marks = values[i].map((valueItem, key) => {
         return (
           <p
             key={key}
             className={
-              item.implicit
+              valueItem.implicit
                 ? [classes.Mark, classes.Implicit].join(" ")
                 : classes.Mark
             }
           >
-            {item.type}
-            {item.value}
+            {valueItem.type}
+            {valueItem.value}
           </p>
         );
       });
@@ -129,7 +129,7 @@ const markschemePart = (props) => {
           <div>{prefixRender}</div>
           <div className={classes.MsBody}>{bodyMarkRender}</div>
         </div>
-        <div className={classes.MarkSum}>[{totalMarks}]</div>
+        <div className={classes.MarkSum}>[$ {totalMarks} \: marks$]</div>
       </div>
     </Latex>
   );

@@ -108,6 +108,7 @@ class User extends Component {
   takeTestButtonClickedHandler = () => {
     this.props.history.push(this.props.match.url + "/test");
   };
+
   componentDidUpdate() {
     if (!this.state.userId) {
       this.props.expired();
@@ -153,6 +154,8 @@ class User extends Component {
 
           dataCopy.username = responseData.first_name;
           dataCopy.subject = responseData.curriculum;
+
+          // Not getting these from backend yet
           dataCopy.topics = topics;
           dataCopy.subTopics = subtopics;
           dataCopy.suggestedTopics = suggestedTopics;

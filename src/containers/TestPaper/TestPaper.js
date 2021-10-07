@@ -212,9 +212,9 @@ class testPaper extends Component {
             // This line will be removed once backend is updated with markscheme data
             // The markscheme attribute should already be contained in the question
             // if (!testBodyCopy[i]["markscheme"]) {
-            if (i === "0" || i === "1") {
-              testBodyCopy[i]["markscheme"] = dummyMarkscheme;
-            }
+            // if (i === "0" || i === "1") {
+            //   testBodyCopy[i]["markscheme"] = dummyMarkscheme;
+            // }
             // initiate empty question object
             let markscheme = { ...testBodyCopy[i]["markscheme"] };
             let question = testBodyCopy[i];

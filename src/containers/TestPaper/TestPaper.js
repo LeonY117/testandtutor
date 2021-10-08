@@ -110,13 +110,13 @@ function sumUserScores(userMarks) {
       test_max_marks += question.max_marks;
     } else {
       for (let j in question.parts) {
-        let part = question.parts[j]
+        let part = question.parts[j];
         if (part.subparts.length === 0) {
           test_user_marks += part.user_marks;
           test_max_marks += part.max_marks;
         } else {
           for (let k in part.subparts) {
-            let subpart = part.subparts[k]
+            let subpart = part.subparts[k];
             test_user_marks += subpart.user_marks;
             test_max_marks += subpart.max_marks;
           }
@@ -146,13 +146,13 @@ class testPaper extends Component {
 
   submitHandler = () => {
     const answer = [...Object.values(this.state.userMarks)];
+    answer["test_max_marks"] = this.state.test_max_marks;
+    answer["test_user_marks"] = this.state.test_user_marks;
 
     const data = {
       data: {
         userId: this.state.userId,
         testId: this.state.paperId,
-        test_max_marks: this.state.test_max_marks,
-        test_user_marks: this.state.test_user_marks,
         answers: answer,
       },
     };

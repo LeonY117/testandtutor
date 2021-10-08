@@ -99,12 +99,42 @@ function compare(a, b) {
   return 0;
 }
 
+function sumUserScores(userMarks) {
+  let test_user_marks = 0;
+  let test_max_marks = 0;
+  console.log(userMarks);
+  for (let i in userMarks) {
+    let question = userMarks[i];
+    if (question.parts.length === 0) {
+      test_user_marks += question.user_marks;
+      test_max_marks += question.max_marks;
+    } else {
+      for (let j in question.parts) {
+        let part = question.parts[j]
+        if (part.subparts.length === 0) {
+          test_user_marks += part.user_marks;
+          test_max_marks += part.max_marks;
+        } else {
+          for (let k in part.subparts) {
+            let subpart = part.subparts[k]
+            test_user_marks += subpart.user_marks;
+            test_max_marks += subpart.max_marks;
+          }
+        }
+      }
+    }
+  }
+  return [test_user_marks, test_max_marks];
+}
+
 class testPaper extends Component {
   state = {
     userId: Cookies.get("userId"),
     paperId: null,
     testBody: {},
     userMarks: {},
+    test_max_marks: 0,
+    test_user_marks: 0,
     showMarkscheme: false,
     loading: true,
   };
@@ -121,6 +151,8 @@ class testPaper extends Component {
       data: {
         userId: this.state.userId,
         testId: this.state.paperId,
+        test_max_marks: this.state.test_max_marks,
+        test_user_marks: this.state.test_user_marks,
         answers: answer,
       },
     };
@@ -180,10 +212,15 @@ class testPaper extends Component {
           .max_marks
       );
     } else {
-      console.log('error in input change handler')
+      console.log("error in input change handler");
     }
+    let [test_user_marks, test_max_marks] = sumUserScores(userMarksCopy);
     // console.log(userMarksCopy[questionIndex]);
-    this.setState({ userMarks: userMarksCopy });
+    this.setState({
+      userMarks: userMarksCopy,
+      test_user_marks: test_user_marks,
+      test_max_marks: test_max_marks,
+    });
   };
 
   componentDidUpdate() {

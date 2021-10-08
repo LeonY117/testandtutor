@@ -90,10 +90,10 @@ const dummyMarkscheme = {
 };
 
 function compare(a, b) {
-  if (a.maximum_marks > b.maximum_marks) {
+  if (a.max_marks > b.max_marks) {
     return -1;
   }
-  if (a.maximum_marks < b.maximum_marks) {
+  if (a.max_marks < b.max_marks) {
     return 1;
   }
   return 0;
@@ -163,15 +163,15 @@ class testPaper extends Component {
     if (subpartIndex !== null) {
       userMarksCopy[questionIndex].parts[partIndex].subparts[
         subpartIndex
-      ].userMarks = this.boundValue(
+      ].user_marks = this.boundValue(
         event.target.value,
         userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
-          .maximum_marks
+          .max_marks
       );
     } else {
-      userMarksCopy[questionIndex].parts[partIndex].userMarks = this.boundValue(
+      userMarksCopy[questionIndex].parts[partIndex].user_marks = this.boundValue(
         event.target.value,
-        userMarksCopy[questionIndex].parts[partIndex].maximum_marks
+        userMarksCopy[questionIndex].parts[partIndex].max_marks
       );
     }
     // console.log(userMarksCopy[questionIndex]);
@@ -221,6 +221,8 @@ class testPaper extends Component {
             userMarksCopy[i] = {
               id: question.id,
               parts: Array(Object.keys(markscheme.parts).length),
+              user_marks: 0,
+              max_marks: question.max_marks
             };
             for (let partKey in Object.keys(markscheme.parts)) {
               // Generate template for part marks
@@ -228,15 +230,15 @@ class testPaper extends Component {
               let subparts = { ...part.subparts };
               userMarksCopy[i].parts[partKey] = {
                 id: part.id,
-                maximum_marks: this.sum(part.marks, "value"),
-                userMarks: 0,
+                max_marks: this.sum(part.marks, "value"),
+                user_marks: 0,
                 subparts: Array(Object.keys(subparts).length),
               };
               for (let subpartKey in Object.keys(subparts)) {
                 userMarksCopy[i].parts[partKey]["subparts"][subpartKey] = {
-                  number: parseInt(subpartKey) + 1,
-                  maximum_marks: this.sum(subparts[subpartKey].marks, "value"),
-                  userMarks: 0,
+                  number: parseInt(subpartKey), // 1-indexed, for backend to locate subpart
+                  max_marks: this.sum(subparts[subpartKey].marks, "value"),
+                  user_marks: 0,
                 };
               }
             }

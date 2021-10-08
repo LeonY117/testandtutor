@@ -27,18 +27,18 @@ function characterize(num) {
 const markschemeTable = (props) => {
   let cells = null;
   let qKey = (props.questionNumber - 1).toString();
-  if (props.userMarks[qKey].parts.length == 0) {
-    return;
-    // cells = (
-    //   <MarkschemeCell
-    //     label={props.questionNumber}
-    //     userMarks={props.userMarks[qKey].max_marks}
-    //     key={props.questionNumber}
-    //     changed={(e) => props.inputChanged(e, qKey, null, null)}
-    //     value={props.userMarks[qKey].user_marks}
-    //     max={props.userMarks[qKey].max_marks}
-    //   />
-    // );
+  if (props.userMarks[qKey].parts.length === 0) {
+    // return;
+    cells = (
+      <MarkschemeCell
+        label={props.questionNumber}
+        userMarks={props.userMarks[qKey].max_marks}
+        key={props.questionNumber}
+        changed={(e) => props.inputChanged(e, qKey, null, null)}
+        value={props.userMarks[qKey].user_marks}
+        max={props.userMarks[qKey].max_marks}
+      />
+    );
   } else {
     cells = Object.keys(props.userMarks[qKey].parts).map((key) => {
       // console.log("Part: ", key);

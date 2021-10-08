@@ -9,85 +9,85 @@ import Loading from "../../components/Loading/Loading";
 import MarkschemeTable from "../../components/Test/MarkschemeTable/MarkschemeTable";
 import Cookies from "js-cookie";
 
-const dummyMarkscheme = {
-  question_id: 1234,
-  markscheme_body: [
-    { type: "string", content: "this is a line of markscheme" },
-    { type: "string", content: "this is another line of the markscheme" },
-    { type: "image", path: "/path/to/image", alt: "the alt of the image" },
-  ],
-  marks: [
-    { type: "M", value: 1, implicit: false, index: 0 },
-    { type: "R", value: 1, implicit: false, index: 0 },
-    { type: "R", value: 2, implicit: false, index: 1 },
-    { type: "R", value: 2, implicit: true, index: 2 },
-  ],
-  parts: [
-    {
-      part_id: 1345,
-      markscheme_body: [
-        {
-          type: "string",
-          content: "this is a line of markscheme in the parts",
-        },
-        {
-          type: "string",
-          content: "this is another line of markscheme in the parts",
-        },
-      ],
-      marks: [
-        { type: "M", value: 1, implicit: false, index: 0 },
-        { type: "M", value: 1, implicit: false, index: 1 },
-      ],
-      subparts: [],
-    },
-    {
-      part_id: 78653,
-      markscheme_body: [
-        {
-          type: "string",
-          content: "this is line 2 of the markscheme in the parts",
-        },
-      ],
-      marks: [{ type: "M", value: 1, implicit: true, index: 0 }],
-      subparts: [],
-    },
-    {
-      part_id: 79864545,
-      markscheme_body: [],
-      marks: [],
-      subparts: [
-        {
-          subpart_id: 1894563,
-          markscheme_body: [
-            {
-              type: "string",
-              content: "this is a line of markscheme in the subpart",
-            },
-          ],
-          marks: [{ type: "R", value: 1, implicit: false, index: 0 }],
-        },
-        {
-          subpart_id: 7894563,
-          markscheme_body: [
-            {
-              type: "string",
-              content: "this is a line of markscheme in the subpart",
-            },
-            {
-              type: "string",
-              content: "this is a line of markscheme in the subpart",
-            },
-          ],
-          marks: [
-            { type: "M", value: 1, implicit: false, index: 0 },
-            { type: "R", value: 1, implicit: true, index: 1 },
-          ],
-        },
-      ],
-    },
-  ],
-};
+// const dummyMarkscheme = {
+//   question_id: 1234,
+//   markscheme_body: [
+//     { type: "string", content: "this is a line of markscheme" },
+//     { type: "string", content: "this is another line of the markscheme" },
+//     { type: "image", path: "/path/to/image", alt: "the alt of the image" },
+//   ],
+//   marks: [
+//     { type: "M", value: 1, implicit: false, index: 0 },
+//     { type: "R", value: 1, implicit: false, index: 0 },
+//     { type: "R", value: 2, implicit: false, index: 1 },
+//     { type: "R", value: 2, implicit: true, index: 2 },
+//   ],
+//   parts: [
+//     {
+//       part_id: 1345,
+//       markscheme_body: [
+//         {
+//           type: "string",
+//           content: "this is a line of markscheme in the parts",
+//         },
+//         {
+//           type: "string",
+//           content: "this is another line of markscheme in the parts",
+//         },
+//       ],
+//       marks: [
+//         { type: "M", value: 1, implicit: false, index: 0 },
+//         { type: "M", value: 1, implicit: false, index: 1 },
+//       ],
+//       subparts: [],
+//     },
+//     {
+//       part_id: 78653,
+//       markscheme_body: [
+//         {
+//           type: "string",
+//           content: "this is line 2 of the markscheme in the parts",
+//         },
+//       ],
+//       marks: [{ type: "M", value: 1, implicit: true, index: 0 }],
+//       subparts: [],
+//     },
+//     {
+//       part_id: 79864545,
+//       markscheme_body: [],
+//       marks: [],
+//       subparts: [
+//         {
+//           subpart_id: 1894563,
+//           markscheme_body: [
+//             {
+//               type: "string",
+//               content: "this is a line of markscheme in the subpart",
+//             },
+//           ],
+//           marks: [{ type: "R", value: 1, implicit: false, index: 0 }],
+//         },
+//         {
+//           subpart_id: 7894563,
+//           markscheme_body: [
+//             {
+//               type: "string",
+//               content: "this is a line of markscheme in the subpart",
+//             },
+//             {
+//               type: "string",
+//               content: "this is a line of markscheme in the subpart",
+//             },
+//           ],
+//           marks: [
+//             { type: "M", value: 1, implicit: false, index: 0 },
+//             { type: "R", value: 1, implicit: true, index: 1 },
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+// };
 
 function compare(a, b) {
   if (a.max_marks > b.max_marks) {
@@ -160,7 +160,18 @@ class testPaper extends Component {
 
   inputChangedHandler = (event, questionIndex, partIndex, subpartIndex) => {
     const userMarksCopy = { ...this.state.userMarks };
-    if (subpartIndex !== null) {
+    if (partIndex === null && subpartIndex === null) {
+      userMarksCopy[questionIndex].user_marks = this.boundValue(
+        event.target.value,
+        userMarksCopy[questionIndex].max_marks
+      );
+    } else if (partIndex !== null && subpartIndex === null) {
+      userMarksCopy[questionIndex].parts[partIndex].user_marks =
+        this.boundValue(
+          event.target.value,
+          userMarksCopy[questionIndex].parts[partIndex].max_marks
+        );
+    } else if (partIndex !== null && subpartIndex !== null) {
       userMarksCopy[questionIndex].parts[partIndex].subparts[
         subpartIndex
       ].user_marks = this.boundValue(
@@ -169,10 +180,7 @@ class testPaper extends Component {
           .max_marks
       );
     } else {
-      userMarksCopy[questionIndex].parts[partIndex].user_marks = this.boundValue(
-        event.target.value,
-        userMarksCopy[questionIndex].parts[partIndex].max_marks
-      );
+      console.log('error in input change handler')
     }
     // console.log(userMarksCopy[questionIndex]);
     this.setState({ userMarks: userMarksCopy });
@@ -222,7 +230,7 @@ class testPaper extends Component {
               id: question.id,
               parts: Array(Object.keys(markscheme.parts).length),
               user_marks: 0,
-              max_marks: question.max_marks
+              max_marks: question.max_marks,
             };
             for (let partKey in Object.keys(markscheme.parts)) {
               // Generate template for part marks

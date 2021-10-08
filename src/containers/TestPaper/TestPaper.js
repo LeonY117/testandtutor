@@ -145,15 +145,17 @@ class testPaper extends Component {
   };
 
   submitHandler = () => {
-    const answer = [...Object.values(this.state.userMarks)];
-    answer["test_max_marks"] = this.state.test_max_marks;
-    answer["test_user_marks"] = this.state.test_user_marks;
+    const answers = [...Object.values(this.state.userMarks)];
+    const results = {};
+    results["test_max_marks"] = this.state.test_max_marks;
+    results["test_user_marks"] = this.state.test_user_marks;
 
     const data = {
       data: {
         userId: this.state.userId,
         testId: this.state.paperId,
-        answers: answer,
+        answers: answers,
+        results: results,
       },
     };
     console.log("submit to backend!");

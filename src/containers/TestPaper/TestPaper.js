@@ -102,7 +102,6 @@ function compare(a, b) {
 function sumUserScores(userMarks) {
   let test_user_marks = 0;
   let test_max_marks = 0;
-  console.log(userMarks);
   for (let i in userMarks) {
     let question = userMarks[i];
     if (question.parts.length === 0) {
@@ -283,7 +282,7 @@ class testPaper extends Component {
               };
               for (let subpartKey in Object.keys(subparts)) {
                 userMarksCopy[i].parts[partKey]["subparts"][subpartKey] = {
-                  number: parseInt(subpartKey), // 1-indexed, for backend to locate subpart
+                  number: parseInt(subpartKey) + 1, // 1-indexed, for backend to locate subpart
                   max_marks: this.sum(subparts[subpartKey].marks, "value"),
                   user_marks: 0,
                 };

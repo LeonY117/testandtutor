@@ -25,15 +25,19 @@ function characterize(num) {
 }
 
 const markschemeTable = (props) => {
+  console.log(props);
   let cells = null;
   let qKey = (props.questionNumber - 1).toString();
   if (props.userMarks[qKey].parts.length === 0) {
+    console.log("rendering at question level");
+    console.log(qKey);
+    console.log(props.userMarks[qKey].user_marks);
+    console.log(props.userMarks[qKey].max_marks);
     // return;
     cells = (
       <MarkschemeCell
-        label={props.questionNumber}
-        userMarks={props.userMarks[qKey].max_marks}
         key={props.questionNumber}
+        label={props.questionNumber}
         changed={(e) => props.inputChanged(e, qKey, null, null)}
         value={props.userMarks[qKey].user_marks}
         max={props.userMarks[qKey].max_marks}
@@ -75,8 +79,8 @@ const markschemeTable = (props) => {
         });
       }
     });
-    return <div className={classes.Table}>{cells}</div>;
   }
+  return <div className={classes.Table}>{cells}</div>;
 };
 
 export default markschemeTable;

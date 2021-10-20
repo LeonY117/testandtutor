@@ -2,6 +2,9 @@ import React from "react";
 import classes from "./MarkschemeCell.module.css";
 
 const markschemeCell = (props) => {
+  if (props.max === 0) {
+    console.log(props)
+  }
   return (
     <div className={classes.Cell}>
       <p className={classes.Label}>{props.label} </p>

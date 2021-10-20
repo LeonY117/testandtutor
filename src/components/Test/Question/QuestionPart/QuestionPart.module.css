@@ -46,7 +46,7 @@
 .QuestionBodyText {
   font-size: 1em;
   font-weight: 400;
-  display: inline;
+  display: inline-block;
   margin: 0;
 }
 

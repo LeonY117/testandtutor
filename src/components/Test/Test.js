@@ -20,7 +20,6 @@ inputChanged: for updating table cells
 
 */
 const test = (props) => {
-  console.log(props.userMarks)
   let renderedQuestions = null;
   if (props.testBody) {
     renderedQuestions = props.testBody.map((question, key) => {

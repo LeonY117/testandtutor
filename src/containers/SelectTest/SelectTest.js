@@ -16,7 +16,7 @@ class selectTest extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0)
-    console.log({ data: { userId: this.state.userId } });
+    // console.log({ data: { userId: this.state.userId } });
     axios
       .post("/tests/available_tests", { data: { userId: this.state.userId } })
       .then((response) => {
@@ -50,7 +50,7 @@ class selectTest extends Component {
   }
 
   testSelectButtonClickedHandler = (paperID) => {
-    console.log(paperID);
+    // console.log(paperID);
     // paperID = 'd76eb100-c70a-4c87-af37-40f26c2ea87b'
     this.props.history.push(this.props.match.url + "/" + paperID);
     // console.log("backend request required for " + paperID);

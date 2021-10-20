@@ -289,15 +289,12 @@ class testPaper extends Component {
               }
             }
           }
-          console.log(testBodyCopy);
           this.setState({
             testBody: testBodyCopy,
             loading: false,
             userMarks: userMarksCopy,
             paperId: fakeId,
           });
-
-          console.log(userMarksCopy);
           // console.log(testBodyCopy);
         }
       })

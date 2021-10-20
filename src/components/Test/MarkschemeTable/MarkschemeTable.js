@@ -25,14 +25,9 @@ function characterize(num) {
 }
 
 const markschemeTable = (props) => {
-  console.log(props);
   let cells = null;
   let qKey = (props.questionNumber - 1).toString();
   if (props.userMarks[qKey].parts.length === 0) {
-    console.log("rendering at question level");
-    console.log(qKey);
-    console.log(props.userMarks[qKey].user_marks);
-    console.log(props.userMarks[qKey].max_marks);
     // return;
     cells = (
       <MarkschemeCell

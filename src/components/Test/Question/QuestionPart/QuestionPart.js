@@ -80,18 +80,13 @@ const questionPart = (props) => {
       try {
         let name = item.path;
         // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
-        let width = sizeMapping["M"].size + 'rem';
+        let width = sizeMapping["M"].size + "rem";
         if (item.size) {
-          console.log('size received')
-          width = sizeMapping[item.size].size + 'rem';
+          width = sizeMapping[item.size].size + "rem";
         }
         const imagePath = require("../../../../assets/images/" + name).default;
         renderedImage = (
-          <img
-            src={imagePath}
-            alt={item.alt}
-            style={{ width: width}}
-          />
+          <img src={imagePath} alt={item.alt} style={{ width: width }} />
         );
       } catch {
         renderedImage = <p style={{ color: "red" }}>{item.path} not found</p>;

@@ -63,13 +63,15 @@
 }
 
 .Image {
-  flex: 1 1 100%;
   text-align: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: block;
-  margin: 0;
-  margin-bottom: 1em;
   padding: 1rem 0;
+}
+
+.Image img {
+  width: 50%;
+  max-width: 100%;
 }
 
 .Mark {

@@ -2,6 +2,14 @@ import React from "react";
 import Latex from "../../../../hoc/Latex/Latex";
 import classes from "./MarkschemePart.module.css";
 
+const sizeMapping = {
+  XS: { size: 10, minSize: 10 },
+  S: { size: 15, minSize: 20 },
+  M: { size: 25, minSize: 20 },
+  L: { size: 35, minSize: 20 },
+  XL: { size: 50, minSize: 20 },
+};
+
 const markschemePart = (props) => {
   if (props.body.length === 0) {
     return null;
@@ -112,13 +120,31 @@ const markschemePart = (props) => {
         </div>
       );
     } else if (item.type === "image") {
+      let renderedImage = <p style={{ color: "red" }}>Something went wrong</p>;
+      try {
+        let name = item.path;
+        // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
+        let width = sizeMapping["M"].size + 'rem';
+        if (item.size) {
+          width = sizeMapping[item.size] + 'rem';
+        }
+        const imagePath = require("../../../../assets/images/" + name).default;
+        renderedImage = (
+          <img
+            src={imagePath}
+            alt={item.alt}
+            style={{ width: width}}
+          />
+        );
+      } catch {
+        renderedImage = <p style={{ color: "red" }}>{item.path} not found</p>;
+      }
       return (
-        <div key={i} className={classes.BodyMarkWrapper}>
-          <p className={classes.Image}>image placeholder</p>
-          <div className={classes.Marks}>{marks}</div>
+        <div key={i} className={classes.Image}>
+          {renderedImage}
         </div>
       );
-    } else {
+    }  else {
       return null;
     }
   });

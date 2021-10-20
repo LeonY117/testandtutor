@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./QuestionPart.module.css";
 import Latex from "../../../../hoc/Latex/Latex";
+// import image from '../../../../assets/images/AA/SL/Calculus/calculus_q1.png'
 /*
 The lowest level of question display in the form of: 
 (prefix) + question body + associated mark
@@ -11,6 +12,14 @@ body:
 marks
 
 */
+
+const sizeMapping = {
+  XS: { size: 10, minSize: 10 },
+  S: { size: 15, minSize: 20 },
+  M: { size: 25, minSize: 20 },
+  L: { size: 35, minSize: 20 },
+  XL: { size: 50, minSize: 20 },
+};
 
 const questionPart = (props) => {
   let body = props.body;
@@ -67,10 +76,30 @@ const questionPart = (props) => {
         </p>
       );
     } else if (item.type === "image") {
+      let renderedImage = <p style={{ color: "red" }}>Something went wrong</p>;
+      try {
+        let name = item.path;
+        // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
+        let width = sizeMapping["M"].size + 'rem';
+        if (item.size) {
+          console.log('size received')
+          width = sizeMapping[item.size].size + 'rem';
+        }
+        const imagePath = require("../../../../assets/images/" + name).default;
+        renderedImage = (
+          <img
+            src={imagePath}
+            alt={item.alt}
+            style={{ width: width}}
+          />
+        );
+      } catch {
+        renderedImage = <p style={{ color: "red" }}>{item.path} not found</p>;
+      }
       return (
-        <p key={key} className={classes.QuestionBodyImage}>
-          image: {item.alt}
-        </p>
+        <div key={key} className={classes.QuestionBodyImage}>
+          {renderedImage}
+        </div>
       );
     } else {
       return null;

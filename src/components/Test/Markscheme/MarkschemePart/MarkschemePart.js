@@ -10,6 +10,15 @@ const sizeMapping = {
   XL: { size: 50, minSize: 20 },
 };
 
+function sum(items, prop) {
+  if (items === []) {
+    return 0;
+  }
+  return items.reduce(function (a, b) {
+    return a + b[prop];
+  }, 0);
+}
+
 const markschemePart = (props) => {
   if (props.body.length === 0) {
     return null;
@@ -54,16 +63,7 @@ const markschemePart = (props) => {
     }
   }
 
-  const sum = (items, prop) => {
-    if (items === []) {
-      return 0;
-    }
-    return items.reduce(function (a, b) {
-      return a + b[prop];
-    }, 0);
-  };
-
-  const totalMarks = sum(props.marks, "value");
+  const totalMarks = `$[${sum(props.marks, "value")} \\ marks]$`;
 
   // the way marks are mapped to the markscheme_body is very ad hoc,
   // here we just do a bit of reorganization to the data to make rendering
@@ -124,17 +124,13 @@ const markschemePart = (props) => {
       try {
         let name = item.path;
         // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
-        let width = sizeMapping["M"].size + 'rem';
+        let width = sizeMapping["M"].size + "rem";
         if (item.size) {
-          width = sizeMapping[item.size].size + 'rem';
+          width = sizeMapping[item.size].size + "rem";
         }
         const imagePath = require("../../../../assets/images/" + name).default;
         renderedImage = (
-          <img
-            src={imagePath}
-            alt={item.alt}
-            style={{ width: width}}
-          />
+          <img src={imagePath} alt={item.alt} style={{ width: width }} />
         );
       } catch {
         renderedImage = <p style={{ color: "red" }}>{item.path} not found</p>;
@@ -144,7 +140,7 @@ const markschemePart = (props) => {
           {renderedImage}
         </div>
       );
-    }  else {
+    } else {
       return null;
     }
   });
@@ -155,7 +151,7 @@ const markschemePart = (props) => {
           <div>{prefixRender}</div>
           <div className={classes.MsBody}>{bodyMarkRender}</div>
         </div>
-        <div className={classes.MarkSum}>[$ {totalMarks} \: marks$]</div>
+        <div className={classes.MarkSum}>{totalMarks}</div>
       </div>
     </Latex>
   );

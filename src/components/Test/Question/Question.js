@@ -1,7 +1,27 @@
 import React from "react";
 import QuestionPart from "./QuestionPart/QuestionPart";
+import classes from "./Question.module.css";
+
+function calculateTotalMarks(question) {
+  let total = 0;
+  total += question.marks;
+  if (question.parts.length > 0) {
+    for (const part of question.parts) {
+      // let part = question.parts[i];
+      total += part.marks;
+      if (part.subparts.length > 0) {
+        for (const subpart of part.subparts) {
+          total += subpart.marks;
+        }
+      }
+    }
+  }
+  return total;
+}
 
 const question = (props) => {
+  const totalMarks = calculateTotalMarks(props.questionData);
+
   let body = props.questionData.question_body;
   let index = [null, null];
   let marks =
@@ -32,7 +52,7 @@ const question = (props) => {
           index={index}
           body={body}
           marks={marks}
-          pseudoPrefix={part.question_body.length === 0 && subKey === '0'}
+          pseudoPrefix={part.question_body.length === 0 && subKey === "0"}
         />
       );
     });
@@ -48,6 +68,7 @@ const question = (props) => {
 
   return (
     <div>
+      <p className={classes.MaxMarks}>[Maximum Marks: {totalMarks}] </p>
       {body.length > 0 ? (
         <QuestionPart index={index} body={body} marks={marks} />
       ) : null}

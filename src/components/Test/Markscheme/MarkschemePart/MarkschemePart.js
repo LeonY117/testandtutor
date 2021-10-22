@@ -126,7 +126,7 @@ const markschemePart = (props) => {
         // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
         let width = sizeMapping["M"].size + 'rem';
         if (item.size) {
-          width = sizeMapping[item.size] + 'rem';
+          width = sizeMapping[item.size].size + 'rem';
         }
         const imagePath = require("../../../../assets/images/" + name).default;
         renderedImage = (

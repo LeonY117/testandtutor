@@ -22,7 +22,7 @@ class User extends Component {
       topics: {},
       suggestedTopics: {},
       recentTests: [],
-      scoreHistory: [],
+      scoreHistory: [50, 51, 68, 72, 80],
     },
   };
 

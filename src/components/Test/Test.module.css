@@ -11,12 +11,12 @@
 
 .QuestionWrapper {
   flex: 1 1 50%;
-  width: 50%;
+  min-width: 48%;
   /* overflow: hidden; */
 }
 
 .MarkschemeWrapper {
   flex: 1 1 50%;
-  width: 50%;
+  min-width: 48%;
   /* overflow: hidden; */
 }

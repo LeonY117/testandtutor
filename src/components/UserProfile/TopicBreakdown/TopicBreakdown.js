@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../../UI/Card/Card";
 import Content from "../../../hoc/Content/Content";
 import classes from "./TopicBreakdown.module.css";
-import Select from "../../Select/Select";
+import Select from "../../UI/Select/Select";
 import BreakdownDisplay from "./BreakdownDisplay/BreakdownDisplay";
 import Radar from "../../Radar/Radar";
 

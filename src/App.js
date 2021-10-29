@@ -2,20 +2,22 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Cookies from "js-cookie";
-import Layout from "./hoc/Layout/Layout";
-import User from "./containers/User/User";
-import Login from "./containers/Login/Login";
-import Logout from "./containers/Logout/Logout";
-import Signup from "./containers/Signup/Signup";
-import SelectTest from "./containers/SelectTest/SelectTest";
-import TestPaper from "./containers/TestPaper/TestPaper";
-import Landing from "./components/Landing/Landing";
+import Layout from "hoc/Layout/Layout";
+
+import Landing from "pages/Landing/Landing";
+import User from "pages/User/User";
+import Login from "pages/Login/Login";
+import Logout from "pages/Logout/Logout";
+import Signup from "pages/Signup/Signup";
+import SelectTest from "pages/SelectTest/SelectTest";
+import TestPaper from "pages/TestPaper/TestPaper";
 // import axios from "./axios";
 
 class App extends Component {
   constructor() {
     super();
-    if (Cookies.get("userId")) {
+    
+    if (Cookies.get("loginExpires")) {
       this.state = { loggedIn: true };
     } else {
       this.state = { loggedIn: false };

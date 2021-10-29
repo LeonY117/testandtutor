@@ -128,7 +128,7 @@ const markschemePart = (props) => {
         if (item.size) {
           width = sizeMapping[item.size].size + "rem";
         }
-        const imagePath = require("../../../../assets/images/" + name).default;
+        const imagePath = require("../../../../assets/images/IB/" + name).default;
         renderedImage = (
           <img src={imagePath} alt={item.alt} style={{ width: width }} />
         );

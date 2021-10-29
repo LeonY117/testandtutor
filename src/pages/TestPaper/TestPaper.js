@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "../../axios";
+import axios from "../../stores/axios";
 import Test from "../../components/Test/Test";
 // import Questions from "../../components/Test/Questions/Questions";
 import Button from "../../components/UI/Button/Button";
@@ -128,7 +128,7 @@ function sumUserScores(userMarks) {
 
 class testPaper extends Component {
   state = {
-    userId: Cookies.get("userId"),
+    userId: '1234',
     paperId: null,
     testBody: {},
     userMarks: {},

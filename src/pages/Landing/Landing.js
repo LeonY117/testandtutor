@@ -1,8 +1,8 @@
 import React from "react";
 import Aux from "../../hoc/Aux";
-import Logo from "../Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 import classes from "./Landing.module.css";
-import Card from "../UI/Card/Card";
+import Card from "../../components/UI/Card/Card";
 
 import image1 from "../../assets/images/personStudyingMath.jpg";
 import image2 from "../../assets/images/radar5.png";

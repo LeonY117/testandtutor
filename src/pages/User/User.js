@@ -4,13 +4,13 @@ import Loading from "../../components/Loading/Loading";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import axios from "../../axios";
+import axios from "../../stores/axios";
 
 class User extends Component {
   state = {
     redirect: false,
     loading: true,
-    userId: Cookies.get("userId"),
+    userId: '1234',
     selectedTopic: "Functions and Equations",
     data: {
       username: "Student",
@@ -52,9 +52,10 @@ class User extends Component {
     //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
     // };
     axios
-      .post("/profiles/userprofile", data)
+      .get("/profiles/userprofile")
       .then((response) => {
         if (response.data.hasOwnProperty("errors")) {
+          console.log(response.data)
           console.log("session expired");
           this.setState({ redirect: true });
         } else {
@@ -96,7 +97,7 @@ class User extends Component {
         }
       })
       .catch((error) => {
-        // console.log("error!");
+        // console.log(error);
         console.log("cannot get user info ");
         this.setState({ redirect: true });
         this.props.expired();

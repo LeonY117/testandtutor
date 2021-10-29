@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import axios from "../../axios";
-import Input from "../../components/Input/Input";
+import axios from "../../stores/axios";
+import Input from "../../components/UI/Input/Input";
 import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Signup.module.css";
-import Select from "../../components/Select/Select";
+import Select from "../../components/UI/Select/Select";
 
 class signup extends Component {
   state = {

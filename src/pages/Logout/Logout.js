@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-import axios from "../../axios";
+import axios from "../../stores/axios";
 import Loading from "../../components/Loading/Loading";
 
 class Logout extends Component {

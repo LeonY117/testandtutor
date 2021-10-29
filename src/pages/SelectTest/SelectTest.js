@@ -4,12 +4,12 @@ import Card from "../../components/UI/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import TestList from "../../components/SelectTest/TestList/TestList";
 import classes from "./SelectTest.module.css";
-import axios from "../../axios";
+import axios from "../../stores/axios";
 import Cookies from "js-cookie";
 
 class selectTest extends Component {
   state = {
-    userId: Cookies.get("userId"),
+    userId: '1234',
     loading: true,
     tests: {},
   };
@@ -18,7 +18,7 @@ class selectTest extends Component {
     window.scrollTo(0, 0)
     // console.log({ data: { userId: this.state.userId } });
     axios
-      .post("/tests/available_tests", { data: { userId: this.state.userId } })
+      .get("/tests/available_tests")
       .then((response) => {
         const responseData = response.data.data;
         console.log(responseData);

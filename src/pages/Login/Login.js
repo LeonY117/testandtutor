@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Input from "../../components/Input/Input";
+import Input from "components/UI/Input/Input";
 import Content from "../../hoc/Content/Content";
 import Card from "../../components/UI/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Login.module.css";
-import axios from "../../axios";
+import axios from "../../stores/axios";
 
 class login extends Component {
   state = {
@@ -41,6 +41,7 @@ class login extends Component {
       .post("/auth/login", loginData, { withCredentials: true })
       .then((response) => {
         const data = response.data;
+        // console.log(data)
         if (data.hasOwnProperty("errors")) {
           this.setState({
             warning: true,
@@ -51,7 +52,7 @@ class login extends Component {
           this.props.loginSuccessHandler(data.data.userId);
         }
       });
-    //catch own errors
+    //TODO catch own errors
   };
 
   componentDidMount() {

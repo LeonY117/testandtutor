@@ -15,10 +15,10 @@ class selectTest extends Component {
   };
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     // console.log({ data: { userId: this.state.userId } });
     axios
-      .post("/tests/available_tests", { data: { userId: this.state.userId } })
+      .get("/tests/available_tests")
       .then((response) => {
         const responseData = response.data.data;
         console.log(responseData);
@@ -38,8 +38,9 @@ class selectTest extends Component {
           testsCopy[test.id]["totalScore"] = test.max_marks; //test.totalScore
         }
         this.setState({ tests: testsCopy, loading: false });
-      }).catch((error)=> {
-        this.props.expired()
+      })
+      .catch((error) => {
+        this.props.expired();
       });
   }
 

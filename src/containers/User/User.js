@@ -52,7 +52,7 @@ class User extends Component {
     //   headers: { Authorization: `Bearer ${this.props.accessToken}` },
     // };
     axios
-      .post("/profiles/userprofile", data)
+      .get("/profiles/userprofile")
       .then((response) => {
         if (response.data.hasOwnProperty("errors")) {
           console.log("session expired");

@@ -12,7 +12,7 @@ class Logout extends Component {
   componentDidMount() {
     const postData = { data: { userId: this.state.userId } };
     console.log(postData);
-    axios.post("auth/logout", postData).then((response) => {
+    axios.post("auth/logout", {}).then((response) => {
       console.log(response);
       if (response.data.hasOwnProperty("error")) {
         console.log("error");

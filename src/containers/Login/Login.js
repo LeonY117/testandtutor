@@ -38,7 +38,7 @@ class login extends Component {
     };
     this.setState({ loading: true });
     axios
-      .post("/auth/login", loginData, { withCredentials: true })
+      .get("/auth/login")
       .then((response) => {
         const data = response.data;
         if (data.hasOwnProperty("errors")) {

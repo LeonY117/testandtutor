@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Layout from "hoc/Layout/Layout";
 
 import Landing from "pages/Landing/Landing";
-import User from "pages/User/User";
+import Dashboard from "pages/Dashboard/Dashboard";
 import Login from "pages/Login/Login";
 import Logout from "pages/Logout/Logout";
 import Signup from "pages/Signup/Signup";
@@ -16,7 +16,7 @@ import TestPaper from "pages/TestPaper/TestPaper";
 class App extends Component {
   constructor() {
     super();
-    
+
     if (Cookies.get("loginExpires")) {
       this.state = { loggedIn: true };
     } else {
@@ -96,7 +96,7 @@ class App extends Component {
           <Route
             path="/user"
             render={(props) => (
-              <User {...props} expired={this.sessionExpired} />
+              <Dashboard {...props} expired={this.sessionExpired} />
             )}
           />
 

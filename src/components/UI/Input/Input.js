@@ -2,19 +2,25 @@ import React from "react";
 import classes from "./Input.module.css";
 
 const inputComponent = (props) => {
-  let warning = null;
-  if (props.warning) {
-    warning = <p className={classes.Warning}>{props.warning}</p>;
-  }
+  // TODO: add custom checkbox
+  const warning = props.warning ? (
+    <p className={classes.warning}>{props.warning}</p>
+  ) : null;
+
   return (
-    <div className={classes.InputComponent}>
-      <p className={classes.InputName}>{props.inputName}</p>
+    <div className={classes.inputComponent} type={props.type}>
+      {props.inputName && (
+        <p className={classes.inputName}>{props.inputName}</p>
+      )}
       <input
+        className={classes.input}
         type={props.type}
         value={props.value}
-        className={classes.Input}
         onChange={props.changed}
         name={props.inputName}
+        autoFocus={props.autoFocus}
+        placeholder={props.placeholder}
+        onClick={props.clicked}
       />
       {warning}
     </div>

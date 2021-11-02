@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Content from "hoc/Content/Content";
 import Input from "components/UI/Input/Input";
@@ -6,7 +6,8 @@ import Card from "components/UI/Card/Card";
 import Button from "components/UI/Button/Button";
 import Loading from "components/Loading/Loading";
 import classes from "./Login.module.css";
-import axios from "stores/axios";
+import AuthContext from "../../store/auth-context";
+import axios from "store/axios";
 import { Link } from "react-router-dom";
 
 const validateEmail = (email) => {
@@ -23,6 +24,8 @@ const Login = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const passwordInputType = showPassword ? "text" : "password";
+
+  const authCtx = useContext(AuthContext);
 
   const usernameChangedHandler = (event) => {
     setUsername(event.target.value);
@@ -58,7 +61,7 @@ const Login = (props) => {
         if (data.hasOwnProperty("errors")) {
           setErrorMessage(data.errors[0].source.detail);
         } else {
-          props.loginSuccessHandler();
+          authCtx.login();
         }
         setIsLoading(false);
       })
@@ -111,7 +114,7 @@ const Login = (props) => {
               </Button>
             </div>
           </form>
-          <Link>
+          <Link to = '#'>
             <p
               className={classes.forgotPassword}
               onClick={forgotPasswordHandler}
@@ -119,12 +122,12 @@ const Login = (props) => {
               {"forgot password?"}
             </p>
           </Link>
-          <p className={classes.signupPrompter}>
+          <div className={classes.signupPrompter}>
             {"First time here? "}
             <Link to="/signup">
               <p className={classes.signupLink}>Sign up</p>
             </Link>
-          </p>
+          </div>
         </div>
       </Card>
     </div>

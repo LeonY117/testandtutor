@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import classes from "./Login.module.css";
 
 import Content from "hoc/Content/Content";
 import Input from "components/UI/Input/Input";
 import Card from "components/UI/Card/Card";
 import Button from "components/UI/Button/Button";
 import Loading from "components/Loading/Loading";
-import classes from "./Login.module.css";
-import AuthContext from "../../store/auth-context";
+
+import AuthContext from "store/auth-context";
 import axios from "store/axios";
-import { Link } from "react-router-dom";
 
 const validateEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
   return re.test(email);
 };
 
-const Login = (props) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [usernameWarning, setUsernameWarning] = useState(null);
   const [password, setPassword] = useState("");
@@ -53,13 +54,13 @@ const Login = (props) => {
       data: { email: username, password: password },
     };
     setIsLoading(true);
+    setErrorMessage(null);
+    setUsernameWarning(null);
     axios
       .post("/auth/login", loginData)
       .then((response) => {
-        console.log(response);
-        const data = response.data;
-        if (data.hasOwnProperty("errors")) {
-          setErrorMessage(data.errors[0].source.detail);
+        if (response.data.hasOwnProperty("errors")) {
+          setErrorMessage(response.data.errors[0].source.detail);
         } else {
           authCtx.login();
         }
@@ -79,7 +80,7 @@ const Login = (props) => {
     <div className={classes.cardWrapper}>
       <Card>
         <div className={classes.login}>
-          <h1>Log in</h1>
+          <h1>Sign in</h1>
           <form onSubmit={submitHandler}>
             <div className={classes.inputs}>
               <Input
@@ -100,7 +101,7 @@ const Login = (props) => {
                     className={classes.showPasswordToggler}
                     onClick={showPasswordChangedHandler}
                   >
-                    {"Show"}
+                    {showPassword ? "hide" : "show"}
                   </p>
                 </span>
               </div>
@@ -114,13 +115,12 @@ const Login = (props) => {
               </Button>
             </div>
           </form>
-          <Link to = '#'>
-            <p
-              className={classes.forgotPassword}
-              onClick={forgotPasswordHandler}
-            >
-              {"forgot password?"}
-            </p>
+          <Link
+            to="#"
+            className={classes.forgotPassword}
+            onClick={forgotPasswordHandler}
+          >
+            {"forgot password?"}
           </Link>
           <div className={classes.signupPrompter}>
             {"First time here? "}

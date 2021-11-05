@@ -19,6 +19,7 @@
 }
 
 .passwordInput {
+  margin-top: 1rem;
   position: relative;
   /* background: lightgreen; */
 }
@@ -45,15 +46,6 @@
   color: black;
 }
 
-.showPassword {
-  display: block;
-}
-
-.showPassword > p {
-  display: inline-block;
-  margin: 0 0 0 5px;
-}
-
 .buttonWrapper {
   margin: auto;
   width: 10rem;
@@ -66,10 +58,11 @@
 
 .forgotPassword {
   text-align: center;
+  display: block;
   font-size: 0.8em;
   font-weight: bold;
   color: grey;
-  margin: 1rem 0 0 0;
+  margin: 1rem auto 0 auto;
 }
 
 .signupPrompter {

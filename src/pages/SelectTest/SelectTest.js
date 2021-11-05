@@ -4,7 +4,7 @@ import Card from "../../components/UI/Card/Card";
 import Loading from "../../components/Loading/Loading";
 import TestList from "../../components/SelectTest/TestList/TestList";
 import classes from "./SelectTest.module.css";
-import axios from "../../stores/axios";
+import axios from "../../store/axios";
 import Cookies from "js-cookie";
 
 class selectTest extends Component {

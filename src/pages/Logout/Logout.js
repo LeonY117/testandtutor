@@ -1,34 +1,29 @@
 import Cookies from "js-cookie";
-import React, { Component } from "react";
+import React, { useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 
-import axios from "../../stores/axios";
+import axios from "../../store/axios";
+import AuthContext from "../../store/auth-context";
 import Loading from "../../components/Loading/Loading";
 
-class Logout extends Component {
-
-  state = { userId: Cookies.get("userId"), loggedOut: false };
-  
-  componentDidMount() {
-    const postData = { data: { userId: this.state.userId } };
-    console.log(postData);
-    axios.post("auth/logout", postData).then((response) => {
+const Logout = () => {
+  const authCtx = useContext(AuthContext);
+  const userIsLoggedIn = authCtx.isLoggedIn;
+  useEffect(() => {
+    axios.post("auth/logout", {}).then((response) => {
       console.log(response);
       if (response.data.hasOwnProperty("error")) {
         console.log("error");
       } else {
-        this.props.loggedOut();
-        this.setState({ loggedOut: true });
+        authCtx.logout();
       }
     });
+  });
+  let logout = <Loading />;
+  if (!userIsLoggedIn) {
+    logout = <Redirect from="/logout" to="/" />;
   }
-  render() {
-    let logout = <Loading />;
-    if (this.state.loggedOut) {
-      logout = <Redirect from="/logout" to="/" />;
-    }
-    return <div>{logout}</div>;
-  }
-}
+  return <div>{logout}</div>;
+};
 
 export default Logout;

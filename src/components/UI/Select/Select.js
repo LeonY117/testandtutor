@@ -12,12 +12,7 @@ const customSelect = (props) => {
   }
   return (
     <div className={classes.customSelect}>
-      <select
-        className={classes.Selector}
-        onChange={props.changed}
-      >
-        {options}
-      </select>
+      <select onChange={props.changed}>{options}</select>
       <span className={classes.customArrow}></span>
     </div>
   );

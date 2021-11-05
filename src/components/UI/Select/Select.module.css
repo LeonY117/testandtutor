@@ -10,6 +10,7 @@
   margin: 1px 0;
   width: 100%;
   border-radius: 50px;
+  font-family: "Raleway";
 }
 
 .customSelect select::-ms-expand {
@@ -28,6 +29,7 @@
   border: 0;
   width: 100%;
   background-color: white;
+  font: "Raleway";
 }
 
 .customArrow {

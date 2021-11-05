@@ -4,7 +4,7 @@ import classes from "./Input.module.css";
 const inputComponent = (props) => {
   // TODO: add custom checkbox
   const warning = props.warning ? (
-    <p className={classes.warning}>{props.warning}</p>
+    <label className={classes.warning}>{props.warning}</label>
   ) : null;
 
   return (
@@ -19,6 +19,7 @@ const inputComponent = (props) => {
         onChange={props.changed}
         name={props.inputName}
         autoFocus={props.autoFocus}
+        autoComplete={props.autoComplete || "on"}
         placeholder={props.placeholder}
         onClick={props.clicked}
       />

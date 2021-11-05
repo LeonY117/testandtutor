@@ -1,5 +1,5 @@
 .inputComponent {
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
   width: 100%;
 }
 
@@ -13,7 +13,7 @@
   box-sizing: border-box;
   font-family: "Raleway";
   font-size: 1em;
-  padding: 1.2em;
+  padding: 1.1em;
   width: 100%;
   border: 1px solid grey;
   margin: 1px 0;
@@ -50,7 +50,10 @@
 }
 
 .warning {
-  color: red;
-  font-size: 0.8em;
   text-align: center;
+  display: block;
+  color: red;
+  margin: 0.3em auto 0.5em auto;
+  padding: 0 0.3em;
+  font-size: 0.7em;
 }

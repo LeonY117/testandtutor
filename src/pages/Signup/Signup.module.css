@@ -1,57 +1,94 @@
-.Signup {
+.cardWrapper {
+  width: 25rem;
+  margin: auto;
   margin-top: 10rem;
 }
 
-.CardWrapper {
-  width: 35rem;
-  max-width: 35rem;
-  margin: auto;
+.signup {
+  margin: 5rem 2rem 3rem 2rem;
 }
 
-.InputFields {
+.signup > h1 {
+  display: block;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.inputs {
   margin-bottom: 1rem;
 }
 
-.Names {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 100%;
-  gap: 1rem;
+.passwordInput {
+  margin-top: 1rem;
+  position: relative;
+  /* background: lightgreen; */
 }
 
-.ShowPassword {
-  display: block;
+.passwordInput > span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1em;
+  z-index: 2;
 }
 
-.ShowPassword > p {
+.showPasswordToggler {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  font-size: 0.9em;
+  color: #3456bf;
+}
+
+.showPasswordToggler:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.passwordInstructions {
   display: inline-block;
-  margin-left: 5px;
+  color: grey;
+  margin: 0.3rem 0 0.5rem 0;
+  padding: 0 0.3rem;
+  font-size: 0.7rem;
 }
 
-.Warning {
+.emailWarning {
+  text-align: center;
+  display: block;
+  color: red;
+  margin: 0.3em auto 0.5em auto;
+  padding: 0 0.3em;
+  font-size: 0.7em;
+}
+
+.passwordInstructions[warning="true"] {
   color: red;
 }
 
-.SuccessPrompt {
-  max-width: 500px;
+.newsletterPrompter {
   text-align: center;
-  margin: auto;
+  padding: 0 1rem;
+  margin: 1rem auto;
 }
 
-@media (max-width: 1000px) {
-  .CardWrapper {
-    width: 80%;
-  }
+.loginPrompter {
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: black;
+  margin: 1rem 0;
 }
 
-@media (max-width: 600px) {
-  .CardWrapper {
-    width: 90%;
-  }
-  .Names {
-    display: block;
-    gap: none;
-    align-items: none;
-  }
+.loginLink {
+  margin: 0;
+  display: inline-block;
+  color: #3456bf;
+}
+
+.warning {
+  font-size: 0.7rem;
+  color: red;
+  text-align: center;
 }

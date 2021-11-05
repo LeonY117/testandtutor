@@ -1,186 +1,236 @@
-import React, { Component } from "react";
-import axios from "../../stores/axios";
-import Input from "../../components/UI/Input/Input";
-import Content from "../../hoc/Content/Content";
-import Card from "../../components/UI/Card/Card";
-import Button from "../../components/UI/Button/Button";
+import React, { useState, useReducer, useContext } from "react";
+import { Link } from "react-router-dom";
 import classes from "./Signup.module.css";
-import Select from "../../components/UI/Select/Select";
 
-class signup extends Component {
-  state = {
-    signedup: false,
-    showPassword: false,
-    warnings: {
-      email: null,
-      password: null,
-      passwordConfirm: null,
-      firstName: null,
-      lastName: null,
-    },
-    userData: {
-      email: null,
-      password: null,
-      passwordConfirm: null,
-      firstName: null,
-      lastName: null,
-      curriculum: "AA SL",
-    },
+import Content from "hoc/Content/Content";
+import Input from "components/UI/Input/Input";
+import Card from "components/UI/Card/Card";
+import Button from "components/UI/Button/Button";
+import Select from "components/UI/Select/Select";
+import Loading from "components/Loading/Loading";
+import Checkbox from "./Checkbox";
+
+import axios from "store/axios";
+import AuthContext from "store/auth-context";
+
+const validateEmail = (email) => {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
+const validatePassword = (password) => {
+  if (password === null || password === "") {
+    return false;
+  }
+  const chars = password.split("");
+  const lengthValid = chars.length > 8;
+  const hasUpperCase = chars.some((c) => c === c.toUpperCase());
+  const hasLowerCase = chars.some((c) => c === c.toLowerCase());
+  const hasNumbers = /\d/.test(password);
+  return lengthValid && hasUpperCase && hasLowerCase && hasNumbers;
+};
+
+const userDataReducer = (prevState, action) => {
+  if (action.type === "EMAIL") {
+    return { ...prevState, email: action.value };
+  }
+  if (action.type === "PASSWORD") {
+    return { ...prevState, password: action.value };
+  }
+  if (action.type === "CURRICULUM") {
+    return { ...prevState, curriculum: action.value };
+  }
+  if (action.type === "NEWSLETTER") {
+    return { ...prevState, newsletter: !prevState.newsletter };
+  } else {
+    console.log("invalid action type");
+  }
+};
+
+const curriculumArray = ["AA SL"];
+
+const Signup = () => {
+  const [userData, dispatchUserData] = useReducer(userDataReducer, {
+    email: null,
+    password: null,
+    curriculum: "AA SL",
+    newsletter: false,
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [formValidity, setFormVality] = useState({
+    emailIsValid: true,
+    passwordIsValid: true,
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const authCtx = useContext(AuthContext);
+
+  const passwordInputType = showPassword ? "text" : "password";
+  let emailError = formValidity.emailIsValid
+    ? null
+    : "please enter valid email";
+  let highlightPasswordInstructions = formValidity.passwordIsValid
+    ? false
+    : true;
+
+  const userEmailChangedHandler = (event) => {
+    dispatchUserData({ type: "EMAIL", value: event.target.value });
   };
 
-  inputChangedHandler = (id, event) => {
-    const userDataCopy = { ...this.state.userData };
-    userDataCopy[id] = event.target.value;
-    this.setState({ userData: userDataCopy });
+  const userPasswordChangedHandler = (event) => {
+    dispatchUserData({ type: "PASSWORD", value: event.target.value });
   };
 
-  showPasswordHandler = () => {
-    console.log("clicked");
-    this.setState((prevState) => {
-      return { showPassword: !prevState.showPassword };
+  const userCurriculumChangedHandler = (event) => {
+    dispatchUserData({ type: "CURRICULUM", value: event.target.value });
+  };
+
+  const showPasswordChangedHandler = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const newsletterClickedHandler = () => {
+    dispatchUserData({ type: "NEWSLETTER", value: null });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    // CHECK FORM VALIDITY
+
+    const emailIsValid = validateEmail(userData.email);
+    const passwordIsValid = validatePassword(userData.password);
+
+    setFormVality(() => {
+      return {
+        emailIsValid: emailIsValid,
+        passwordIsValid: passwordIsValid,
+      };
     });
-  };
 
-  buttonClickedHandler = () => {
-    const data = {
-      email: this.state.userData.email,
-      password: this.state.userData.password,
-      firstName: this.state.userData.firstName,
-      lastName: this.state.userData.lastName,
-      curriculum: this.state.userData.curriculum,
+    if (!emailIsValid) {
+      emailError = "please enter valid email";
+      console.log(emailError);
+      return;
+    }
+
+    if (!passwordIsValid) {
+      highlightPasswordInstructions = true;
+      return;
+    }
+
+    // TODO: discuss with fin on format for signup
+    const submitData = {
+      email: userData.email,
+      password: userData.password,
+      curriculum: userData.curriculum,
+      newsletter: userData.newsletter,
       role: "student",
     };
 
-    const warningsCopy = { ...this.state.warnings };
-    let valid = true;
-    for (let field in data) {
-      if (data[field] === null) {
-        warningsCopy[field] = "This field cannot be empty";
-        valid = false;
-      }
-    }
-    if (this.state.userData.password !== this.state.userData.passwordConfirm) {
-      warningsCopy["passwordConfirm"] = "Passwords do not match";
-      valid = false;
-    }
+    setIsLoading(true);
 
-    this.setState({ warnings: warningsCopy });
-
-    if (valid) {
-      // console.log("all good, sending user data");
-      // console.log("Request to back end", data);
-      axios
-        .post("users/register", { data: data })
-        .then((response) => {
-          if (response.data.hasOwnProperty("errors")) {
-            console.log("error");
-          } else {
-            console.log(response);
-            // this.props.loginSuccessHandler(response.data.data.id)
-            this.setState({ redirect: true, signedup: true });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      // console.log(data);
-      // console.log("displaying warnings");
-      // console.log(this.state.warnings);
-    }
-  };
-  loginButtonClicked = () => {
-    this.props.history.push("/login");
+    axios
+      .post("users/register", { data: submitData })
+      .then((response) => {
+        if (response.data.hasOwnProperty("errors")) {
+          // TODO: process error messages
+          setErrorMessage("Something went wrong");
+          console.log(response.data.errors);
+          // setErrorMessage(response.data.errors[0].source.detail);
+        } else {
+          // sign up is successful
+          authCtx.login();
+        }
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
   };
 
-  render() {
-    let passwordInputType = "password";
-    if (this.state.showPassword) {
-      passwordInputType = "text";
-    }
-
-    let signup = (
-      <div className={classes.SuccessPrompt}>
-        <h3>Signup successful, please log in!</h3>
-        <Button
-          className={classes.LoginButton}
-          clicked={this.loginButtonClicked}
-        >
-          Login
-        </Button>
-      </div>
-    );
-
-    if (!this.state.signedup) {
-      signup = (
-        <div className={classes.CardWrapper}>
+  const signupInterface = (
+    <div className={classes.cardWrapper}>
+      <Card>
+        <div className={classes.signup}>
           <h1>Sign up</h1>
-          <div className={classes.InputFields}>
-            <Input
-              inputName="Email"
-              type="text"
-              changed={(e) => this.inputChangedHandler("email", e)}
-              warning={this.state.warnings["email"]}
-            />
-            <div className={classes.Names}>
+          <form onSubmit={submitHandler} autoComplete="off">
+            <div className={classes.inputs}>
               <Input
-                inputName="First Name"
                 type="text"
-                changed={(e) => this.inputChangedHandler("firstName", e)}
-                warning={this.state.warnings["firstName"]}
+                placeholder={"Email"}
+                changed={userEmailChangedHandler}
+                autoFocus={true}
+                autoComplete={"off"}
               />
-
-              <Input
-                inputName="Last Name"
-                type="text"
-                changed={(e) => this.inputChangedHandler("lastName", e)}
-                warning={this.state.warnings["lastName"]}
-              />
+              <label className={classes.emailWarning}>{emailError}</label>
+              <div className={classes.passwordInput}>
+                <Input
+                  type={passwordInputType}
+                  placeholder={"Password"}
+                  changed={userPasswordChangedHandler}
+                  autoComplete={"off"}
+                />
+                <span>
+                  <p
+                    className={classes.showPasswordToggler}
+                    onClick={showPasswordChangedHandler}
+                  >
+                    {showPassword ? "hide" : "show"}
+                  </p>
+                </span>
+              </div>
+              <label
+                className={classes.passwordInstructions}
+                warning={highlightPasswordInstructions.toString()}
+              >
+                Your password should be at least 8 characters long upper and
+                lower case letters and a number
+              </label>
+              <div>
+                <Select
+                  options={curriculumArray}
+                  changed={userCurriculumChangedHandler}
+                />
+              </div>
+              <div className={classes.newsletterPrompter}>
+                <Checkbox
+                  clicked={newsletterClickedHandler}
+                  checked={userData.newsletter}
+                  fontSize={0.8}
+                >
+                  Subscribe to our newsletter
+                </Checkbox>
+              </div>
+              {errorMessage && (
+                <p className={classes.warning}>{errorMessage}</p>
+              )}
             </div>
-
-            <p style={{ margin: "1rem 0 0.5rem 0" }}>Curriculum </p>
-            <Select
-              changed={(e) => this.inputChangedHandler("curriculum", e)}
-              options={["AA SL", "AI SL", "AA HL", "AI HL "]}
-            />
-
-            <Input
-              inputName="Password"
-              type={passwordInputType}
-              changed={(e) => this.inputChangedHandler("password", e)}
-              warning={this.state.warnings["password"]}
-            />
-            <p style={{ fontSize: "12px" }}>
-              Your password should be at least 8 characters long with a symbol,
-              upper and lower case letters and a number
-            </p>
-            <Input
-              inputName="Confirm Password"
-              type={passwordInputType}
-              changed={(e) => this.inputChangedHandler("passwordConfirm", e)}
-              warning={this.state.warnings["passwordConfirm"]}
-            />
-
-            <div className={classes.ShowPassword}>
-              <input type="checkbox" onClick={this.showPasswordHandler} />
-              <p>Show password</p>
+            <div className={classes.buttonWrapper}>
+              <Button round clicked={submitHandler}>
+                {"Sign up"}
+              </Button>
             </div>
+          </form>
+          <div className={classes.loginPrompter}>
+            {"Already have an account? "}
+            <Link to="/login">
+              <p className={classes.loginLink}>Log in</p>
+            </Link>
           </div>
-
-          <Button round clicked={this.buttonClickedHandler}>
-            Sign up
-          </Button>
         </div>
-      );
-    }
-    return (
-      <div className={classes.Signup}>
-        <Content>
-          <Card>{signup}</Card>
-        </Content>
-      </div>
-    );
-  }
-}
+      </Card>
+    </div>
+  );
 
-export default signup;
+  return (
+    <Content>
+      {isLoading && <Loading />}
+      {!isLoading && signupInterface}
+    </Content>
+  );
+};
+
+export default Signup;

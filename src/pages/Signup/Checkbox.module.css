@@ -1,0 +1,43 @@
+.checkboxControl {
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-block;
+  margin: 0;
+  margin-right: 0.5em;
+  font: inherit;
+  background: #fff;
+  color: #3456bf;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.2em solid grey;
+  position: relative;
+  transform: translateY(0.075em);
+}
+
+.checkbox::before {
+  position: absolute;
+  content: "";
+  margin: 0;
+  left: 0em;
+  right: 0em;
+  top: 0em;
+  bottom: 0em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #3456bf;
+  background: #3456bf;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.checkbox:checked::before {
+  transform: scale(0.8);
+}
+
+.checkbox:checked {
+  border-color: #3456bf;
+}

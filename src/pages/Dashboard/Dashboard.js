@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+// import { Switch, Route, Redirect } from "react-router-dom";
+import classes from "./Dashboard.module.css";
 
+import Content from "hoc/Content/Content";
 import Loading from "components/Loading/Loading";
-import UserProfile from "components/UserProfile/UserProfile";
+import Overview from "components/UserProfile/Overview/Overview";
+import TopicBreakdown from "components/UserProfile/TopicBreakdown/TopicBreakdown";
 
 import axios from "store/axios";
 import AuthContext from "store/auth-context";
@@ -90,8 +93,25 @@ const Dashboard = (props) => {
   };
 
   const userProfile = (
-    <Switch>
-      <Route
+    <div>
+      <Content>
+        <div className={classes.userGreeting}>
+          <h1>Hi there!</h1>
+        </div>
+        <div className={classes.overviewWrapper}>
+          <Overview
+            topics={userData.topics}
+            suggestions={userData.suggestedTopics}
+            testButtonClicked={takeTestButtonClickedHandler}
+          />
+        </div>
+        <TopicBreakdown
+          topics={userData.topics}
+          selectChangedHandler={selectChangedHandler}
+          selectedTopicBreakdown={selectedTopicBreakdown}
+        />
+      </Content>
+      {/* <Route
         path={props.match.url + "/profile"}
         render={(props) => (
           <UserProfile
@@ -107,9 +127,9 @@ const Dashboard = (props) => {
             suggestedTopics={userData.suggestedTopics}
           />
         )}
-      />
-      <Redirect from="/user" exact to="/user/profile" />
-    </Switch>
+      /> */}
+      {/* <Redirect from="/user" exact to="/user/profile" /> */}
+    </div>
   );
 
   // if (this.state.redirect === true) {

@@ -10,7 +10,6 @@ import Logout from "pages/Logout/Logout";
 import Signup from "pages/Signup/Signup";
 import SelectTest from "pages/SelectTest/SelectTest";
 import TestPaper from "pages/TestPaper/TestPaper";
-// import axios from "./axios";
 
 import AuthContext from "./store/auth-context";
 
@@ -19,7 +18,6 @@ function App() {
   const userIsLoggedIn = authCtx.isLoggedIn;
 
   let redirectFromLogin = null;
-  // shouldn't be ever clicked as there are no login links availble once user logs in
   if (userIsLoggedIn) {
     redirectFromLogin = <Redirect from="/login" to="/user/profile" />;
   }
@@ -33,21 +31,12 @@ function App() {
         {redirectFromUser}
         {redirectFromLogin}
         <Route path="/" exact component={Landing} />
-        <Route path="/login" render={(props) => <Login {...props} />} />
-        <Route path="/signup" render={(props) => <Signup {...props} />} />
-        <Route
-          exact
-          path="/user/test"
-          render={(props) => <SelectTest {...props} />}
-        />
-        <Route
-          exact
-          path="/user/test/:id"
-          render={(props) => <TestPaper {...props} />}
-        />
-        <Route path="/user" render={(props) => <Dashboard {...props} />} />
-
-        <Route path="/logout" render={(props) => <Logout {...props} />} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" componet={Signup} />
+        <Route exact path="/user/test" component={SelectTest} />
+        <Route exact path="/user/test/:id" component={TestPaper} />
+        <Route path="/user" component={Dashboard} />
+        <Route path="/logout" component={Logout} />
       </Switch>
     </Layout>
   );

@@ -217,7 +217,7 @@ const Signup = () => {
           <div className={classes.loginPrompter}>
             {"Already have an account? "}
             <Link to="/login">
-              <p className={classes.loginLink}>Log in</p>
+              <p className={classes.loginLink}>Sign in</p>
             </Link>
           </div>
         </div>

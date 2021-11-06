@@ -1,6 +1,6 @@
 import React from "react";
 import UserInfo from "./UserInfo/UserInfo";
-import Dashboard from "./Dashboard/Dashboard";
+import Overview from "../../pages/Dashboard/Overview/Overview";
 import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
 import TestPrompter from "./TestPrompter/TestPrompter";
 
@@ -12,11 +12,11 @@ const userProfile = (props) => {
         date={props.examDate}
         subject={props.subject}
       />
-      <Dashboard
+      {/* <Dashboard
         suggestions={props.suggestedTopics}
         testButtonClicked={props.testButtonClicked}
         topics={props.topics}
-      />
+      /> */}
       <TopicBreakdown
         selectChangedHandler={props.selectChangedHandler}
         topics={props.topics}

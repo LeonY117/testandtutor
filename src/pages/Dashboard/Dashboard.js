@@ -4,7 +4,7 @@ import classes from "./Dashboard.module.css";
 
 import Content from "hoc/Content/Content";
 import Loading from "components/Loading/Loading";
-import Overview from "components/UserProfile/Overview/Overview";
+import Overview from "pages/Dashboard/Overview/Overview";
 import TopicBreakdown from "components/UserProfile/TopicBreakdown/TopicBreakdown";
 
 import axios from "store/axios";

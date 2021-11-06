@@ -1,46 +1,45 @@
-.Dashboard {
+.overview {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  /* background-color: grey; */
-  gap: 1rem;
   margin: auto;
   /* margin-bottom: 5rem; */
 }
 
-.LeftCard {
+.leftCard {
   /* Height is dynamically set by JS */
   flex: 1 1 70%;
+  margin-right: 1rem;
 }
 
-.Radar {
+.radar {
   width: 100%;
   height: 100%;
   /* background: pink; */
 }
 
-.RightSide {
+.overviewRight {
   width: 20rem;
 }
 
-.RightCard {
+.rightCard {
   height: 26rem;
   flex: 1 1 20%;
   /* flex: 1 1 30%; */
   margin-bottom: 0.5rem;
 }
 
-.RightCard h1 {
+.rightCard h1 {
   margin: 1rem 0;
   font-size: 1.3rem;
 }
 
-.RightButtons {
+.rightButtons {
   width: 70%;
   margin: 1rem auto 0 auto;
 }
 
-.RightButtons a {
+.rightButtons a {
   /* display: block; */
   /* width: 100%; */
   margin: auto;
@@ -48,41 +47,41 @@
 }
 
 @media (max-width: 768px) {
-  .Dashboard {
+  .overview {
     flex-direction: column;
     /* background-color: grey; */
   }
-  .RightSide {
+  .overviewRight {
     display: flex;
     gap: 1rem;
     width: 100%;
     margin: auto;
   }
 
-  .RightCard {
+  .rightCard {
     flex: 1 1 60%;
   }
 
-  .RightButtons {
+  .rightButtons {
     flex: 1 1 40%;
   }
 
-  .LeftCard {
+  .leftCard {
     width: 100%;
     margin: auto;
   }
 }
 
 @media (max-width: 600px) {
-  .Dashboard {
+  .overview {
     flex-direction: column;
     /* background-color: grey; */
   }
-  .RightSide {
+  .overviewRight {
     width: 100%;
     margin: auto;
   }
-  .LeftCard {
+  .leftCard {
     width: 100%;
     margin: auto;
   }

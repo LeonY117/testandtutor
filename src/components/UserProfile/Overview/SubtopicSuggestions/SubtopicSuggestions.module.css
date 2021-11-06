@@ -1,4 +1,9 @@
-.SubTopic {
+.subtopics {
+  height: 75%;
+  overflow: scroll;
+}
+
+.subtopic {
   display: block;
   border-radius: 8px;
   color: white;
@@ -7,7 +12,7 @@
   /* background: blue; */
 }
 
-.SubTopic > p {
+.subtopic > p {
   margin: 0;
   font-size: 0.9rem;
 }

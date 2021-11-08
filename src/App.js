@@ -32,7 +32,7 @@ function App() {
         {redirectFromLogin}
         <Route path="/" exact component={Landing} />
         <Route path="/login" component={Login} />
-        <Route path="/signup" componet={Signup} />
+        <Route path="/signup" component={Signup} />
         <Route exact path="/user/test" component={SelectTest} />
         <Route exact path="/user/test/:id" component={TestPaper} />
         <Route path="/user" component={Dashboard} />

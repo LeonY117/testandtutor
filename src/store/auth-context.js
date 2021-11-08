@@ -16,6 +16,7 @@ const AuthContext = React.createContext({
 });
 
 const retrieveCookies = () => {
+  console.log("retrieving cookies");
   const loginExpireTime = Cookies.get("loginExpires") || 0;
   // add other cookies here in future
 
@@ -61,17 +62,25 @@ export const AuthContextProvider = (props) => {
     // userIsLoggedIn = true;
   };
 
+  // this code is ran in the first render cycle BEFORE component
+  // renders, this way userIsLoggedIn is allowed to be true BEFORE
+  // rendering other components that depend on the loggin status, 
+  // and problems like redirecting to login and back to user is
+  // avoided
+  const cookieData = retrieveCookies();
+  if (cookieData && !userIsLoggedIn) {
+    setUserIsLoggedIn(true);
+  }
+
   useEffect(() => {
-    const cookieData = retrieveCookies();
     // runs whenever the app gets refreshed
     if (cookieData) {
       logoutTimer = setTimeout(
         logoutHandler,
         computeExpireAge(cookieData.loginExpireTime)
       );
-      setUserIsLoggedIn(true);
     }
-  }, [logoutHandler]);
+  }, [cookieData, logoutHandler]);
 
   const contextValue = {
     isLoggedIn: userIsLoggedIn,

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./TestList.module.css";
 
 // import Button from "components/UI/Button/Button";
@@ -8,9 +9,9 @@ const TestInfo = (props) => {
     <div className={classes.testInfo}>
       <div className={classes.rowFlexControl}>
         <div className={classes.testNameWrapper}>
-          <a clicked={props.buttonClicked} className={classes.testName}>
+          <Link to={`/user/test/${props.testId}`} className={classes.testName}>
             {props.name}
-          </a>
+          </Link>
         </div>
         <div className={classes.lengthScoreWrapper}>
           <p className={classes.testLength}>{props.length}</p>
@@ -32,7 +33,6 @@ const TestInfo = (props) => {
 const TestList = (props) => {
   let tests = null;
   if (props.tests) {
-    console.log(props.tests);
     tests = Object.keys(props.tests).map((testKey) => {
       let test = props.tests[testKey];
       let status = test.status;
@@ -47,6 +47,7 @@ const TestList = (props) => {
       return (
         <TestInfo
           key={testKey}
+          testId={testKey}
           name={test.name}
           length={test.length + " min"}
           score={score}

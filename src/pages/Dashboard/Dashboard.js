@@ -4,32 +4,26 @@ import classes from "./Dashboard.module.css";
 
 import Content from "hoc/Content/Content";
 import Loading from "components/Loading/Loading";
-import Overview from "pages/Dashboard/Overview/Overview";
-import TopicBreakdown from "components/UserProfile/TopicBreakdown/TopicBreakdown";
+import Overview from "./Overview/Overview";
+import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
 
 import axios from "store/axios";
 import AuthContext from "store/auth-context";
 
 const Dashboard = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
     username: "Student",
     subject: "IB Mathematics SL",
     examDate: "19th June",
     averageGrade: 0,
     topics: {},
-    subTopics: {},
+    subtopics: {},
     selectedTopic: "Functions and Equations",
     suggestedTopics: {},
   });
 
   const authCtx = useContext(AuthContext);
-
-  const selectChangedHandler = (event) => {
-    setUserData((prevState) => {
-      return { ...prevState, selectedTopic: event.target.value };
-    });
-  };
 
   const takeTestButtonClickedHandler = () => {
     props.history.push(props.match.url + "/test");
@@ -66,17 +60,17 @@ const Dashboard = (props) => {
             );
           }
 
-          setIsLoading(false);
           setUserData((prevState) => {
             return {
               ...prevState,
               username: responseData.first_name,
               subject: responseData.curriculum,
               topics: topics,
-              subTopics: subtopics,
+              subtopics: subtopics,
               suggestedTopics: suggestedTopics,
             };
           });
+          setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -85,12 +79,6 @@ const Dashboard = (props) => {
         authCtx.logout();
       });
   }, [authCtx]);
-
-  const selectedTopicBreakdown = {
-    name: userData.selectedTopic,
-    grade: userData.topics[userData.selectedTopic],
-    breakdown: userData.subTopics[userData.selectedTopic],
-  };
 
   const userProfile = (
     <div>
@@ -105,11 +93,7 @@ const Dashboard = (props) => {
             testButtonClicked={takeTestButtonClickedHandler}
           />
         </div>
-        <TopicBreakdown
-          topics={userData.topics}
-          selectChangedHandler={selectChangedHandler}
-          selectedTopicBreakdown={selectedTopicBreakdown}
-        />
+        <TopicBreakdown subtopics={userData.subtopics} />
       </Content>
       {/* <Route
         path={props.match.url + "/profile"}
@@ -136,7 +120,6 @@ const Dashboard = (props) => {
   //   console.log("going to redirect back go login");
   //   userProfile = <Redirect from="/user" to="/login" />;
   // }
-
   return (
     <div>
       {isLoading && <Loading />}

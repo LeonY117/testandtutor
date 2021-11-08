@@ -22,6 +22,9 @@ function Overview(props) {
     // has to be initialized at the end of the first render cycle
     setRadarDim(document.getElementsByClassName(classes.radar)[0].clientWidth);
     window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
   }, []);
 
   return (

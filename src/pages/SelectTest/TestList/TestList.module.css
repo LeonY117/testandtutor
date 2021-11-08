@@ -1,0 +1,87 @@
+.testInfo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.rowFlexControl {
+  display: flex;
+  width: 70%;
+  align-items: center;
+}
+
+.testNameWrapper {
+  flex: 1 1 40%;
+}
+
+.testName {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 3px transparent solid;
+}
+
+.testName:hover {
+  border-bottom: 3px #3366ff solid;
+}
+
+.lengthScoreWrapper {
+  display: flex;
+  flex: 1 1 50%;
+}
+
+.lengthScoreWrapper p {
+  margin: 0.1em 0.2em;
+}
+
+.testLength {
+  flex: 1 1 10%;
+}
+
+.testScore {
+  flex: 1 1 10%;
+}
+
+.button {
+  min-width: 10rem;
+}
+
+@media (max-width: 450px) {
+  .rowFlexControl {
+    flex-direction: column;
+    width: 100%;
+  }
+  .testNameWrapper {
+    width: 100%;
+  }
+  .lengthScoreWrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .rowFlexControl p {
+    font-size: 0.8rem;
+  }
+
+  .button {
+    font-size: 0.8rem;
+    min-width: 6rem;
+    /* margin: 0 3rem; */
+  }
+}
+
+@media (max-width: 768px) {
+  .testInfo {
+    flex-direction: column;
+  }
+
+  .rowFlexControl {
+    width: 100%;
+  }
+
+  .button {
+    display: none;
+  }
+}

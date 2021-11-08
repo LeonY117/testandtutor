@@ -1,3 +1,8 @@
-.SkillsetTest {
-    margin: 10rem auto 5rem auto;
+.selectTest {
+  margin-top: 10rem;
+}
+
+.testTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
 }

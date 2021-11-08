@@ -1,7 +1,7 @@
 import React from "react";
 import UserInfo from "./UserInfo/UserInfo";
 import Overview from "../../pages/Dashboard/Overview/Overview";
-import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
+import TopicBreakdown from "./TopicBreakdown_archived/TopicBreakdown";
 import TestPrompter from "./TestPrompter/TestPrompter";
 
 const userProfile = (props) => {

@@ -5,3 +5,16 @@
 .overviewWrapper {
   margin: 2rem 0;
 }
+
+.breakdownWrapper {
+  margin-top: 5rem;
+}
+
+.selectTestWrapper {
+  margin-top: 5rem;
+}
+
+.testTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

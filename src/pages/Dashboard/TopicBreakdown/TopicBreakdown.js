@@ -67,7 +67,7 @@ const TopicBreakdown = (props) => {
   };
 
   return (
-    <section className={classes.topicBreakdown}>
+    <React.Fragment>
       <h1 className={classes.title}>Topic Breakdown</h1>
       <Card>
         <TopicBreakdownNav
@@ -83,7 +83,7 @@ const TopicBreakdown = (props) => {
           </React.Fragment>
         )}
       </Card>
-    </section>
+    </React.Fragment>
   );
 };
 

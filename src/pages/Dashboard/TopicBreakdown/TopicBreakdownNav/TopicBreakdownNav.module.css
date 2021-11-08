@@ -1,0 +1,24 @@
+.topicList {
+  margin: 2rem 1rem;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.topicWidthControl {
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+.topic {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5em;
+  border-bottom: 3px solid transparent;
+}
+
+.topic[picked="true"] {
+  border-bottom: 3px #3366ff solid;
+  font-weight: bold;
+}

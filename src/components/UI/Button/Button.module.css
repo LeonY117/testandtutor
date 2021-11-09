@@ -1,12 +1,12 @@
 .Button {
-  padding: 1.2em 1em;
+  font-size: inherit;
+  font-family: "Raleway";
+  padding: 1.1em 1em;
   border: none;
-  margin: 0.4em auto;
   border-radius: 10px;
   width: 100%;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9rem;
   z-index: 500;
 }
 

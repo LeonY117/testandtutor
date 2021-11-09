@@ -1,8 +1,13 @@
-.ButtonWrapper {
-  width: 10rem;
-  margin: auto;
+.testPaper {
+  margin-top: 10rem;
 }
 
-.SummaryTable {
-  margin-left: 2rem;
+.topPaginationWrapper,
+.bottomPaginationWrapper {
+  margin: 2rem 0;
+}
+
+.completeButtonWrapper {
+  width: 10rem;
+  margin: auto;
 }

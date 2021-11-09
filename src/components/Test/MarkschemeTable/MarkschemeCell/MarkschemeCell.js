@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./MarkschemeCell.module.css";
 
-const markschemeCell = (props) => {
+const MarkschemeCell = (props) => {
   if (props.max === 0) {
-    console.log(props)
+    console.log(props);
   }
   return (
     <div className={classes.Cell}>
@@ -16,10 +16,10 @@ const markschemeCell = (props) => {
           onChange={props.changed}
           value={Number(props.value).toString() || 0}
         ></input>
-        <span className={classes.Max} >/ {props.max}</span>
+        <span className={classes.Max}>/ {props.max}</span>
       </div>
     </div>
   );
 };
 
-export default markschemeCell;
+export default MarkschemeCell;

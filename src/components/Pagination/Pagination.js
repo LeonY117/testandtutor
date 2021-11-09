@@ -3,7 +3,7 @@ import classes from "./Pagination.module.css";
 
 const Pagination = (props) => {
   let pages = [];
-  const maxLabels = 8; // adjust based on window width
+  const maxLabels = 11; // adjust based on window width
   const totalPages = props.totalPages;
   const page = props.selectedPage;
   //   const totalPages = 40;
@@ -21,7 +21,7 @@ const Pagination = (props) => {
   if (page - leftWidth <= 2 && totalPages - (page + rightWidth) <= 2) {
     showLeftNumbers = true;
     showRightNumbers = true;
-  } else if (page - leftWidth <= 2) {
+  } else if (page - leftWidth - 1 <= 2) {
     showLeftNumbers = true;
     rightWidth += 2 - (page - leftWidth - 1);
   } else if (totalPages - (page + rightWidth) <= 2) {
@@ -41,7 +41,7 @@ const Pagination = (props) => {
       }
     } else if (!showLeftNumbers) {
       pages.push(1);
-      pages.push(-1);
+      pages.push(-2);
       for (let i = page - leftWidth; i <= page; i++) {
         pages.push(i);
       }
@@ -68,7 +68,14 @@ const Pagination = (props) => {
     };
     if (item === -1) {
       val = "...";
-      clicked = null;
+      clicked = () => {
+        props.pageSelectHandler(null, rightWidth + 1);
+      };
+    } else if (item === -2) {
+      val = "...";
+      clicked = () => {
+        props.pageSelectHandler(null, -leftWidth - 1);
+      };
     }
     return (
       <li className={classes.numberWrapper} key={i}>

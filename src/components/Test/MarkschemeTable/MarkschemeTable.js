@@ -24,7 +24,7 @@ function characterize(num) {
   return String.fromCharCode(96 + num);
 }
 
-const markschemeTable = (props) => {
+const MarkschemeTable = (props) => {
   let cells = null;
   let qKey = (props.questionNumber - 1).toString();
   if (props.userMarks[qKey].parts.length === 0) {
@@ -78,12 +78,4 @@ const markschemeTable = (props) => {
   return <div className={classes.Table}>{cells}</div>;
 };
 
-export default markschemeTable;
-// class MarkschemeTable extends Component {
-//   render() {
-
-//     return ;
-//   }
-// }
-
-// export default MarkschemeTable;
+export default MarkschemeTable;

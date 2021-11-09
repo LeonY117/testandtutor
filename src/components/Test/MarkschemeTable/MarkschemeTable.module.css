@@ -1,5 +1,7 @@
 .Table {
-    display:flex;
-    margin: auto;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }

@@ -9,7 +9,7 @@ import TestList from "pages/SelectTest/TestList/TestList";
 import axios from "store/axios";
 import AuthContext from "store/auth-context";
 
-const SelectTest = (props) => {
+const SelectTest = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [tests, setTests] = useState({});
   const authCtx = useContext(AuthContext);
@@ -58,15 +58,25 @@ const SelectTest = (props) => {
     }
   }
 
+  const completeTestList = (
+    <React.Fragment>
+      <p className={classes.testTitle}>Completed Tests</p>
+      <TestList tests={completeTestObj} />
+    </React.Fragment>
+  );
+
+  const incompleteTestList = (
+    <React.Fragment>
+      <p className={classes.testTitle}>Incomplete Tests</p>
+      <TestList tests={incompleteTestObj} />
+    </React.Fragment>
+  );
+
   const testListCard = (
     <div className={classes.selectTest}>
       <Card>
-        <p className={classes.testTitle}>Completed Tests</p>
-        <TestList tests={completeTestObj} />
-        <p className={classes.testTitle} style={{ marginTop: "3rem" }}>
-          Incomplete Tests
-        </p>
-        <TestList tests={incompleteTestObj} />
+        {Object.keys(completeTestObj).length > 0 && completeTestList}
+        {Object.keys(incompleteTestObj).length > 0 && incompleteTestList}
       </Card>
     </div>
   );
@@ -78,6 +88,5 @@ const SelectTest = (props) => {
     </Content>
   );
 };
-
 
 export default SelectTest;

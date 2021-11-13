@@ -132,22 +132,26 @@ const Dashboard = (props) => {
     }
   }
 
+  const completeTestList = (
+    <React.Fragment>
+      <p className={classes.testTitle}>Completed Tests</p>
+      <TestList tests={completeTestObj} />
+    </React.Fragment>
+  );
+
+  const incompleteTestList = (
+    <React.Fragment>
+      <p className={classes.testTitle}>Incomplete Tests</p>
+      <TestList tests={incompleteTestObj} />
+    </React.Fragment>
+  );
+
   // TODO: potentially make this into a new component or combine
   // with 'pages/SelectTest'
   const testListCard = (
     <Card>
-      <p className={classes.testTitle}>Completed Tests</p>
-      <TestList
-        tests={completeTestObj}
-        testSelectButtonClicked={testClickedHandler}
-      />
-      <p className={classes.testTitle} style={{ marginTop: "3rem" }}>
-        Incomplete Tests
-      </p>
-      <TestList
-        tests={incompleteTestObj}
-        testSelectButtonClicked={testClickedHandler}
-      />
+      {Object.keys(completeTestObj).length > 0 && completeTestList}
+      {Object.keys(incompleteTestObj).length > 0 && incompleteTestList}
     </Card>
   );
 

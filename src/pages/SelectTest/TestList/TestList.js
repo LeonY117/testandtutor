@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import classes from "./TestList.module.css";
 
-// import Button from "components/UI/Button/Button";
+import Button from "components/UI/Button/Button";
 
 const TestInfo = (props) => {
   return (
@@ -17,21 +17,27 @@ const TestInfo = (props) => {
           <p className={classes.testLength}>{props.length}</p>
           <p className={classes.testScore}>{props.score}</p>
         </div>
+        <div className={classes.button}>
+          <Button
+            clicked={props.buttonClicked}
+            color={props.buttonStyle ? props.buttonStyle : "white"}
+          >
+            {props.buttonInfo}
+          </Button>
+        </div>
       </div>
-      {/* <div className={classes.button}>
-        <Button
-          clicked={props.buttonClicked}
-          color={props.buttonStyle ? props.buttonStyle : "white"}
-        >
-          {props.buttonInfo}
-        </Button>
-      </div> */}
     </div>
   );
 };
 
 const TestList = (props) => {
   let tests = null;
+  const history = useHistory();
+
+  const testSelectButtonClicked = (id) => {
+    history.push(`/user/test/${id}`);
+  };
+
   if (props.tests) {
     tests = Object.keys(props.tests).map((testKey) => {
       let test = props.tests[testKey];
@@ -53,7 +59,7 @@ const TestList = (props) => {
           score={score}
           buttonInfo={buttonInfo}
           buttonStyle={buttonStyle}
-          buttonClicked={() => props.testSelectButtonClicked(testKey)}
+          buttonClicked={() => testSelectButtonClicked(testKey)}
         />
       );
     });

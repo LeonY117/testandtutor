@@ -1,13 +1,12 @@
 .testInfo {
-  display: flex;
-  flex-direction: row;
   width: 100%;
-  justify-content: space-between;
 }
 
 .rowFlexControl {
   display: flex;
-  width: 70%;
+  width: 100%;
+  justify-content: space-between;
+  margin: 0;
   align-items: center;
 }
 
@@ -25,6 +24,7 @@
   cursor: pointer;
   font-weight: bold;
   border-bottom: 3px transparent solid;
+  margin-right: 1em;
 }
 
 .testName:hover {
@@ -49,19 +49,30 @@
 }
 
 .button {
-  min-width: 10rem;
+  flex: 1 1 10%;
+  font-size: 0.8rem;
+  min-width: 10em;
 }
 
 @media (max-width: 450px) {
   .rowFlexControl {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
+    align-items: center;
   }
   .testNameWrapper {
-    width: 100%;
+    flex: 1 1 50%;
+    order: 1;
   }
   .lengthScoreWrapper {
+    margin-top: 0.5em;
     width: 100%;
+    order: 3;
+  }
+  .button {
+    order: 2;
+    flex: 1 1 50%;
   }
 }
 
@@ -71,7 +82,7 @@
   }
 
   .button {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     min-width: 6rem;
     /* margin: 0 3rem; */
   }
@@ -87,6 +98,7 @@
   }
 
   .button {
-    display: none;
+    /* display: none; */
+    font-size: 0.7rem;
   }
 }

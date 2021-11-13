@@ -1,24 +1,35 @@
 .Cell {
+  font: inherit;
   display: flex;
   flex-direction: column;
-  width: 7em;
+  width: 100%;
+  min-width: 3em;
   justify-content: center;
   position: relative;
-  margin-bottom: 0.5em;
-  font-size: 1rem; /* controls the dim */
+  /* font-size: 1rem;/ controls the dim */
+  /* border: 1px solid red; */
+}
+
+.labelWrapper {
+  position: relative;
 }
 
 .Label {
   /* width: 100%; */
+  box-sizing: content-box;
   text-align: center;
   padding: 0.5em 1em;
   /* height: 1em; */
-  border: 1px solid white;
+  /* border: 1px solid transparent; */
   background: #505050;
   color: white;
-  margin: 0 -1px;
-  font-weight: 600;
-  box-sizing: border-box;
+  margin: 0;
+  margin-left: -1px;
+  position: relative;
+}
+
+.Label[blue="true"] {
+  background: #3e4d84;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -35,8 +46,8 @@ input[type="number"] {
 
 .InputWrapper {
   border: 1px solid grey;
-  margin: 0;
-  margin-top: -1px;
+  /* margin: 0 -1px; */
+  /* margin-top: -1px; */
   margin-left: -1px;
   position: relative;
   height: 3em;
@@ -47,13 +58,13 @@ input[type="number"] {
   padding: 0.8em 0;
   padding-left: 2.5em;
   border: none;
-  margin: 0;
   width: 100%;
   font-size: 1em;
   /* background: pink; */
   height: 100%;
   background-color: transparent;
-  z-index: 100;
+  z-index: 1;
+  position: relative;
 }
 
 .Max {

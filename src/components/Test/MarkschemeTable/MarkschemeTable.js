@@ -30,13 +30,14 @@ const MarkschemeTable = (props) => {
   if (props.userMarks[qKey].parts.length === 0) {
     // return;
     cells = (
-      <MarkschemeCell
-        key={props.questionNumber}
-        label={props.questionNumber}
-        changed={(e) => props.inputChanged(e, qKey, null, null)}
-        value={props.userMarks[qKey].user_marks}
-        max={props.userMarks[qKey].max_marks}
-      />
+      <div className={classes.cellWrapper} key={props.questionNumber}>
+        <MarkschemeCell
+          label={props.questionNumber}
+          changed={(e) => props.inputChanged(e, qKey, null, null)}
+          value={props.userMarks[qKey].user_marks}
+          max={props.userMarks[qKey].max_marks}
+        />
+      </div>
     );
   } else {
     cells = Object.keys(props.userMarks[qKey].parts).map((key) => {
@@ -46,14 +47,18 @@ const MarkschemeTable = (props) => {
       // console.log(props.marks[qKey][key].subparts);
       if (Object.keys(props.userMarks[qKey].parts[key].subparts).length === 0) {
         return (
-          <MarkschemeCell
-            label={props.questionNumber + partLabel}
-            userMarks={props.userMarks[qKey].parts[key].max_marks}
+          <div
+            className={classes.cellWrapper}
             key={props.questionNumber + partLabel}
-            changed={(e) => props.inputChanged(e, qKey, key, null)}
-            value={props.userMarks[qKey].parts[key].user_marks}
-            max={props.userMarks[qKey].parts[key].max_marks}
-          />
+          >
+            <MarkschemeCell
+              label={props.questionNumber + partLabel}
+              userMarks={props.userMarks[qKey].parts[key].max_marks}
+              changed={(e) => props.inputChanged(e, qKey, key, null)}
+              value={props.userMarks[qKey].parts[key].user_marks}
+              max={props.userMarks[qKey].parts[key].max_marks}
+            />
+          </div>
         );
       } else {
         // if there are subparts, render only the subpart cells
@@ -62,14 +67,18 @@ const MarkschemeTable = (props) => {
           // subpart label format: 1a, i
           let sublabel = romanize(parseInt(key) + 1);
           return (
-            <MarkschemeCell
-              label={props.questionNumber + partLabel + ", " + sublabel}
-              userMarks={subparts[key].max_marks}
+            <div
+              className={classes.cellWrapper}
               key={props.questionNumber + partLabel + ", " + sublabel}
-              changed={(e) => props.inputChanged(e, qKey, partKey, key)}
-              value={subparts[key].user_marks}
-              max={subparts[key].max_marks}
-            />
+            >
+              <MarkschemeCell
+                label={props.questionNumber + partLabel + ", " + sublabel}
+                userMarks={subparts[key].max_marks}
+                changed={(e) => props.inputChanged(e, qKey, partKey, key)}
+                value={subparts[key].user_marks}
+                max={subparts[key].max_marks}
+              />
+            </div>
           );
         });
       }

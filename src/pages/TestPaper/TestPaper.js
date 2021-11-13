@@ -3,11 +3,13 @@ import { useHistory, useLocation } from "react-router";
 import classes from "./TestPaper.module.css";
 
 import Test from "components/Test/Test";
+import ConfirmGrade from "./ConfirmGradeModal/ConfirmGradeModal";
 
 import Content from "hoc/Content/Content";
 import Button from "components/UI/Button/Button";
 import Loading from "components/Loading/Loading";
 import Pagination from "components/Pagination/Pagination";
+import Modal from "components/Modal/Modal";
 
 import AuthContext from "store/auth-context";
 import axios from "store/axios";
@@ -72,16 +74,17 @@ const sumUserScores = (marks) => {
 
 const TestPaper = (props) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [showMarkscheme, setShowMarkscheme] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [userMarks, setUserMarks] = useState({});
   const [test, setTest] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
-  const [showMarkscheme, setShowMarkscheme] = useState(false);
-  const [userScores, setUserScores] = useState([0, 0]);
 
   const authCtx = useContext(AuthContext);
   const history = useHistory();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const questionNumber = queryParams.get("question");
   const testId = props.match.params.id;
 
   const paginationChangedHandler = (n, increment) => {
@@ -129,8 +132,44 @@ const TestPaper = (props) => {
     });
   };
 
+  const backdropClickedHandler = () => {
+    setShowModal(false);
+  };
+
   const completeButtonClickedHandler = () => {
     setShowMarkscheme(true);
+    history.push(`?question=${1}`);
+  };
+
+  const confirmHandler = () => {
+    setShowModal(true);
+  };
+
+  const submitHandler = () => {
+    const answers = [...Object.values(userMarks)];
+    const results = {};
+    [results["test_max_marks"], results["test_user_marks"]] =
+      sumUserScores(userMarks);
+
+    const data = {
+      data: {
+        testId: testId,
+        answers: answers,
+        results: results,
+      },
+    };
+
+    console.log("submit to backend!");
+    console.log(data);
+    axios
+      .post("/tests/submit_test", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        // this.props.expired();
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -191,15 +230,9 @@ const TestPaper = (props) => {
   }, [authCtx, testId]);
 
   useEffect(() => {
-    if (Object.keys(userMarks).length > 0) {
-      setUserScores(sumUserScores(userMarks));
-    }
-  }, [userMarks]);
-
-  useEffect(() => {
-    let questionNum = parseInt(queryParams.get("question")) - 1 || 0;
+    let questionNum = parseInt(questionNumber) - 1 || 0;
     setSelectedQuestion(questionNum);
-  }, [queryParams]);
+  }, [questionNumber]);
 
   let paginationRender = (
     <Pagination
@@ -209,8 +242,22 @@ const TestPaper = (props) => {
     />
   );
 
+  let modalRender = (
+    <Modal backdropClickedHandler={backdropClickedHandler}>
+      <div className={classes.modalContentWrapper}>
+        <ConfirmGrade
+          userMarks={userMarks}
+          userTotalMarks={sumUserScores(userMarks)}
+          inputChangedHandler={inputChangedHandler}
+          submitHandler={submitHandler}
+        />
+      </div>
+    </Modal>
+  );
+
   let paper = (
     <Content>
+      {showModal && modalRender}
       <div className={classes.testPaper}>
         <div className={classes.topPaginationWrapper}>{paginationRender}</div>
         <Test
@@ -224,7 +271,10 @@ const TestPaper = (props) => {
           {paginationRender}
         </div>
         <div className={classes.completeButtonWrapper}>
-          <Button clicked={completeButtonClickedHandler}>Complete</Button>
+          {!showMarkscheme && (
+            <Button clicked={completeButtonClickedHandler}>Complete</Button>
+          )}
+          {showMarkscheme && <Button clicked={confirmHandler}>Confirm</Button>}
         </div>
       </div>
     </Content>

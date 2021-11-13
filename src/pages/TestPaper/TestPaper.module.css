@@ -11,3 +11,7 @@
   width: 10rem;
   margin: auto;
 }
+
+.modalContentWrapper {
+  padding: 1rem;
+}

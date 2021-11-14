@@ -1,31 +1,41 @@
 import React from "react";
 import classes from "./Input.module.css";
 
-const inputComponent = (props) => {
-  // TODO: add custom checkbox
+const Input = (props) => {
   const warning = props.warning ? (
     <label className={classes.warning}>{props.warning}</label>
   ) : null;
 
+  let classArray = [classes.input];
+  props.round && classArray.push(classes.round);
+
+  if (props.size === "large") {
+    classArray.push(classes.large);
+  } else if (props.size === "medium") {
+    classArray.push(classes.medium);
+  } else if (props.size === "small") {
+    classArray.push(classes.small);
+  } else {
+    classArray.push(classes.medium);
+  }
+
   return (
-    <div className={classes.inputComponent} type={props.type}>
-      {props.inputName && (
-        <p className={classes.inputName}>{props.inputName}</p>
-      )}
+    <div className={classes.inputWrapper} type={props.type}>
+      {props.label && <p className={classes.label}>{props.label}</p>}
       <input
-        className={classes.input}
-        type={props.type}
-        value={props.value}
-        onChange={props.changed}
-        name={props.inputName}
+        className={classArray.join(" ")}
         autoFocus={props.autoFocus}
         autoComplete={props.autoComplete || "on"}
-        placeholder={props.placeholder}
+        onChange={props.changed}
         onClick={props.clicked}
+        type={props.type}
+        value={props.value}
+        name={props.inputName}
+        placeholder={props.placeholder}
       />
       {warning}
     </div>
   );
 };
 
-export default inputComponent;
+export default Input;

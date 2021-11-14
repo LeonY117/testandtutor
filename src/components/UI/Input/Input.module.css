@@ -1,23 +1,30 @@
-.inputComponent {
+.inputWrapper {
   /* margin: 1rem 0; */
+  font: inherit;
   width: 100%;
 }
 
-.inputComponent[type="checkbox"] {
+.label {
+  margin: 0.2rem 0;
+  color: grey;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* .input[type="checkbox"] {
   margin: 0;
   width: auto;
   display: inline-block;
-}
+} */
 
 .input {
+  font: inherit;
   box-sizing: border-box;
-  font-family: "Raleway";
-  font-size: 1em;
-  padding: 1.1em;
-  width: 100%;
   border: 1px solid grey;
+  border-radius: 0.3em;
+  padding: 0.5em;
+  width: 100%;
   margin: 1px 0;
-  border-radius: 50px;
 }
 
 .input:focus {
@@ -26,8 +33,20 @@
   border: 2px solid #3456bf;
 }
 
-.input::placeholder {
-  font-family: "Raleway";
+.small {
+  padding: 0.3em;
+}
+
+.medium {
+  padding: 0.5em;
+}
+
+.large {
+  padding: 1em;
+}
+
+.round {
+  border-radius: 10em;
 }
 
 .input[type="checkbox"] {
@@ -44,10 +63,6 @@
 /* .input[type="checkbox"]:focus {
   outline: 1px solid #3456bf;
 } */
-
-.inputName {
-  margin: 1rem 0 0.5rem 0;
-}
 
 .warning {
   text-align: center;

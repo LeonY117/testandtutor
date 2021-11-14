@@ -1,0 +1,31 @@
+.settingsSection {
+  margin: 3em 0;
+}
+
+.buttonWrapper {
+  font-size: 0.9rem;
+}
+
+.profileFormWrapper {
+  width: 15rem;
+}
+
+.inputWrapper {
+  margin: 1em 0;
+}
+
+.emailFormWrapper {
+  width: 20rem;
+  display: flex;
+  align-items: flex-end;
+  margin: 1em 0;
+}
+
+.emailInputWrapper {
+  margin-right: 1em;
+  flex: 1 1 100%;
+}
+
+.passwordFormWrapper {
+  width: 20rem;
+}

@@ -8,8 +8,11 @@ import Dashboard from "pages/Dashboard/Dashboard";
 import Login from "pages/Login/Login";
 import Logout from "pages/Logout/Logout";
 import Signup from "pages/Signup/Signup";
+import Settings from "pages/Settings/Settings";
 import SelectTest from "pages/SelectTest/SelectTest";
 import TestPaper from "pages/TestPaper/TestPaper";
+import TestSubmitConfirm from "pages/TestSubmitConfirm/TestSubmitConfirm";
+import NotFound from "pages/Error/NotFound";
 
 import AuthContext from "./store/auth-context";
 
@@ -19,7 +22,7 @@ function App() {
 
   let redirectFromLogin = null;
   if (userIsLoggedIn) {
-    redirectFromLogin = <Redirect from="/login" to="/user/profile" />;
+    redirectFromLogin = <Redirect from="/login" to="/user" />;
   }
   let redirectFromUser = null;
   if (userIsLoggedIn === false) {
@@ -30,13 +33,16 @@ function App() {
       <Switch>
         {redirectFromUser}
         {redirectFromLogin}
-        <Route path="/" exact component={Landing} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
         <Route exact path="/user/test" component={SelectTest} />
         <Route exact path="/user/test/:id" component={TestPaper} />
-        <Route path="/user" component={Dashboard} />
-        <Route path="/logout" component={Logout} />
+        <Route exact path="/user/testSubmitted" component={TestSubmitConfirm} />
+        <Route exact path="/user" component={Dashboard} />
+        <Route exact path="/user/settings" component={Settings} />
+        <Route exact path="/logout" component={Logout} />
+        <Route path="/" component={NotFound} />
       </Switch>
     </Layout>
   );

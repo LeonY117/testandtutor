@@ -75,7 +75,7 @@ const sumUserScores = (marks) => {
 const TestPaper = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [showMarkscheme, setShowMarkscheme] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [userMarks, setUserMarks] = useState({});
   const [test, setTest] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
@@ -165,6 +165,7 @@ const TestPaper = (props) => {
       .post("/tests/submit_test", data)
       .then((response) => {
         console.log(response);
+        history.push("/user/testSubmitted");
       })
       .catch((error) => {
         // this.props.expired();

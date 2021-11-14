@@ -1,24 +1,29 @@
-.Content {
+.content {
   width: 60rem;
-  margin: 2.5rem auto
+  margin: 2.5rem auto;
+  min-height: 100vh;
+}
+
+.withNav {
+  margin-top: 10rem;
 }
 
 /* Add media queries here */
 
 @media (max-width: 1000px) {
-  .Content {
+  .content {
     width: 90%;
   }
 }
 
 @media (max-width: 768px) {
-  .Content {
+  .content {
     width: 90%;
   }
 }
 
 @media (max-width: 600px) {
-  .Content {
+  .content {
     width: 80%;
   }
 }

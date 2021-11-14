@@ -164,6 +164,8 @@ const Signup = () => {
                 changed={userEmailChangedHandler}
                 autoFocus={true}
                 autoComplete={"off"}
+                round
+                size="large"
               />
               <label className={classes.emailWarning}>{emailError}</label>
               <div className={classes.passwordInput}>
@@ -172,6 +174,8 @@ const Signup = () => {
                   placeholder={"Password"}
                   changed={userPasswordChangedHandler}
                   autoComplete={"off"}
+                  round
+                  size="large"
                 />
                 <span>
                   <p
@@ -209,7 +213,13 @@ const Signup = () => {
               )}
             </div>
             <div className={classes.buttonWrapper}>
-              <Button round clicked={submitHandler}>
+              <Button
+                clicked={submitHandler}
+                round
+                primary
+                color="large"
+                size="large"
+              >
                 {"Sign up"}
               </Button>
             </div>

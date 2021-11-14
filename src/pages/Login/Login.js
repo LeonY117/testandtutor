@@ -89,12 +89,16 @@ const Login = () => {
                 changed={usernameChangedHandler}
                 warning={usernameWarning}
                 autoFocus={true}
+                round
+                size="large"
               />
               <div className={classes.passwordInput}>
                 <Input
                   type={passwordInputType}
                   placeholder={"Password"}
                   changed={passwordChangedHandler}
+                  round
+                  size="large"
                 />
                 <span>
                   <p
@@ -110,7 +114,13 @@ const Login = () => {
               )}
             </div>
             <div className={classes.buttonWrapper}>
-              <Button round clicked={submitHandler}>
+              <Button
+                clicked={submitHandler}
+                round
+                primary
+                size="large"
+                color="blue"
+              >
                 {"Continue"}
               </Button>
             </div>

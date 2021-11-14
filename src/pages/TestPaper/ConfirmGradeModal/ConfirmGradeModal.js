@@ -59,22 +59,28 @@ const ConfirmGrade = (props) => {
   });
 
   const totalScore = (
-    <MarkschemeCell
-      label={"Total"}
-      changed={() => {
-        return;
-      }}
-      value={props.userTotalMarks[0]}
-      max={props.userTotalMarks[1]}
-      readOnly={true}
-    />
+    <div>
+      <p className={classes.total}>Total: &nbsp;</p>
+      <p className={classes.fraction}>
+        {props.userTotalMarks[0]}/{props.userTotalMarks[1]}
+      </p>
+    </div>
+    // <MarkschemeCell
+    //   label={"Total"}
+    //   changed={() => {
+    //     return;
+    //   }}
+    //   value={props.userTotalMarks[0]}
+    //   max={props.userTotalMarks[1]}
+    //   readOnly={true}
+    // />
   );
 
   return (
     <div className={classes.confirmGrade}>
       <h2>Check that you've entered your scores correctly</h2>
       <div className={classes.tableWrapper}>{tables}</div>
-      <div className={classes.testotalScore}>{totalScore}</div>
+      <div className={classes.totalScore}>{totalScore}</div>
       <div className={classes.buttonWrapper}>
         <Button clicked={props.submitHandler}>Submit</Button>
       </div>

@@ -29,11 +29,24 @@
   width: 100%;
 }
 
-.testotalScore {
+.totalScore {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.total {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.fraction {
+  display: inline-block;
+}
+/* .testotalScore {
   font-size: 0.8rem;
   width: 10rem;
   margin: auto;
-}
+} */
 
 .buttonWrapper {
   width: 10rem;

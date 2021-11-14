@@ -1,65 +1,118 @@
-.Button {
-  font-size: inherit;
-  font-family: "Raleway";
-  padding: 1.1em 1em;
-  border: none;
-  border-radius: 10px;
-  width: 100%;
+@import "App.module.css";
+
+.button {
   cursor: pointer;
+  font: inherit;
   font-weight: 600;
-  z-index: 500;
+  padding: 0.8em 0.8em;
+  width: 100%;
+  min-width: 3em;
+
+  /* DEFAULT */
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 0.75em;
+  transition: 100ms background-color ease-in;
 }
 
-.Round {
-  border-radius: 50px;
-}
-
-.Button:focus {
+.button:focus {
   outline: none;
 }
 
-.Blue {
-  background-color: #3366ff;
-  color: white;
-  border: 3px solid #3366ff;
-  transition: background-color 100ms ease-in-out;
+.button:hover {
+  background-color: var(--blue-shade);
 }
 
-.Blue:hover,
-.Blue:active,
-.Blue:focus {
-  background-color: white;
-  color: #3366ff;
-  border: 3px solid #3366ff;
+/* SIZE */
+
+.small {
+  padding: 0.5em 0.5em;
 }
 
-.White {
-  background-color: white;
-  color: #3366ff;
-  border: 3px solid #3366ff;
-  transition: background-color 100ms ease-in-out;
+.medium {
+  padding: 0.8em 0.8em;
 }
 
-.White:hover,
-.White:active .White:focus {
-  background-color: #3366ff;
-  color: white;
+.large {
+  padding: 1em 1em;
 }
 
-.Orange {
-  background-color: white;
-  color: #ff9533;
-  border: 3px solid #ff9533;
-  transition: background-color 100ms ease-in-out;
+.narrow {
+  width: auto;
 }
 
-.Orange:hover,
-.Orange:active,
-.Orange:focus {
-  background-color: #ff9533;
-  color: white;
+/* TYPES */
+
+.primary {
+  color: #fff !important;
 }
 
-.TextBlack {
-  color: black;
+.secondary {
+  border: 3px solid;
+  background-color: #fff !important;
+  color: var(--blue);
+}
+
+.tertiary {
+  color: var(--blue);
+  background-color: transparent !important;
+}
+
+/* COLOR */
+
+.blue {
+  color: var(--blue);
+  background-color: var(--blue);
+}
+
+.blue:hover,
+.blue:focus {
+  color: var(--blue-shade);
+  background-color: var(--blue-shade);
+}
+
+.orange {
+  color: var(--orange);
+  background-color: var(--orange);
+}
+
+.orange:hover,
+.orange:focus {
+  color: var(--orange-shade);
+  background-color: var(--orange-shade);
+}
+
+.red {
+  color: var(--red);
+  background-color: var(--red);
+}
+
+.red:hover,
+.red:focus {
+  color: var(--red-shade);
+  background-color: var(--red-shade);
+}
+
+.grey {
+  color: var(--grey);
+  background-color: var(--grey);
+}
+
+.grey:hover,
+.grey:focus {
+  color: var(--grey-shade);
+  background-color: var(--grey-shade);
+}
+
+/* SHAPE */
+
+.round {
+  border-radius: 10em;
+}
+
+/* Width */
+
+.button[width="content"] {
+  width: auto;
 }

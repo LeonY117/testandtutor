@@ -30,7 +30,8 @@ const navigationItems = (props) => {
       <ul className={classes.navigationItems}>
         <NavigationItem link="/user">Dashboard</NavigationItem>
         <NavigationItem link="/user/test">Take test</NavigationItem>
-        <NavigationItem link="/logout">Log out</NavigationItem>
+        <NavigationItem link="/user/settings">Settings</NavigationItem>
+        <NavigationItem link="/logout">Logout</NavigationItem>
       </ul>
     );
   }

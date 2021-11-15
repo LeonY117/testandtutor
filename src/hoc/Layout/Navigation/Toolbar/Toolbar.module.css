@@ -1,3 +1,21 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 .toolbar {
   position: fixed;
   z-index: 90;
@@ -6,16 +24,20 @@
   top: 0;
   left: 0;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   background-color: white;
   box-shadow: 0px 1px 10px rgba(150, 150, 150, 25);
 }
 
-.toolbar nav {
+.toolbarDeskop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 100%;
+  width: 100%;
+}
+
+.toolbarMobile {
+  display: none;
 }
 
 .navLogo {
@@ -26,4 +48,42 @@
 
 .navItems {
   margin-right: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .toolbarDeskop {
+    display: none;
+  }
+
+  .toolbarMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .toolbarDropdown {
+    position: fixed;
+    background: white;
+    height: 100vh;
+    width: 100vw;
+    top: 5rem;
+  }
+
+  .toolbarFadeIn {
+    animation: fadeIn 100ms ease-in;
+  }
+
+  .menuButtonWrapper {
+    font-size: 1.3rem;
+  }
+
+  .navItems {
+    font-size: 1rem;
+  }
+
+  .navLogo {
+    height: 2.3rem;
+  }
 }

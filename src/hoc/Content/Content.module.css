@@ -1,14 +1,12 @@
 .content {
-  width: 60rem;
-  margin: 2.5rem auto;
+  max-width: 900px;
   min-height: 100vh;
+  margin: 2.5rem auto;
 }
 
 .withNav {
   margin-top: 10rem;
 }
-
-/* Add media queries here */
 
 @media (max-width: 1000px) {
   .content {
@@ -24,6 +22,6 @@
 
 @media (max-width: 600px) {
   .content {
-    width: 80%;
+    width: 90%;
   }
 }

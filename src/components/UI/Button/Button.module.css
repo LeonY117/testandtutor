@@ -105,6 +105,17 @@
   background-color: var(--grey-shade);
 }
 
+.black {
+  color: var(--black);
+  background-color: var(--black);
+}
+
+.black:hover,
+.black:focus {
+  color: var(--black-shade);
+  background-color: var(--black-shade);
+}
+
 /* SHAPE */
 
 .round {

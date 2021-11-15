@@ -22,6 +22,8 @@ const Button = (props) => {
     classArray.push(classes.red);
   } else if (props.color === "grey") {
     classArray.push(classes.grey);
+  } else if (props.color === "black") {
+    classArray.push(classes.black);
   } else {
     classArray.push(classes.blue);
   }

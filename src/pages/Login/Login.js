@@ -24,8 +24,9 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const passwordInputType = showPassword ? "text" : "password";
+  // const passwordInputType = showPassword ? "text" : "password";
 
+  const passwordInputType = 'password'
   const authCtx = useContext(AuthContext);
 
   const usernameChangedHandler = (event) => {
@@ -36,9 +37,9 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const showPasswordChangedHandler = () => {
-    setShowPassword((prevState) => !prevState);
-  };
+  // const showPasswordChangedHandler = () => {
+  //   setShowPassword((prevState) => !prevState);
+  // };
 
   const forgotPasswordHandler = () => {
     return;
@@ -100,14 +101,14 @@ const Login = () => {
                   round
                   size="large"
                 />
-                <span>
+                {/* <span>
                   <p
                     className={classes.showPasswordToggler}
                     onClick={showPasswordChangedHandler}
                   >
                     {showPassword ? "hide" : "show"}
                   </p>
-                </span>
+                </span> */}
               </div>
               {errorMessage && (
                 <p className={classes.warning}>{errorMessage}</p>

@@ -9,7 +9,7 @@
   border: 1px solid grey;
   margin: 1px 0;
   width: 100%;
-  /* border-radius: 50px; */
+  background-color: white;
 }
 
 .select::-ms-expand {

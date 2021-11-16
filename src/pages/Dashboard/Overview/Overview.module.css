@@ -12,6 +12,12 @@
   margin-right: 1rem;
 }
 
+.radarWrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
 .radar {
   width: 100%;
   height: 100%;
@@ -27,6 +33,11 @@
   flex: 1 1 20%;
   /* flex: 1 1 30%; */
   margin-bottom: 0.5rem;
+}
+
+.suggestions {
+  margin: auto;
+  max-width: 15rem;
 }
 
 .rightCard h1 {
@@ -47,16 +58,15 @@
 }
 
 @media (max-width: 768px) {
-  .overview {
+  /* .overview {
     flex-direction: column;
-    /* background-color: grey; */
-  }
-  .overviewRight {
+  } */
+  /* .overviewRight {
     display: flex;
     gap: 1rem;
     width: 100%;
     margin: auto;
-  }
+  } */
 
   .rightCard {
     flex: 1 1 60%;
@@ -65,17 +75,16 @@
   .rightButtons {
     flex: 1 1 40%;
   }
-
+  /* 
   .leftCard {
     width: 100%;
     margin: auto;
-  }
+  } */
 }
 
 @media (max-width: 600px) {
   .overview {
     flex-direction: column;
-    /* background-color: grey; */
   }
   .overviewRight {
     width: 100%;
@@ -84,5 +93,6 @@
   .leftCard {
     width: 100%;
     margin: auto;
+    margin-bottom: 2rem;
   }
 }

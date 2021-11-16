@@ -31,16 +31,20 @@ function Overview(props) {
     <div className={classes.overview}>
       <div className={classes.leftCard}>
         <Card>
-          <div className={classes.radar} style={{ height: radarDim }}>
-            <Radar topics={props.topics} showText />
+          <div className={classes.radarWrapper}>
+            <div className={classes.radar} style={{ height: radarDim }}>
+              <Radar topics={props.topics} showText />
+            </div>
           </div>
         </Card>
       </div>
       <div className={classes.overviewRight}>
         <div className={classes.rightCard}>
           <Card>
-            <h1>Suggested topics to study next</h1>
-            <SubtopicSuggestions suggestions={props.suggestions} />
+            <div className={classes.suggestions}>
+              <h1>Suggested topics to study next</h1>
+              <SubtopicSuggestions suggestions={props.suggestions} />
+            </div>
           </Card>
         </div>
         <div className={classes.rightButtons}>

@@ -1,35 +1,33 @@
-.customSelect {
+.selectWrapper {
   position: relative;
   width: 100%;
 }
 
-.customSelect select {
-  font-size: 1rem;
+.select {
+  font: inherit;
   padding: 1em 1.5em;
   border: 1px solid grey;
   margin: 1px 0;
   width: 100%;
-  border-radius: 50px;
-  font-family: "Raleway";
+  /* border-radius: 50px; */
 }
 
-.customSelect select::-ms-expand {
+.select::-ms-expand {
   display: none;
 }
 
-.customSelect select:focus {
+.select:focus {
   outline: none;
   margin: 0;
   border: 2px solid #3456bf;
 }
 
-.customSelect option {
-  font-size: 1rem;
+.option {
+  font: inherit;
   padding: 1em 1.5em;
   border: 0;
   width: 100%;
   background-color: white;
-  font: "Raleway";
 }
 
 .customArrow {
@@ -40,9 +38,9 @@
   display: block;
   background: white;
   height: 90%;
-  width: 3rem;
+  width: 3em;
   pointer-events: none;
-  border-radius: 50px;
+  border-radius: 15em;
   /* border: 1px solid lightgrey; */
 }
 
@@ -58,4 +56,8 @@
   border-left: var(--size) solid transparent;
   border-right: var(--size) solid transparent;
   border-top: var(--size) solid rgb(200, 200, 200);
+}
+
+.round {
+  border-radius: 15em;
 }

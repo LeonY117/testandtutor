@@ -74,7 +74,7 @@ const SelectTest = () => {
 
   const testListCard = (
     <div className={classes.selectTest}>
-      <Card>
+      <Card pageWrapper>
         {Object.keys(completeTestObj).length > 0 && completeTestList}
         {Object.keys(incompleteTestObj).length > 0 && incompleteTestList}
       </Card>
@@ -82,7 +82,7 @@ const SelectTest = () => {
   );
 
   return (
-    <Content>
+    <Content withNav>
       {isLoading && <Loading />}
       {!isLoading && testListCard}
     </Content>

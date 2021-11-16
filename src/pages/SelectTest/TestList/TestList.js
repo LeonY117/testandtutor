@@ -17,10 +17,12 @@ const TestInfo = (props) => {
           <p className={classes.testLength}>{props.length}</p>
           <p className={classes.testScore}>{props.score}</p>
         </div>
-        <div className={classes.button}>
+        <div className={classes.buttonWrapper}>
           <Button
             clicked={props.buttonClicked}
-            color={props.buttonStyle ? props.buttonStyle : "white"}
+            color={props.buttonColor}
+            large
+            secondary
           >
             {props.buttonInfo}
           </Button>
@@ -44,11 +46,11 @@ const TestList = (props) => {
       let status = test.status;
       let score = null;
       let buttonInfo = "Take test";
-      let buttonStyle = "orange";
+      let buttonColor = "orange";
       if (status === "finished") {
         score = test.totalScore + "/" + test.score;
         buttonInfo = "See results";
-        buttonStyle = "white";
+        buttonColor = "white";
       }
       return (
         <TestInfo
@@ -58,7 +60,7 @@ const TestList = (props) => {
           length={test.length + " min"}
           score={score}
           buttonInfo={buttonInfo}
-          buttonStyle={buttonStyle}
+          buttonColor={buttonColor}
           buttonClicked={() => testSelectButtonClicked(testKey)}
         />
       );

@@ -80,9 +80,9 @@ const questionPart = (props) => {
       try {
         let name = item.path;
         // name = "AA/SL/Calculus/calculus_q1.png"; //REMOVE
-        let width = sizeMapping["M"].size + 'rem';
+        let width = sizeMapping["M"].size + 'em';
         if (item.size) {
-          width = sizeMapping[item.size].size + 'rem';
+          width = sizeMapping[item.size].size + 'em';
         }
         const imagePath = require("../../../../assets/images/IB/" + name).default;
         renderedImage = (

@@ -28,7 +28,7 @@ const Test = (props) => {
 
   if (props.testBody) {
     renderedQuestions = (
-      <Card>
+      <Card pageWrapper>
         <div className={classes.QuestionMarkschemeWrapper}>
           <div className={classes.QuestionWrapper}>
             <h2>Question {parseInt(selectedQuestion + 1)}</h2>

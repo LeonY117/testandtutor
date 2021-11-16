@@ -1,9 +1,4 @@
-.testPaper {
-  margin-top: 10rem;
-}
-
-.topPaginationWrapper,
-.bottomPaginationWrapper {
+.paginationWrapper {
   margin: 2rem 0;
 }
 
@@ -14,4 +9,13 @@
 
 .modalContentWrapper {
   padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .paginationWrapper {
+    font-size: 0.8rem;
+  }
+  .testWrapper {
+    font-size: 0.8rem;
+  }
 }

@@ -3,6 +3,7 @@
   flex-direction: row;
   gap: 1rem;
   align-items: space-between;
+  font-size: inherit;
 }
 
 .QuestionWrapper {
@@ -25,4 +26,10 @@
   display: block;
   margin: auto;
   max-width: 70%;
+}
+
+@media (max-width: 1000px) {
+  .QuestionMarkschemeWrapper {
+    flex-direction: column;
+  }
 }

@@ -237,6 +237,7 @@ const TestPaper = (props) => {
 
   let paginationRender = (
     <Pagination
+      maxLabels={7}
       totalPages={test.length}
       selectedPage={selectedQuestion + 1}
       pageSelectHandler={paginationChangedHandler}
@@ -257,20 +258,20 @@ const TestPaper = (props) => {
   );
 
   let paper = (
-    <Content>
+    <React.Fragment>
       {showModal && modalRender}
       <div className={classes.testPaper}>
-        <div className={classes.topPaginationWrapper}>{paginationRender}</div>
-        <Test
-          selectedQuestion={selectedQuestion}
-          testBody={test}
-          userMarks={userMarks}
-          showMarkscheme={showMarkscheme}
-          inputChanged={inputChangedHandler}
-        />
-        <div className={classes.bottomPaginationWrapper}>
-          {paginationRender}
+        <div className={classes.paginationWrapper}>{paginationRender}</div>
+        <div className={classes.testWrapper}>
+          <Test
+            selectedQuestion={selectedQuestion}
+            testBody={test}
+            userMarks={userMarks}
+            showMarkscheme={showMarkscheme}
+            inputChanged={inputChangedHandler}
+          />
         </div>
+        <div className={classes.paginationWrapper}>{paginationRender}</div>
         <div className={classes.completeButtonWrapper}>
           {!showMarkscheme && (
             <Button clicked={completeButtonClickedHandler}>Complete</Button>
@@ -278,13 +279,13 @@ const TestPaper = (props) => {
           {showMarkscheme && <Button clicked={confirmHandler}>Confirm</Button>}
         </div>
       </div>
-    </Content>
+    </React.Fragment>
   );
 
   return (
-    <div>
+    <Content withNav>
       {isLoading && <Loading />} {!isLoading && paper}
-    </div>
+    </Content>
   );
 };
 

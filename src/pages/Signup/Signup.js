@@ -153,30 +153,34 @@ const Signup = () => {
 
   const signupInterface = (
     <div className={classes.cardWrapper}>
-      <Card>
+      <Card pageWrapper>
         <div className={classes.signup}>
           <h1>Sign up</h1>
           <form onSubmit={submitHandler} autoComplete="off">
             <div className={classes.inputs}>
-              <Input
-                type="text"
-                placeholder={"Email"}
-                changed={userEmailChangedHandler}
-                autoFocus={true}
-                autoComplete={"off"}
-                round
-                size="large"
-              />
-              <label className={classes.emailWarning}>{emailError}</label>
-              <div className={classes.passwordInput}>
+              <div className={classes.inputWrapper}>
                 <Input
-                  type={passwordInputType}
-                  placeholder={"Password"}
-                  changed={userPasswordChangedHandler}
+                  type="text"
+                  placeholder={"Email"}
+                  changed={userEmailChangedHandler}
+                  autoFocus={true}
                   autoComplete={"off"}
                   round
                   size="large"
                 />
+              </div>
+              <label className={classes.emailWarning}>{emailError}</label>
+              <div className={classes.passwordInput}>
+                <div className={classes.inputWrapper}>
+                  <Input
+                    type={passwordInputType}
+                    placeholder={"Password"}
+                    changed={userPasswordChangedHandler}
+                    autoComplete={"off"}
+                    round
+                    size="large"
+                  />
+                </div>
                 <span>
                   <p
                     className={classes.showPasswordToggler}
@@ -193,7 +197,7 @@ const Signup = () => {
                 Your password should be at least 8 characters long upper and
                 lower case letters and a number
               </label>
-              <div>
+              <div className={classes.selectWrapper}>
                 <Select
                   options={curriculumArray}
                   changed={userCurriculumChangedHandler}
@@ -236,7 +240,7 @@ const Signup = () => {
   );
 
   return (
-    <Content>
+    <Content withNav>
       {isLoading && <Loading />}
       {!isLoading && signupInterface}
     </Content>

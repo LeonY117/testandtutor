@@ -1,7 +1,12 @@
+.inputWrapper,
+.buttonWrapper,
+.selectWrapper {
+  font-size: 1rem;
+}
+
 .cardWrapper {
   width: 25rem;
   margin: auto;
-  margin-top: 10rem;
 }
 
 .signup {
@@ -91,4 +96,22 @@
   font-size: 0.7rem;
   color: red;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  /* .inputWrapper,
+  .buttonWrapper,
+  .selectWrapper {
+    font-size: 0.9rem;
+  } */
+
+  .cardWrapper {
+    width: 100%;
+    max-width: 19rem;
+  }
+
+  .signup {
+    margin: 5rem 0 3rem 0;
+  }
+  
 }

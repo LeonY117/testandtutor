@@ -3,7 +3,7 @@ import classes from "./Pagination.module.css";
 
 const Pagination = (props) => {
   let pages = [];
-  const maxLabels = 11; // adjust based on window width
+  const maxLabels = Math.max(props.maxLabels, 7); // adjust based on window width
   const totalPages = props.totalPages;
   const page = props.selectedPage;
   //   const totalPages = 40;

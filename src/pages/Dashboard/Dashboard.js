@@ -157,30 +157,27 @@ const Dashboard = (props) => {
 
   const dashboard = (
     <div>
-      <Content>
-        <div className={classes.userGreeting}>
-          <h1>Hi there!</h1>
-        </div>
-        <section className={classes.overviewWrapper}>
-          <Overview
-            topics={userData.topics}
-            suggestions={userData.suggestedTopics}
-            testButtonClicked={takeTestButtonClickedHandler}
-          />
-        </section>
-        <section className={classes.breakdownWrapper}>
-          <TopicBreakdown subtopics={userData.subtopics} />
-        </section>
-        <section className={classes.selectTestWrapper}>{testListCard}</section>
-      </Content>
-      {/* <Redirect from="/user" exact to="/user/profile" /> */}
+      <div className={classes.userGreeting}>
+        <h1>Hi there!</h1>
+      </div>
+      <section className={classes.overviewWrapper}>
+        <Overview
+          topics={userData.topics}
+          suggestions={userData.suggestedTopics}
+          testButtonClicked={takeTestButtonClickedHandler}
+        />
+      </section>
+      <section className={classes.breakdownWrapper}>
+        <TopicBreakdown subtopics={userData.subtopics} />
+      </section>
+      <section className={classes.selectTestWrapper}>{testListCard}</section>
     </div>
   );
   return (
-    <div>
+    <Content withNav>
       {isLoading && <Loading />}
       {!isLoading && dashboard}
-    </div>
+    </Content>
   );
 };
 

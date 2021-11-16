@@ -79,7 +79,7 @@ const Login = () => {
 
   const loginInterface = (
     <div className={classes.cardWrapper}>
-      <Card>
+      <Card pageWrapper>
         <div className={classes.login}>
           <h1>Sign in</h1>
           <form onSubmit={submitHandler}>
@@ -145,7 +145,7 @@ const Login = () => {
   );
 
   return (
-    <Content>
+    <Content withNav>
       {isLoading && <Loading />}
       {!isLoading && loginInterface}
     </Content>

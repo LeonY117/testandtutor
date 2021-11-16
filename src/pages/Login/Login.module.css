@@ -1,7 +1,6 @@
 .cardWrapper {
   width: 25rem;
   margin: auto;
-  margin-top: 10rem;
 }
 
 .login {
@@ -80,7 +79,11 @@
 
 @media (max-width: 600px) {
   .cardWrapper {
-    width: 90%;
-    max-width: 20rem;
+    width: 100%;
+    max-width: 19rem;
+  }
+
+  .login {
+    margin: 5rem 0 3rem 0;
   }
 }

@@ -125,7 +125,7 @@ const Signup = () => {
       email: userData.email,
       password: userData.password,
       curriculum: userData.curriculum,
-      newsletter: userData.newsletter,
+      subscribeToNewsletter: userData.newsletter,
       role: "student",
     };
 
@@ -201,6 +201,7 @@ const Signup = () => {
                 <Select
                   options={curriculumArray}
                   changed={userCurriculumChangedHandler}
+                  round
                 />
               </div>
               <div className={classes.newsletterPrompter}>

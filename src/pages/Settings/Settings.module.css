@@ -7,7 +7,8 @@
 }
 
 .profileFormWrapper {
-  width: 15rem;
+  width: 100%;
+  max-width: 15rem;
 }
 
 .inputWrapper {
@@ -15,7 +16,8 @@
 }
 
 .emailFormWrapper {
-  width: 20rem;
+  width: 100%;
+  max-width: 20rem;
   display: flex;
   align-items: flex-end;
   margin: 1em 0;
@@ -27,5 +29,6 @@
 }
 
 .passwordFormWrapper {
-  width: 20rem;
+  width: 100%;
+  max-width: 20rem;
 }

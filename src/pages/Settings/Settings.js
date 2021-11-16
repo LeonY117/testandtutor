@@ -15,7 +15,7 @@ const Settings = () => {
 
   return (
     <Content withNav>
-      <Card>
+      <Card pageWrapper>
         <h1>Settings</h1>
         <div className={classes.settingsSection}>
           <h3>Profile</h3>

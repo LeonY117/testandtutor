@@ -20,7 +20,7 @@ const TopicBreakdownNav = (props) => {
           }}
           picked={(props.selectedTopic === topic).toString()}
         >
-          {TOPIC_NAME_MAPPER[topic]}
+          {TOPIC_NAME_MAPPER[topic] || "undefined"}
         </li>
       </div>
     );

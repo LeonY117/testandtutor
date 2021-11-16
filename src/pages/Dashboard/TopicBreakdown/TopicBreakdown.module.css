@@ -11,19 +11,18 @@
 }
 
 .subtopics {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
   padding: 0;
+  /* justify-content: center; */
 }
 
 .subtopic {
-  font-size: 1rem;
-  width: 27%;
+  font-size: 0.9rem;
   height: 1.6em;
-  min-width: 12em;
   margin: 0.5em;
-  padding: 1.2em;
+  padding: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,4 +37,37 @@
   min-width: 1.1em;
   margin-left: 0.2em;
   text-align: center;
+}
+
+.topicBreakdownSelect {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .topicBreakdownNav {
+    display: none;
+  }
+
+  .topicBreakdownSelect {
+    display: block;
+    width: 80%;
+    margin: 2rem auto;
+    font-size: 0.9rem;
+  }
+
+  .subtopics {
+    display: block;
+    max-width: 15rem;
+  }
+
+  .subtopic {
+    font-size: 0.9rem;
+    margin: 1em 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .subtopics {
+    grid-template-columns: 1fr 1fr;
+  }
 }

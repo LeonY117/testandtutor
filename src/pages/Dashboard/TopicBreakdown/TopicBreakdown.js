@@ -3,6 +3,7 @@ import classes from "./TopicBreakdown.module.css";
 
 import TopicBreakdownNav from "./TopicBreakdownNav/TopicBreakdownNav";
 import Card from "components/UI/Card/Card";
+import Select from "components/UI/Select/Select";
 
 const GRADECOLORMAPPER = {
   7: "#5ADBCE",
@@ -70,11 +71,22 @@ const TopicBreakdown = (props) => {
     <React.Fragment>
       <h1 className={classes.title}>Topic Breakdown</h1>
       <Card>
-        <TopicBreakdownNav
-          topics={topics}
-          topicChangedHandler={topicChangedHandler}
-          selectedTopic={selectedTopic}
-        />
+        <div className={classes.topicBreakdownNav}>
+          <TopicBreakdownNav
+            topics={topics}
+            topicChangedHandler={topicChangedHandler}
+            selectedTopic={selectedTopic}
+          />
+        </div>
+        <div className={classes.topicBreakdownSelect}>
+          <Select
+            changed={(e) => {
+              topicChangedHandler(e.target.value);
+            }}
+            options={topics}
+            round
+          />
+        </div>
         <SubtopicLabels subtopics={gradedSubtopics} />
         {unGradedSubtopics.length > 0 && (
           <React.Fragment>

@@ -13,6 +13,7 @@ import SelectTest from "pages/SelectTest/SelectTest";
 import TestPaper from "pages/TestPaper/TestPaper";
 import TestSubmitConfirm from "pages/TestSubmitConfirm/TestSubmitConfirm";
 import NotFound from "pages/Error/NotFound";
+import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
 
 import AuthContext from "./store/auth-context";
 
@@ -41,6 +42,7 @@ function App() {
         <Route exact path="/user/testSubmitted" component={TestSubmitConfirm} />
         <Route exact path="/user" component={Dashboard} />
         <Route exact path="/user/settings" component={Settings} />
+        <Route exact path="/forgotPassword/:token" component={ForgotPassword} />
         <Route exact path="/logout" component={Logout} />
         <Route path="/" component={NotFound} />
       </Switch>

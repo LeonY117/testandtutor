@@ -18,7 +18,7 @@ const validateEmail = (email) => {
   return re.test(email);
 };
 
-const validatePassword = (password) => {
+export const validatePassword = (password) => {
   if (password === null || password === "") {
     return false;
   }
@@ -247,5 +247,4 @@ const Signup = () => {
     </Content>
   );
 };
-
 export default Signup;

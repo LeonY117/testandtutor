@@ -9,9 +9,61 @@ import Input from "components/UI/Input/Input";
 import AuthContext from "store/auth-context";
 
 const Settings = () => {
+  const confirmText = "Delete my account";
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [confirmDeleteInput, setConfirmDeleteInput] = useState("");
+
+  const deleteButtonClickedHandler = () => {
+    setShowConfirmDelete(true);
+  };
+
+  const confirmDeleteInputChangedHandler = (e) => {
+    setConfirmDeleteInput(e.target.value);
+  };
+
+  const deleteHandler = () => {
+    if (confirmDeleteInput === confirmText) {
+      // axios.post...
+      console.log("confirmed");
+    }
+  };
+
   useEffect(() => {
+    // axios.get...
     window.scrollTo(0, 0);
   }, []);
+
+  let deleteAccount = (
+    <div className={classes.buttonWrapper}>
+      <Button color="red" narrow secondary clicked={deleteButtonClickedHandler}>
+        Delete my account
+      </Button>
+    </div>
+  );
+
+  if (showConfirmDelete) {
+    deleteAccount = (
+      <div className={classes.confirmDeleteWrapper}>
+        <p className={classes.confirmDeleteWarning}>
+          This action is permanent, all of your data will be deleted
+        </p>
+        <p>
+          Type <b>{confirmText}</b> below to confirm
+        </p>
+        <div className={classes.inputWrapper}>
+          <Input
+            changed={confirmDeleteInputChangedHandler}
+            value={confirmDeleteInput}
+          />
+        </div>
+        <div className={classes.buttonWrapper}>
+          <Button color="red" narrow primary clicked={deleteHandler}>
+            Confirm
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Content withNav>
@@ -80,11 +132,7 @@ const Settings = () => {
         </div>
         <div className={classes.settingsSection}>
           <h3>{"Delete Account"}</h3>
-          <div className={classes.buttonWrapper}>
-            <Button color="red" narrow secondary>
-              Delete my account
-            </Button>
-          </div>
+          {deleteAccount}
         </div>
       </Card>
     </Content>

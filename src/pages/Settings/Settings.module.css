@@ -32,3 +32,13 @@
   width: 100%;
   max-width: 20rem;
 }
+
+.confirmDeleteWrapper {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.confirmDeleteWarning {
+  color: red;
+  font-weight: bold;
+}

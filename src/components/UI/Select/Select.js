@@ -18,10 +18,17 @@ const Select = (props) => {
   }
   return (
     <div className={classes.selectWrapper}>
-      <select className={classArray.join(' ')} onChange={props.changed}>
+      <select
+        className={classArray.join(" ")}
+        onChange={props.changed}
+        disabled={props.disabled}
+      >
         {options}
       </select>
-      <span className={classes.customArrow}></span>
+      <span
+        className={classes.customArrow}
+        hide={props.disabled ? "true" : "false"}
+      />
     </div>
   );
 };

@@ -58,6 +58,10 @@
   border-top: var(--size) solid rgb(200, 200, 200);
 }
 
+.customArrow[hide="true"]::after {
+  display: none;
+}
+
 .round {
   border-radius: 15em;
 }

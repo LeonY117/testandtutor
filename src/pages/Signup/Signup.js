@@ -194,7 +194,7 @@ const Signup = () => {
                 className={classes.passwordInstructions}
                 warning={highlightPasswordInstructions.toString()}
               >
-                Your password should be at least 8 characters long upper and
+                Your password should be at least 8 characters long, upper and
                 lower case letters and a number
               </label>
               <div className={classes.selectWrapper}>
@@ -202,6 +202,7 @@ const Signup = () => {
                   options={curriculumArray}
                   changed={userCurriculumChangedHandler}
                   round
+                  disabled
                 />
               </div>
               <div className={classes.newsletterPrompter}>

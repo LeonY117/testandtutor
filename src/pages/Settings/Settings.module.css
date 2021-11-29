@@ -6,6 +6,11 @@
   font-size: 0.9rem;
 }
 
+.errorMessage {
+  font-size: 0.9rem;
+  color: red;
+}
+
 .profileFormWrapper {
   width: 100%;
   max-width: 15rem;

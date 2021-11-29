@@ -1,0 +1,172 @@
+{
+  "id": "bd46d74b-e083-40c2-ac3d-dae729772539",
+  "marks": 0,
+  "parts": [
+    {
+      "id": "b6ab61c8-be32-42c4-9b8b-f6b2858a4202",
+      "marks": 0,
+      "part": 1,
+      "question_body": [
+        {
+          "type": "string",
+          "content": "A cookie is picked out randomly from the jar, find the probability (to 4 significant figures) that it :"
+        }
+      ],
+      "labels": [],
+      "subparts": [
+        {
+          "marks": 2,
+          "subpart": 1,
+          "question_body": [
+            { "type": "string", "content": "Weighs less than 24g" }
+          ],
+          "labels": [{ "topic": "4", "subtopic": "19", "percentage": 100 }]
+        },
+        {
+          "marks": 2,
+          "subpart": 2,
+          "question_body": [
+            { "type": "string", "content": "Weighs between 16 and 24g" }
+          ],
+          "labels": [{ "topic": "4", "subtopic": "19", "percentage": 100 }]
+        }
+      ]
+    },
+    {
+      "id": "0a3450ee-653d-49d7-9a92-b20fea59ab9f",
+      "marks": 0,
+      "part": 2,
+      "question_body": [],
+      "labels": [],
+      "subparts": [
+        {
+          "marks": 2,
+          "subpart": 1,
+          "question_body": [
+            {
+              "type": "string",
+              "content": "On the following normal distribution diagram indicate $d$ and shade the region representing these cookies"
+            }
+          ],
+          "labels": [{ "topic": "4", "subtopic": "19", "percentage": 100 }]
+        },
+        {
+          "marks": 3,
+          "subpart": 2,
+          "question_body": [{ "type": "string", "content": "Find $d$" }],
+          "labels": [{ "topic": "4", "subtopic": "19", "percentage": 100 }]
+        }
+      ]
+    }
+  ],
+  "paper": "2",
+  "question_body": [
+    {
+      "type": "string",
+      "content": "In a cookie jar, the weights of cookies are normally distributed with mean 20g and standard deviation of 2g. "
+    }
+  ],
+  "labels": [],
+  "markscheme": {
+    "id": "bd46d74b-e083-40c2-ac3d-dae729772539",
+    "marks": [],
+    "parts": [
+      {
+        "id": "b6ab61c8-be32-42c4-9b8b-f6b2858a4202",
+        "part": 1,
+        "markscheme_body": [],
+        "marks": [],
+        "subparts": [
+          {
+            "subpart": 1,
+            "markscheme_body": [
+              { "type": "string", "content": "Correct approach" },
+              {
+                "type": "string",
+                "content": "e.g. $P(X \\leq 24) = P(Z \\leq 2)$ "
+              },
+              { "type": "string", "content": "$P(X \\leq 24) \\approx 0.9772$" }
+            ],
+            "marks": [
+              { "type": "M", "value": 1, "implicit": true, "index": 0 },
+              { "type": "A", "value": 1, "implicit": false, "index": 2 }
+            ]
+          },
+          {
+            "subpart": 2,
+            "markscheme_body": [
+              { "type": "string", "content": "Correct approach " },
+              {
+                "type": "string",
+                "content": "e.g. $P(16 \\leq X \\leq 24) = P(X \\leq 24) - P(X \\leq 16)$"
+              },
+              {
+                "type": "string",
+                "content": "$P(16 \\leq X \\leq 24) = 0.9772 - 0.0227 = 0.9545$"
+              }
+            ],
+            "marks": [
+              { "type": "M", "value": 1, "implicit": true, "index": 0 },
+              { "type": "A", "value": 1, "implicit": false, "index": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "0a3450ee-653d-49d7-9a92-b20fea59ab9f",
+        "part": 2,
+        "markscheme_body": [
+          {
+            "type": "string",
+            "content": "Award $\\boldsymbol{A1}$ for $d$ to the left of the mean and $\\boldsymbol{A1}$ for shaded region to the left of $d$"
+          }
+        ],
+        "marks": [],
+        "subparts": [
+          {
+            "subpart": 1,
+            "markscheme_body": [
+              {
+                "type": "image",
+                "path": "AA/SL/Stats/stats_q23_m.png",
+                "alt": "Diagram of normal distribution with shaded region",
+                "size": "S"
+              },
+              {
+                "type": "string",
+                "content": "Award $\\boldsymbol{A1}$ for $d$ to the left of the mean and $\\boldsymbol{A1}$ for shaded region to the left of $d$"
+              }
+            ],
+            "marks": [
+              { "type": "A", "value": 2, "implicit": false, "index": 1 }
+            ]
+          },
+          {
+            "subpart": 2,
+            "markscheme_body": [
+              {
+                "type": "string",
+                "content": "$z = $inverse normal(0.1) $= 0.5398...$"
+              },
+              {
+                "type": "string",
+                "content": "Correctly setting up an equation"
+              },
+              {
+                "type": "string",
+                "content": "$\\frac{d - 20}{2} = 0.5398...$"
+              },
+              { "type": "string", "content": "$d \\approx 21.1$" }
+            ],
+            "marks": [
+              { "type": "A", "value": 1, "implicit": true, "index": 0 },
+              { "type": "M", "value": 1, "implicit": true, "index": 1 },
+              { "type": "A", "value": 1, "implicit": false, "index": 3 }
+            ]
+          }
+        ]
+      }
+    ],
+    "markscheme_body": []
+  }
+}

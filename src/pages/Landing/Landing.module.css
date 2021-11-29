@@ -1,15 +1,15 @@
 .LandingBanner {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: #120042;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: -100
+  z-index: -100;
 }
 
-.Logo {
+.logoWrapper {
   height: 5rem;
 }
 
@@ -27,44 +27,53 @@
   font-size: 1rem;
   /* background: grey; */
   /* padding: 1rem; */
-  border-bottom: 0.4em solid #17f4ff;
+  /* border-bottom: 0.4em solid #17f4ff; */
 }
 
 /* For future animation or CSS effects on the action link */
 
 .LandingInfos {
   margin: 5rem 0;
-  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* For media queries, the width can be changed in proportion to vh, and flex-direction can be column */
+.overflowControl {
+  margin: auto;
+}
+
 .LandingInfo {
-  width: 50rem;
   display: flex;
+  width: 900px;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem;
   margin: 10rem auto;
   /* background: pink; */
 }
 
-.Description {
-  width: 40%;
-  padding: 2rem;
-  flex: 1 1 50%;
+.LandingInfoFlipped {
+  float: right;
+}
+
+.descriptionWrapper {
+  padding: 0 2rem;
+  flex: 1 1 35%;
   /* background: blue; */
 }
 
-.Description > h1 {
-  font-size: 2.5rem;
+.descriptionWrapper > h1 {
+  font-size: 3rem;
 }
 
-.Description > h1 > strong {
+.descriptionWrapper > h1 > strong {
   position: relative;
 }
 
-.Description > h1 > strong::after {
+.descriptionWrapper > h1 > strong::after {
   content: " ";
   position: absolute;
   left: 0;
@@ -85,17 +94,28 @@
   );
 }
 
-/* .Description > p {
-} */
+.descriptionWrapper > p {
+  font-size: 1.1rem;
+}
 
-.CardWrapper {
-  box-sizing: border-box;
-  width: 20rem;
-  flex: 1 1 50%;
+.cardWidthControl {
+  flex: 1 1 55%;
+}
+
+.cardWrapper {
+  display: block;
+  width: 25rem;
+  height: 25rem;
+  margin: auto;
 }
 
 .Illustration {
   width: 100%;
+}
+
+.questionWrapper {
+  font-size: 0.7rem;
+  padding: 0.8rem;
 }
 
 /* .ActionButton {
@@ -123,28 +143,24 @@
 } */
 
 @media (max-width: 1000px) {
-  .LandingInfo {
+  /* .LandingInfo {
     width: 40rem;
   }
-  .Description > h1 {
-    font-size: 2rem;
-  }
+  .descriptionWrapper > h1 {
+    font-size: 3rem;
+  } */
 }
 
 @media (max-width: 768px) {
-  .LandingInfo {
+  /* .LandingInfo {
     width: 35rem;
-  }
-  .Description > h1 {
-    font-size: 1.8rem;
-  }
+  } */
+  /* .descriptionWrapper > h1 {
+    font-size: 2.5rem;
+  } */
 }
 
 @media (max-width: 600px) {
-  .Logo {
-    height: 3rem;
-  }
-
   .LandingBanner > h1 {
     font-size: 1rem;
   }
@@ -154,38 +170,54 @@
     font-size: 0.8rem;
   }
 
+  .logoWrapper {
+    height: 3rem;
+  }
+
   .LandingInfos {
     width: 100%;
   }
 
   .LandingInfo {
-    width: 100%;
+    width: auto;
     flex-direction: column;
-    padding: 0;
     margin: 10rem auto;
+    padding: 1rem;
     /* background: pink; */
   }
 
-  .Description {
-    width: 60%;
-    padding: 2rem;
-    flex: 1 1 100%;
+  .LandingInfoFlipped {
+    float: none;
+  }
+
+  .descriptionWrapper {
+    width: 100%;
+    max-width: 25rem;
+    order: -1;
+    margin-bottom: 2rem;
     /* background: blue; */
   }
 
-  .Description > h1 {
-    font-size: 1.5rem;
+  .descriptionWrapper > h1 {
+    font-size: 2.5rem;
   }
 
-  .Description > h1 > strong::after {
-    top: 0.5rem;
-    bottom: 0.5rem;
-  }
-
-  .CardWrapper {
+  .cardWidthControl {
     /* box-sizing: border-box; */
-    width: 60%;
     flex: 1 1 100%;
-    order: -1;
+  }
+
+  .cardWrapper {
+    width: 80vw;
+    height: 80vw;
+  }
+
+  .questionCard {
+    height: auto;
+  }
+
+  .questionWrapper {
+    font-size: 0.6rem;
+    padding: 0.5rem;
   }
 }

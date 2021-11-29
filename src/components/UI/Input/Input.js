@@ -32,6 +32,7 @@ const Input = (props) => {
         value={props.value}
         name={props.inputName}
         placeholder={props.placeholder}
+        disabled={props.disabled}
       />
       {warning}
     </div>

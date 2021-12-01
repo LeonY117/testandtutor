@@ -216,7 +216,7 @@ const Settings = () => {
 
   const deleteHandler = () => {
     if (confirmDeleteInput === confirmText) {
-      // axios.post...
+      axios.post("/profiles/delete", { data: {} }).then();
       console.log("confirmed");
     }
   };

@@ -20,7 +20,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [usernameWarning, setUsernameWarning] = useState(null);
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 

@@ -16,6 +16,7 @@ import AuthContext from "store/auth-context";
 const Dashboard = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({
+    username: null,
     topics: {},
     subtopics: {},
     selectedTopic: "Functions and Equations",
@@ -27,10 +28,6 @@ const Dashboard = (props) => {
 
   const takeTestButtonClickedHandler = () => {
     props.history.push(props.match.url + "/test");
-  };
-
-  const testClickedHandler = () => {
-    return;
   };
 
   useEffect(() => {
@@ -49,8 +46,7 @@ const Dashboard = (props) => {
             authCtx.logout();
           } else {
             const profileResponseData = profileResponse.data.data;
-            console.log("from user profile:");
-            console.log(profileResponseData);
+            // console.log(profileResponseData);
 
             const topics = {};
             const subtopics = {};
@@ -91,7 +87,7 @@ const Dashboard = (props) => {
             authCtx.logout();
           } else {
             const selectTestResponseData = selectTestResponse.data.data;
-            console.log(selectTestResponseData);
+            // console.log(selectTestResponseData);
             const testsCopy = {};
 
             for (const test of selectTestResponseData) {
@@ -117,6 +113,15 @@ const Dashboard = (props) => {
         authCtx.logout();
       });
   }, [authCtx]);
+
+  let newUserPrompt = null;
+  if (Object.values(userData.topics).every((x) => x === 0)) {
+    newUserPrompt = (
+      <p className={classes.newUserPrompt}>
+        Complete some tests to get an initial skillset breakdown.
+      </p>
+    );
+  }
 
   // TODO: Filter to 5 most recent tests
   // or get recent tests from user/userprofile
@@ -158,7 +163,12 @@ const Dashboard = (props) => {
   const dashboard = (
     <div>
       <div className={classes.userGreeting}>
-        <h1>Hi there!</h1>
+        {userData.username ? (
+          <h1>Hi, {userData.username}!</h1>
+        ) : (
+          <h1>Hi there!</h1>
+        )}
+        {newUserPrompt}
       </div>
       <section className={classes.overviewWrapper}>
         <Overview

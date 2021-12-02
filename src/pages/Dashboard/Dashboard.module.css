@@ -1,5 +1,17 @@
+@import "App.module.css";
+
 .userGreeting {
   margin-top: 1rem;
+}
+
+.newUserPrompt {
+  font-size: 1rem;
+  color: white;
+  background: var(--grey-highlight);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5em;
+  /* font-weight: bold; */
 }
 
 .overviewWrapper {
@@ -17,4 +29,10 @@
 .testTitle {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .newUserPrompt {
+    font-size: 0.9rem;
+  }
 }

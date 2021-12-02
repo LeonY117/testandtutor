@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import classes from "./Settings.module.css";
 
 import Content from "hoc/Content/Content";
@@ -37,6 +37,7 @@ const userDataReducer = (prevState, action) => {
 };
 
 const Settings = () => {
+  const authCtx = useContext(AuthContext);
   const [userData, dispatchUserData] = useReducer(userDataReducer, {
     name: "",
     curriculum: "",
@@ -72,7 +73,7 @@ const Settings = () => {
     const submitData = {
       first_name: userData.name,
     };
-    console.log(submitData);
+    // console.log(submitData);
     axios
       .post("/profiles/update", { data: submitData })
       .then((response) => {
@@ -103,7 +104,7 @@ const Settings = () => {
     const submitData = {
       email: userData.email,
     };
-    console.log(submitData);
+    // console.log(submitData);
 
     axios
       .post("/profiles/update", { data: submitData })
@@ -136,7 +137,7 @@ const Settings = () => {
   const submitPasswordHandler = (e) => {
     e.preventDefault();
     const passwordIsValid = validatePassword(userData.password);
-    console.log(userData.password);
+
 
     if (!passwordIsValid) {
       setErrorMessage((prevState) => {
@@ -217,7 +218,7 @@ const Settings = () => {
   const deleteHandler = () => {
     if (confirmDeleteInput === confirmText) {
       axios.post("/profiles/delete", { data: {} }).then();
-      console.log("confirmed");
+      authCtx.logout()
     }
   };
 
@@ -229,9 +230,8 @@ const Settings = () => {
           console.log(response.data.errors);
           // setErrorMessage(response.data.errors[0].source.detail);
         } else {
-          // sign up is successful
           const data = response.data.data;
-          console.log(data);
+          // console.log(data);
           dispatchUserData({ type: "NAME", value: data.first_name });
           dispatchUserData({ type: "CURRICULUM", value: data.curriculum });
           dispatchUserData({ type: "EMAIL", value: data.email });

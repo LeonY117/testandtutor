@@ -1,6 +1,6 @@
 .subtopics {
-  height: 75%;
-  overflow: scroll;
+  height: 15rem;
+  overflow-y: scroll;
 }
 
 .subtopic {

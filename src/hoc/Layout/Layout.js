@@ -8,7 +8,7 @@ const layout = (props) => {
     <React.Fragment>
       <Toolbar mode={props.mode} />
       <main className={classes.Content}>{props.children}</main>
-      <Footer />
+      <Footer mode={props.mode} />
     </React.Fragment>
   );
 };

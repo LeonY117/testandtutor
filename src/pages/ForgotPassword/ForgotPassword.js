@@ -37,7 +37,7 @@ const ForgotPassword = (props) => {
       return;
     }
 
-    const data = { password: password, token: token };
+    // const data = { password: password, token: token };
     // axios.post...
   };
 
@@ -50,8 +50,9 @@ const ForgotPassword = (props) => {
   };
 
   useEffect(() => {
-    const data = { token: token };
+    // const data = { token: token };
     // axios.get...
+    setTokenValidity(false);
     setIsLoading(false);
   }, [token]);
 

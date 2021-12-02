@@ -184,8 +184,6 @@ const TestPaper = (props) => {
           console.log("errors!");
           console.log(response.data.errors);
         } else {
-          console.log("from TestPaper.js:");
-          console.log(response.data);
           testBodyCopy = [...response.data.data.questions].sort(compare);
 
           for (const i in testBodyCopy) {

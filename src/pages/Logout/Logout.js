@@ -9,12 +9,13 @@ const Logout = () => {
   const authCtx = useContext(AuthContext);
   useEffect(() => {
     axios.post("auth/logout", {}).then((response) => {
-      console.log(response);
+      // console.log(response);
       if (response.data.hasOwnProperty("error")) {
         console.log("error");
         authCtx.logout();
       } else {
         authCtx.logout();
+        // return;
       }
     });
   });

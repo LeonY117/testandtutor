@@ -22,7 +22,6 @@ const SelectTest = () => {
       .get("/tests/available_tests")
       .then((response) => {
         const responseData = response.data.data;
-        console.log(responseData);
         const testsCopy = {};
 
         for (const test of responseData) {

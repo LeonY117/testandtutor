@@ -141,9 +141,25 @@ const Signup = () => {
           // setErrorMessage(response.data.errors[0].source.detail);
         } else {
           // sign up is successful
-          authCtx.login();
+          const loginData = {
+            email: userData.email,
+            password: userData.password,
+          };
+          axios
+            .post("/auth/login", { data: loginData })
+            .then((response) => {
+              if (response.data.hasOwnProperty("errors")) {
+                setErrorMessage(response.data.errors[0].source.detail);
+              } else {
+                authCtx.login();
+              }
+              setIsLoading(false);
+            })
+            .catch(() => {
+              console.log("something went wrong.");
+              setIsLoading(false);
+            });
         }
-        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);

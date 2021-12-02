@@ -16,7 +16,7 @@ const AuthContext = React.createContext({
 });
 
 const retrieveCookies = () => {
-  console.log("retrieving cookies");
+  // console.log("retrieving cookies");
   const loginExpireTime = Cookies.get("loginExpires") || 0;
   // add other cookies here in future
 
@@ -37,11 +37,13 @@ const computeExpireAge = (expireTime) => {
 };
 
 export const AuthContextProvider = (props) => {
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+  const cookieData = retrieveCookies();
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(!!cookieData);
+  // console.log(userIsLoggedIn);
 
   const logoutHandler = useCallback(() => {
     // removes cookies (may be redundant since backend already removes it)
-    console.log("logging user out");
+    // console.log("logging user out");
     Cookies.remove("loginExpires");
     setUserIsLoggedIn(false);
     // clean local states
@@ -53,6 +55,7 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const loginHandler = () => {
+    // console.log("loggin user in");
     const loginExpireTime = Cookies.get("loginExpires") || 0;
     if (loginExpireTime) {
       setUserIsLoggedIn(true);
@@ -64,23 +67,19 @@ export const AuthContextProvider = (props) => {
 
   // this code is ran in the first render cycle BEFORE component
   // renders, this way userIsLoggedIn is allowed to be true BEFORE
-  // rendering other components that depend on the loggin status, 
+  // rendering other components that depend on the loggin status,
   // and problems like redirecting to login and back to user is
   // avoided
-  const cookieData = retrieveCookies();
-  if (cookieData && !userIsLoggedIn) {
-    setUserIsLoggedIn(true);
-  }
 
   useEffect(() => {
-    // runs whenever the app gets refreshed
+    // console.log("useEffect");
     if (cookieData) {
       logoutTimer = setTimeout(
         logoutHandler,
         computeExpireAge(cookieData.loginExpireTime)
       );
     }
-  }, [cookieData, logoutHandler]);
+  }, [cookieData, userIsLoggedIn, logoutHandler]);
 
   const contextValue = {
     isLoggedIn: userIsLoggedIn,

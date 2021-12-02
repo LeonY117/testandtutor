@@ -36,7 +36,11 @@ const TestList = (props) => {
   let tests = null;
   const history = useHistory();
 
-  const testSelectButtonClicked = (id) => {
+  const testSelectButtonClicked = (id, status) => {
+    // console.log(status);
+    if (status === "finished") {
+      alert("Retaking tests won't affect your profile");
+    }
     history.push(`/user/test/${id}`);
   };
 
@@ -49,7 +53,7 @@ const TestList = (props) => {
       let buttonColor = "orange";
       if (status === "finished") {
         score = test.totalScore + "/" + test.score;
-        buttonInfo = "See results";
+        buttonInfo = "Retake test";
         buttonColor = "white";
       }
       return (
@@ -61,7 +65,7 @@ const TestList = (props) => {
           score={score}
           buttonInfo={buttonInfo}
           buttonColor={buttonColor}
-          buttonClicked={() => testSelectButtonClicked(testKey)}
+          buttonClicked={() => testSelectButtonClicked(testKey, test.status)}
         />
       );
     });

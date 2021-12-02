@@ -41,7 +41,7 @@
 
 /* For media queries, the width can be changed in proportion to vh, and flex-direction can be column */
 .overflowControl {
-  margin: auto;
+  margin: 0;
 }
 
 .LandingInfo {
@@ -56,6 +56,7 @@
 }
 
 .LandingInfoFlipped {
+  margin-top: 0;
   float: right;
 }
 

@@ -62,16 +62,15 @@ const Landing = () => {
             </div>
           </div>
 
-          <div className={classes.overflowControl}>
-            <div
-              className={[classes.LandingInfo, classes.LandingInfoFlipped].join(
-                " "
-              )}
-            >
-              <div className={classes.cardWidthControl}>
-                <div className={classes.cardWrapper}>
-                  <Card round blurShadow>
-                    {/* <img
+          <div
+            className={[classes.LandingInfo, classes.LandingInfoFlipped].join(
+              " "
+            )}
+          >
+            <div className={classes.cardWidthControl}>
+              <div className={classes.cardWrapper}>
+                <Card round blurShadow>
+                  {/* <img
                   alt={
                     "Illustration of a radar chart displaying relative strengths of a student"
                   }
@@ -79,21 +78,20 @@ const Landing = () => {
                   className={classes.Illustration}
                   draggable={false}
                 /> */}
-                    <Radar topics={dummyRadarData} showText />
-                  </Card>
-                </div>
+                  <Radar topics={dummyRadarData} showText />
+                </Card>
               </div>
-              <div className={classes.descriptionWrapper}>
-                <h1>
-                  <strong>Personalised</strong> <br />
-                  Insights
-                </h1>
-                <p>
-                  Studying should be an iterative process. <br />
-                  <br /> Test and tutor objectively identifies your strengths
-                  and weaknesses, and helps you decide what to study next.
-                </p>
-              </div>
+            </div>
+            <div className={classes.descriptionWrapper}>
+              <h1>
+                <strong>Personalised</strong> <br />
+                Insights
+              </h1>
+              <p>
+                Studying should be an iterative process. <br />
+                <br /> Test and tutor objectively identifies your strengths and
+                weaknesses, and helps you decide what to study next.
+              </p>
             </div>
           </div>
 

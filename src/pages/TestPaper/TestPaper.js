@@ -85,6 +85,7 @@ const TestPaper = (props) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const questionNumber = queryParams.get("question");
+  const retake = queryParams.get("retake");
   const testId = props.match.params.id;
 
   const paginationChangedHandler = (n, increment) => {
@@ -159,18 +160,22 @@ const TestPaper = (props) => {
       },
     };
 
-    console.log("submit to backend!");
-    console.log(data);
-    axios
-      .post("/tests/submit_test", data)
-      .then((response) => {
-        console.log(response);
-        history.push("/user/testSubmitted");
-      })
-      .catch((error) => {
-        // this.props.expired();
-        console.log(error);
-      });
+    // console.log("submit to backend!");
+    // console.log(data);
+    if (retake === "true") {
+      axios
+        .post("/tests/submit_test", data)
+        .then((response) => {
+          console.log(response);
+          history.push("/user/testSubmitted");
+        })
+        .catch((error) => {
+          // this.props.expired();
+          console.log(error);
+        });
+    } else {
+      history.push("/user/testSubmitted");
+    }
   };
 
   useEffect(() => {

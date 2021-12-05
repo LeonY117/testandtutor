@@ -5,11 +5,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  /* opacity: 1; */
+  /* opacity: 100%; */
   width: 40rem;
   max-height: 70%;
   z-index: 101;
   border-radius: 0.5rem;
   overflow-y: scroll;
+}
 
+@media (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
 }

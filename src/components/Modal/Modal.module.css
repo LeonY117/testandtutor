@@ -5,11 +5,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  opacity: 100%;
+  /* opacity: 1; */
   width: 40rem;
   max-height: 70%;
   z-index: 101;
   border-radius: 0.5rem;
-  overflow: scroll;
+  overflow-y: scroll;
 
 }

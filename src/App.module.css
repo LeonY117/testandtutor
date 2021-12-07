@@ -14,3 +14,7 @@
   --black: #0b0b0b;
   --black-shade: #000000;
 }
+
+html {
+  font-size: 16px;
+}

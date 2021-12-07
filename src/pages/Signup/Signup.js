@@ -19,15 +19,17 @@ const validateEmail = (email) => {
 };
 
 export const validatePassword = (password) => {
-  if (password === null || password === "") {
-    return false;
-  }
-  const chars = password.split("");
-  const lengthValid = chars.length > 8;
-  const hasUpperCase = chars.some((c) => c === c.toUpperCase());
-  const hasLowerCase = chars.some((c) => c === c.toLowerCase());
-  const hasNumbers = /\d/.test(password);
-  return lengthValid && hasUpperCase && hasLowerCase && hasNumbers;
+  // if (password === null || password === "") {
+  //   return false;
+  // }
+  // const chars = password.split("");
+  // const lengthValid = chars.length > 8;
+  // const hasUpperCase = chars.some((c) => c === c.toUpperCase());
+  // const hasLowerCase = chars.some((c) => c === c.toLowerCase());
+  // const hasNumbers = /\d/.test(password);
+  // return lengthValid && hasUpperCase && hasLowerCase && hasNumbers;
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$/;
+  return regex.test(password);
 };
 
 const userDataReducer = (prevState, action) => {
@@ -138,6 +140,7 @@ const Signup = () => {
           // TODO: process error messages
           setErrorMessage("Something went wrong");
           console.log(response.data.errors);
+          setIsLoading(false);
           // setErrorMessage(response.data.errors[0].source.detail);
         } else {
           // sign up is successful

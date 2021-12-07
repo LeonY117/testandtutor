@@ -305,7 +305,7 @@ const TestPaper = (props) => {
             </Button>
           )}
           {allQuestionsVisited && !showMarkscheme && (
-            <Button clicked={completeButtonClickedHandler}>Complete</Button>
+            <Button clicked={completeButtonClickedHandler}>Mark Yourself</Button>
           )}
           {allQuestionsVisited && showMarkscheme && (
             <Button clicked={confirmHandler}>Confirm</Button>

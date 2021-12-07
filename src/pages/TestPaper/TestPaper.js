@@ -79,6 +79,8 @@ const TestPaper = (props) => {
   const [userMarks, setUserMarks] = useState({});
   const [test, setTest] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const [allQuestionsVisited, setAllQuestionsVisited] = useState(false);
+  const [visitedQuestion, setVisitedQuestion] = useState([]);
 
   const authCtx = useContext(AuthContext);
   const history = useHistory();
@@ -162,7 +164,7 @@ const TestPaper = (props) => {
 
     // console.log("submit to backend!");
     // console.log(data);
-    if (retake === "true") {
+    if (retake !== "true") {
       axios
         .post("/tests/submit_test", data)
         .then((response) => {
@@ -220,8 +222,13 @@ const TestPaper = (props) => {
               }
             }
           }
+          const questionVisitedCopy = Array(testBodyCopy.length).fill(false);
+          // if (questionVisitedCopy.length > 0) {
+          //   questionVisitedCopy[0] = true;
+          // }
           setUserMarks(userMarksCopy);
           setTest(testBodyCopy);
+          setVisitedQuestion(questionVisitedCopy);
           setIsLoading(false);
           // console.log(testBodyCopy);
         }
@@ -236,7 +243,19 @@ const TestPaper = (props) => {
   useEffect(() => {
     let questionNum = parseInt(questionNumber) - 1 || 0;
     setSelectedQuestion(questionNum);
-  }, [questionNumber]);
+    if (visitedQuestion.length > 0) {
+      visitedQuestion[questionNum] = true;
+    }
+    // if (
+    //   visitedQuestion.every((x) => x === true) &&
+    //   visitedQuestion.length > 0
+    // ) {
+    //   setAllQuestionsVisited(true);
+    // }
+    if (parseInt(questionNumber) === test.length) {
+      setAllQuestionsVisited(true);
+    }
+  }, [questionNumber, visitedQuestion, test.length]);
 
   let paginationRender = (
     <Pagination
@@ -276,10 +295,21 @@ const TestPaper = (props) => {
         </div>
         <div className={classes.paginationWrapper}>{paginationRender}</div>
         <div className={classes.completeButtonWrapper}>
-          {!showMarkscheme && (
+          {!allQuestionsVisited && (
+            <Button
+              clicked={() => {
+                paginationChangedHandler(null, 1);
+              }}
+            >
+              Next
+            </Button>
+          )}
+          {allQuestionsVisited && !showMarkscheme && (
             <Button clicked={completeButtonClickedHandler}>Complete</Button>
           )}
-          {showMarkscheme && <Button clicked={confirmHandler}>Confirm</Button>}
+          {allQuestionsVisited && showMarkscheme && (
+            <Button clicked={confirmHandler}>Confirm</Button>
+          )}
         </div>
       </div>
     </React.Fragment>

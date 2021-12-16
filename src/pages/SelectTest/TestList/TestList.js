@@ -40,7 +40,7 @@ const TestList = (props) => {
     // console.log(status);
     if (status === "finished") {
       alert("Retaking tests won't affect your profile");
-      history.push(`/user/test/${id}?retake=true`);
+      history.push(`/user/test/${id}`);
     } else {
       history.push(`/user/test/${id}`);
     }

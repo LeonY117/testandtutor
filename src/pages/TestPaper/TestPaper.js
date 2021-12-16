@@ -81,13 +81,13 @@ const TestPaper = (props) => {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const [allQuestionsVisited, setAllQuestionsVisited] = useState(false);
   const [visitedQuestion, setVisitedQuestion] = useState([]);
+  const [retake, setRetake] = useState(false);
 
   const authCtx = useContext(AuthContext);
   const history = useHistory();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const questionNumber = queryParams.get("question");
-  const retake = queryParams.get("retake");
   const testId = props.match.params.id;
 
   const paginationChangedHandler = (n, increment) => {
@@ -164,12 +164,12 @@ const TestPaper = (props) => {
 
     // console.log("submit to backend!");
     // console.log(data);
-    if (retake !== "true") {
+    if (retake !== true) {
       axios
         .post("/tests/submit_test", data)
         .then((response) => {
-          console.log(response);
           history.push("/user/testSubmitted");
+          // TODO: handle response
         })
         .catch((error) => {
           // this.props.expired();
@@ -191,6 +191,7 @@ const TestPaper = (props) => {
           console.log("errors!");
           console.log(response.data.errors);
         } else {
+          let retakeCopy = response.data.data.previously_attempted;
           testBodyCopy = [...response.data.data.questions].sort(compare);
 
           for (const i in testBodyCopy) {
@@ -226,6 +227,7 @@ const TestPaper = (props) => {
           // if (questionVisitedCopy.length > 0) {
           //   questionVisitedCopy[0] = true;
           // }
+          setRetake(retakeCopy);
           setUserMarks(userMarksCopy);
           setTest(testBodyCopy);
           setVisitedQuestion(questionVisitedCopy);
@@ -305,7 +307,9 @@ const TestPaper = (props) => {
             </Button>
           )}
           {allQuestionsVisited && !showMarkscheme && (
-            <Button clicked={completeButtonClickedHandler}>Mark Yourself</Button>
+            <Button clicked={completeButtonClickedHandler}>
+              Mark Yourself
+            </Button>
           )}
           {allQuestionsVisited && showMarkscheme && (
             <Button clicked={confirmHandler}>Confirm</Button>

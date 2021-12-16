@@ -4,6 +4,8 @@ import Canvas from "./Canvas";
 
 class Radar extends Component {
   render() {
+    const topicNames = Object.keys(this.props.topics);
+    topicNames.sort();
     const RADIUS = 25;
     const GRADECOLORMAPPER = {
       7: "#5ADBCE",
@@ -95,7 +97,7 @@ class Radar extends Component {
       const cy = ctx.canvas.height / 2 / ratio;
       drawBackgroundCircles(cx, cy, ctx);
       let angleCount = 0;
-      for (let topic in this.props.topics) {
+      for (let topic of topicNames) {
         let grade = this.props.topics[topic];
         // Draw solid sectors with dynamics color & size
         drawSector(cx, cy, ctx, grade, angleCount);
@@ -114,12 +116,13 @@ class Radar extends Component {
       if (this.props.showText) {
         ctx.fillStyle = "black";
         ctx.font = "600 15px Raleway";
-        ctx.fillText("Functions and", 340, 70);
-        ctx.fillText("Equations", 360, 90);
-        ctx.fillText("Algebra", 425, 320);
-        ctx.fillText("Geometry and Trigonometry", 140, 460);
-        ctx.fillText("Calculus", 10, 320);
-        ctx.fillText("Statistics", 60, 80);
+        // ctx.fillText("Functions and", 340, 70);
+        // ctx.fillText("Equations", 360, 90);
+        ctx.fillText('Algebra', 350, 80)
+        ctx.fillText("Calculus", 425, 320);
+        ctx.fillText("Functions and Equations", 160, 460);
+        ctx.fillText("Geometry", 5, 320);
+        ctx.fillText("Statistics", 70, 80);
       }
 
       ctx.fillStyle = "grey";

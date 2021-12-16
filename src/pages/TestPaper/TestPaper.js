@@ -47,6 +47,11 @@ const boundValue = (value, max) => {
   return parseInt(value);
 };
 
+const replaceValue = (value) => {
+  // return the most recent digit inputed
+  return value % 10;
+};
+
 const sumUserScores = (marks) => {
   let test_user_marks = 0;
   let test_max_marks = 0;
@@ -112,19 +117,19 @@ const TestPaper = (props) => {
       const userMarksCopy = { ...prevState };
       if (partIndex === null && subpartIndex === null) {
         userMarksCopy[questionIndex].user_marks = boundValue(
-          event.target.value,
+          replaceValue(event.target.value),
           userMarksCopy[questionIndex].max_marks
         );
       } else if (partIndex !== null && subpartIndex === null) {
         userMarksCopy[questionIndex].parts[partIndex].user_marks = boundValue(
-          event.target.value,
+          replaceValue(event.target.value),
           userMarksCopy[questionIndex].parts[partIndex].max_marks
         );
       } else if (partIndex !== null && subpartIndex !== null) {
         userMarksCopy[questionIndex].parts[partIndex].subparts[
           subpartIndex
         ].user_marks = boundValue(
-          event.target.value,
+          replaceValue(event.target.value),
           userMarksCopy[questionIndex].parts[partIndex].subparts[subpartIndex]
             .max_marks
         );

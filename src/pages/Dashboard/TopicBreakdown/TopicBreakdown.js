@@ -38,6 +38,7 @@ const SubtopicLabels = (props) => {
 const TopicBreakdown = (props) => {
   const subtopics = props.subtopics;
   const topics = Object.keys(subtopics) || [];
+  topics.sort();
   const [selectedTopic, setSelectedTopic] = useState("Algebra");
 
   const selectedSubtopics = Object.keys(subtopics[selectedTopic])

@@ -7,7 +7,7 @@ const TestSubmitConfirm = () => {
     <div className={classes.testSubmitConfirm}>
       <h1>Test Completed</h1>
       <Link className={classes.feedback} to="#">
-        Take some time to give us somefeedback?
+        Take some time to give us some feedback?
       </Link>
       <Link className={classes.dashboardRedirect} to="/user">
         Back to dashboard

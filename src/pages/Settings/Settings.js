@@ -51,7 +51,7 @@ const Settings = () => {
     profileFormError: null,
     emailError: null,
     passwordError: null,
-    preferanceError: null,
+    preferenceError: null,
     deleteAccountError: null,
   });
 
@@ -365,7 +365,7 @@ const Settings = () => {
           </div>
         </div>
         <div className={classes.settingsSection}>
-          <h3>{"Preferances"}</h3>
+          <h3>{"Preferences"}</h3>
           <div className={classes.buttonWrapper}>
             <Button
               color="grey"

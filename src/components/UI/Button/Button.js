@@ -40,6 +40,7 @@ const Button = (props) => {
 
   props.round && classArray.push(classes.round);
   props.narrow && classArray.push(classes.narrow);
+  props.fullHeight && classArray.push(classes.fullHeight);
 
   const buttonClass = classArray.join(" ");
   // console.log(buttonClass);

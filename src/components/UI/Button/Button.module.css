@@ -42,6 +42,10 @@
   width: auto;
 }
 
+.fullHeight {
+  height: 100%;
+}
+
 /* TYPES */
 
 .primary {

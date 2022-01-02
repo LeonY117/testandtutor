@@ -15,11 +15,11 @@ const NavigationItem = (props) => {
 const navigationItems = (props) => {
   let nav = (
     <ul className={classes.navigationItems}>
-      <li className={classes.navigationItem}>
+      {/* <li className={classes.navigationItem}>
         <NavLink to="/login" className={classes.loginLink}>
           Sign in
         </NavLink>
-      </li>
+      </li> */}
       <li className={classes.navigationItem}>
         <NavLink to="/signup" className={classes.getStartedLink}>
           Get started

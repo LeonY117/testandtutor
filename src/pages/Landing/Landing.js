@@ -27,7 +27,9 @@ const Landing = () => {
         <div className={classes.logoWrapper}>
           <Logo />
         </div>
-        <h1>Personalised Study Planner for IB Mathematics</h1>
+        <h2 className={classes.subtitle}>
+          Personalised Study Planner for IB Mathematics
+        </h2>
         <Link to="/signup">
           <Button size="large" round>
             GET STARTED NOW
@@ -118,6 +120,14 @@ const Landing = () => {
                 </Card>
               </div>
             </div>
+          </div>
+
+          <div className={classes.actionButton}>
+            <Link to="/signup">
+              <Button size="large" round narrow>
+                GET STARTED NOW
+              </Button>
+            </Link>
           </div>
         </Content>
       </section>

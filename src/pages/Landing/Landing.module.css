@@ -13,7 +13,8 @@
   height: 5rem;
 }
 
-.LandingBanner > h1 {
+.subtitle {
+  text-align: center;
   color: white;
   font-weight: 200;
   font-size: 1.4rem;
@@ -119,6 +120,15 @@
   padding: 0.8rem;
 }
 
+.actionButton {
+  text-align: center;
+  margin-top: 4rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
 /* .ActionButton {
   position: relative;
   color: white;
@@ -162,7 +172,7 @@
 }
 
 @media (max-width: 600px) {
-  .LandingBanner > h1 {
+  .subtitle {
     font-size: 1rem;
   }
 
@@ -220,5 +230,9 @@
   .questionWrapper {
     font-size: 0.6rem;
     padding: 0.5rem;
+  }
+
+  .actionButton {
+    font-size: 0.8rem;
   }
 }

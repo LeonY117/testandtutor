@@ -1,0 +1,58 @@
+@import "App.module.css";
+
+.cardWrapper {
+  width: 25rem;
+  margin: auto;
+}
+
+.signup {
+  margin: 5rem 2rem 3rem 2rem;
+}
+
+.subTitle {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.subTitle > b {
+  color: var(--blue);
+}
+
+.info {
+  line-height: 1.5rem;
+  /* font-weight: bold; */
+  color: var(--grey-shade);
+}
+
+.formWrapper {
+  display: flex;
+  /* align-items: center; */
+}
+
+.inputWrapper {
+  font-size: 0.9rem;
+  flex: 1 1 100%;
+}
+
+.buttonWrapper {
+  display: block;
+  margin-left: 0.5rem;
+  width: 3rem;
+  font-size: 1rem;
+}
+
+.errorMessage {
+  font-size: 0.9rem;
+  color: var(--red-highlight);
+}
+
+/* CONFIRMATION */
+.confirmation {
+  text-align: center;
+}
+
+.confirmation > a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--blue);
+}

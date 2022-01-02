@@ -26,7 +26,7 @@ const Toolbar = (props) => {
     <header>
       <div className={classes.toolbar}>
         <div className={classes.toolbarDeskop}>
-          {props.mode == "user" ? (
+          {props.mode === "user" ? (
             <div className={classes.navLogo}>
               <Link to="/user">
                 <Logo color="black" />

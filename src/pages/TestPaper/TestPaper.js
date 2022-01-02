@@ -186,6 +186,7 @@ const TestPaper = (props) => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let testBodyCopy = [];
     const userMarksCopy = {};
     axios

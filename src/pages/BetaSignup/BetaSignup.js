@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import classes from "./BetaSignup.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import classes from "./BetaSignup.module.css";
 
 import Content from "hoc/Content/Content";
 import Input from "components/UI/Input/Input";
@@ -10,7 +10,7 @@ import Card from "components/UI/Card/Card";
 import Button from "components/UI/Button/Button";
 import Loading from "components/Loading/Loading";
 
-import axios from "store/axios";
+// import axios from "store/axios";
 
 const validateEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
@@ -45,6 +45,10 @@ const BetaSignup = () => {
     // if successful:
     history.push("/betaSignupSuccess");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const betaSignup = (
     <div className={classes.cardWrapper}>

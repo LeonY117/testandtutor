@@ -8,8 +8,10 @@ const BetaSignupConfirmation = () => {
   return (
     <Content withNav>
       <div className={classes.confirmation}>
-        <p style={{ textAlign: "center" }}>
-          Thank you for letting us know, we will be in contact shortly!
+        <h3>Thank you for signing up! </h3>
+        <p style={{ textAlign: "center", lineHeight: "2rem" }}>
+          You should receive a confirmation email soon with next steps on how to
+          get your early access.
         </p>
         <Link to="/">Back to homepage</Link>
       </div>

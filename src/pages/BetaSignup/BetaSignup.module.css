@@ -48,7 +48,9 @@
 
 /* CONFIRMATION */
 .confirmation {
+  margin: auto;
   text-align: center;
+  max-width: 25rem;
 }
 
 .confirmation > a {

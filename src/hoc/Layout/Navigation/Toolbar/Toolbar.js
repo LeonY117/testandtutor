@@ -26,11 +26,20 @@ const Toolbar = (props) => {
     <header>
       <div className={classes.toolbar}>
         <div className={classes.toolbarDeskop}>
-          <div className={classes.navLogo}>
-            <Link to="/">
-              <Logo color="black" />
-            </Link>
-          </div>
+          {props.mode == "user" ? (
+            <div className={classes.navLogo}>
+              <Link to="/user">
+                <Logo color="black" />
+              </Link>
+            </div>
+          ) : (
+            <div className={classes.navLogo}>
+              <Link to="/">
+                <Logo color="black" />
+              </Link>
+            </div>
+          )}
+
           <div className={classes.navItems}>
             <NavigationItems mode={props.mode} />
           </div>
@@ -43,7 +52,7 @@ const Toolbar = (props) => {
           </div>
           {props.mode === "user" && (
             <React.Fragment>
-              <div className = {classes.menuButtonWrapper}>
+              <div className={classes.menuButtonWrapper}>
                 <Button
                   narrow
                   tertiary

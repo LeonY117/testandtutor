@@ -10,7 +10,7 @@ import Card from "components/UI/Card/Card";
 import Button from "components/UI/Button/Button";
 import Loading from "components/Loading/Loading";
 
-// import axios from "store/axios";
+import axios from "store/axios";
 
 const validateEmail = (email) => {
   var re = /\S+@\S+\.\S+/;
@@ -38,12 +38,26 @@ const BetaSignup = () => {
       return;
     }
     const data = { email: email };
-    // axios.post()
-    console.log(data);
     setIsLoading(true);
-
-    // if successful:
-    history.push("/betaSignupSuccess");
+    axios
+      .post("/misc/register_interest", { data: data })
+      .then((response) => {
+        if (response.data.hasOwnProperty("errors")) {
+          // TODO: process error messages
+          setErrorMessage("Something went wrong");
+          console.log(response.data.errors);
+          setIsLoading(false);
+          // setErrorMessage(response.data.errors[0].source.detail);
+        } else {
+          // if successful:
+          history.push("/betaSignupSuccess");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+    console.log(data);
   };
 
   useEffect(() => {

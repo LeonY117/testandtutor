@@ -129,8 +129,8 @@ class Radar extends Component {
       ctx.font = "200 12px open sans";
       for (let i = 1; i < 8; i++) {
         ctx.fillStyle = "grey";
-        let tempGrade = this.props.topics["Functions and Equations"];
-        if (this.props.topics["Functions and Equations"] <= 5 && i <= tempGrade) {
+        let tempGrade = this.props.topics["Algebra"];
+        if (this.props.topics["Algebra"] <= 5 && i <= tempGrade) {
           // console.log('yes')
           ctx.fillStyle = "white";
         }

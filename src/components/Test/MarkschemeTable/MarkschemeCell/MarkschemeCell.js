@@ -21,6 +21,9 @@ const MarkschemeCell = (props) => {
           // onChange={() => this.props.changed(props.marks)}
           className={classes.Input}
           onChange={props.changed}
+          onFocus={(e) => {
+            e.target.select();
+          }}
           value={Number(props.value).toString() || 0}
           readOnly={props.readOnly}
         ></input>

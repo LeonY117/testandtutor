@@ -146,6 +146,7 @@ const TestPaper = (props) => {
 
   const completeButtonClickedHandler = () => {
     setShowMarkscheme(true);
+    setAllQuestionsVisited(false);
     history.push(`?question=${1}`);
   };
 
@@ -303,7 +304,7 @@ const TestPaper = (props) => {
         </div>
         <div className={classes.paginationWrapper}>{paginationRender}</div>
         <div className={classes.completeButtonWrapper}>
-          {!allQuestionsVisited && (
+          {!allQuestionsVisited && !showMarkscheme && (
             <Button
               clicked={() => {
                 paginationChangedHandler(null, 1);
@@ -315,6 +316,15 @@ const TestPaper = (props) => {
           {allQuestionsVisited && !showMarkscheme && (
             <Button clicked={completeButtonClickedHandler}>
               Mark Yourself
+            </Button>
+          )}
+          {!allQuestionsVisited && showMarkscheme && (
+            <Button
+              clicked={() => {
+                paginationChangedHandler(null, 1);
+              }}
+            >
+              Next
             </Button>
           )}
           {allQuestionsVisited && showMarkscheme && (

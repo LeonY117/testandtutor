@@ -82,7 +82,7 @@ const TestSubmitConfirm = () => {
       return;
     } else {
       axios
-        .post("/feedback/test_feedback", { data: { feedbackData } })
+        .post("/feedback/test_feedback", { data: { ...feedbackData } })
         .then((res) => {
           console.log(res);
           history.push(`/user/testSubmitted/?feedbackSubmitted=${1}`);

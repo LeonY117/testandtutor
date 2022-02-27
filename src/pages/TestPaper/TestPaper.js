@@ -174,7 +174,9 @@ const TestPaper = (props) => {
       axios
         .post("/tests/submit_test", data)
         .then((response) => {
-          history.push("/user/testSubmitted");
+          history.push(
+            `/user/testSubmitted/?testId=${testId}&feedbackSubmitted=${0}`
+          );
           // TODO: handle response
         })
         .catch((error) => {
@@ -182,7 +184,7 @@ const TestPaper = (props) => {
           console.log(error);
         });
     } else {
-      history.push("/user/testSubmitted");
+      history.push(`/user/testSubmitted/?feedbackSubmitted=${1}`);
     }
   };
 

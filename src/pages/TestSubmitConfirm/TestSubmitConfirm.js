@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import classes from "./TestSubmitConfirm.module.css";
 
 import Content from "hoc/Content/Content";
@@ -38,6 +38,7 @@ const feedbackReducer = (prevState, action) => {
 const TestSubmitConfirm = () => {
   // ?feedbackSubmitted
   const location = useLocation();
+  const history = useHistory();
   const queryParams = new URLSearchParams(location.search);
   const feedbackSubmitted = queryParams.get("feedbackSubmitted");
   const testId = queryParams.get("testId");
@@ -84,6 +85,7 @@ const TestSubmitConfirm = () => {
         .post("/feedback/test_feedback", { data: { feedbackData } })
         .then((res) => {
           console.log(res);
+          history.push(`/user/testSubmitted/?feedbackSubmitted=${1}`);
         })
         .catch((error) => {
           console.log(error);

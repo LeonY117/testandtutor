@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import Cookies from "js-cookie";
-// what is needed in the backend to authenticate
-// is there a need to keep userID for edge cases / compatibility?
-// what happends when refresh token expires?
-
-// does backend delete front end cookies? YES
+// TODO: add AuthContext.userId and other attributes
 
 let logoutTimer;
 

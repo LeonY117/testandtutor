@@ -1,0 +1,31 @@
+@import "App.module.css";
+
+.textAreaWrapper {
+  width: 100%;
+}
+
+.textArea {
+  box-sizing: border-box;
+  resize: none;
+  width: 100%;
+  height: 10rem;
+  border: 1px solid var(--grey-highlight);
+  padding: 1em;
+}
+
+.textArea:focus {
+  border-color: var(--blue);
+}
+
+.small {
+  height: 5rem;
+  padding: 0.8em;
+}
+
+.medium {
+  height: 10rem;
+}
+
+.large {
+  height: 20rem;
+}

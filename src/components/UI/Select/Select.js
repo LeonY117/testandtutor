@@ -18,11 +18,24 @@ const Select = (props) => {
 
   let options = null;
   if (props.options) {
-    options = props.options.map((op, i) => (
-      <option className={classes.option} key={i} value={op}>
-        {op}
-      </option>
-    ));
+    options = props.options.map((op, i) => {
+      let optionLabel = op;
+      if (props.optionLabels) {
+        optionLabel = props.optionLabels[i];
+      }
+      return (
+        <option className={classes.option} key={i} value={op}>
+          {optionLabel}
+        </option>
+      );
+    });
+    if (props.defaultLabel) {
+      options.push(
+        <option className={classes.option} key={-1} value={""} hidden>
+          {props.defaultLabel}
+        </option>
+      );
+    }
   }
   return (
     <div className={widthControlClasses.join(" ")}>
@@ -31,6 +44,7 @@ const Select = (props) => {
         onChange={props.changed}
         value={props.selected}
         disabled={props.disabled}
+        defaultValue={""}
       >
         {options}
       </select>

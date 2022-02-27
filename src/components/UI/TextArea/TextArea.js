@@ -14,7 +14,8 @@ const TextArea = (props) => {
     <div className={classes.textAreaWrapper}>
       <textarea
         className={classArray.join(" ")}
-        placeholder={props.children}
+        onChange={props.changed}
+        placeholder={props.placeholder}
       ></textarea>
     </div>
   );

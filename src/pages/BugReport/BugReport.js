@@ -101,6 +101,10 @@ const BugReport = () => {
             minor bugs. If you've had trouble using the website please describe
             the issue in full detail and our team will try to fix it asap.
           </p>
+          <p>
+            If you want to directly reach out to us, you can email us at
+            admin@testandtutor.com.
+          </p>
           <form>
             <div className={classes.feedbackFormSegment}>
               <p className={classes.subTitle}>Title</p>

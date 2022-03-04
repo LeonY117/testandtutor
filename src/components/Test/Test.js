@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Test.module.css";
 
+import QuestionLabels from "./QuestionLabels/QuestionLabels";
 import Question from "./Question/Question";
 import Markscheme from "./Markscheme/Markscheme";
 import MarkschemeTable from "./MarkschemeTable/MarkschemeTable";
@@ -29,6 +30,7 @@ const Test = (props) => {
   if (props.testBody) {
     renderedQuestions = (
       <Card pageWrapper>
+        <QuestionLabels paper_number={question.paper_number} />
         <div className={classes.QuestionMarkschemeWrapper}>
           <div className={classes.QuestionWrapper}>
             <h2>Question {parseInt(selectedQuestion + 1)}</h2>

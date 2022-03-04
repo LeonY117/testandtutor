@@ -1,0 +1,30 @@
+.feedbackForm {
+  text-align: left;
+  max-width: 30rem;
+  margin: 3rem auto 0 auto;
+}
+
+.feedbackFormSegment {
+  margin: 2rem auto;
+}
+
+.subTitle {
+  font-weight: bold;
+}
+
+.buttonWrapper {
+  float: right;
+}
+
+.link {
+  margin-top: 2rem;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #3366ff;
+}
+
+.error {
+  color: red;
+  margin-top: 0;
+}

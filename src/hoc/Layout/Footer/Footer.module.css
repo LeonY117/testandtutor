@@ -23,6 +23,12 @@
   color: white;
 }
 
+.buttonWrapper {
+  float: right;
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+
 @media (max-width: 600px) {
   .Footer {
     flex-direction: column;

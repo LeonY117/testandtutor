@@ -11,7 +11,10 @@ const QuestionLabels = (props) => {
       <div className={classes.labelWrapper}>
         <p
           className={classes.paperLabel}
-          style={{ backgroundColor: paperColors[props.paper_number] }}
+          style={{
+            color: paperColors[props.paper_number],
+            borderColor: paperColors[props.paper_number],
+          }}
         >
           Paper {props.paper_number}
         </p>

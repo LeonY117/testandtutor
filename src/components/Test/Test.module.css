@@ -12,6 +12,19 @@
   /* overflow: hidden; */
 }
 
+.questionTitleLabelWrapper {
+  /* display: flex; */
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1em 0;
+}
+
+.questionTitle {
+  /* display: inline-block; */
+  /* margin: 0; */
+  margin-right: 1em;
+}
+
 .MarkschemeWrapper {
   flex: 1 1 50%;
   min-width: 48%;

@@ -30,10 +30,14 @@ const Test = (props) => {
   if (props.testBody) {
     renderedQuestions = (
       <Card pageWrapper>
-        <QuestionLabels paper_number={question.paper_number} />
         <div className={classes.QuestionMarkschemeWrapper}>
           <div className={classes.QuestionWrapper}>
-            <h2>Question {parseInt(selectedQuestion + 1)}</h2>
+            <div className={classes.questionTitleLabelWrapper}>
+              <QuestionLabels paper_number={question.paper_number} />
+              <h2 className={classes.questionTitle}>
+                Question {parseInt(selectedQuestion + 1)}
+              </h2>
+            </div>
             <Question questionData={question} />
           </div>
           {props.showMarkscheme && (

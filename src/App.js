@@ -5,8 +5,8 @@ import Layout from "hoc/Layout/Layout";
 
 import Landing from "pages/Landing/Landing";
 import Dashboard from "pages/Dashboard/Dashboard";
-import BetaSignup from "pages/BetaSignup/BetaSignup";
-import BetaSignupConfirmation from "pages/BetaSignup/BetaSignupConfirmation";
+// import BetaSignup from "pages/BetaSignup/BetaSignup";
+// import BetaSignupConfirmation from "pages/BetaSignup/BetaSignupConfirmation";
 import Login from "pages/Login/Login";
 import Logout from "pages/Logout/Logout";
 import Signup from "pages/Signup/Signup";
@@ -26,16 +26,16 @@ function App() {
 
   let redirectFromLogin = null;
   if (userIsLoggedIn) {
-    redirectFromLogin = <Redirect from="/beta/login" to="/user" />;
+    redirectFromLogin = <Redirect from="/login" to="/user" />;
   }
   let redirectFromSignup = null;
 
   if (userIsLoggedIn) {
-    redirectFromSignup = <Redirect from="/beta/signup" to="/user" />;
+    redirectFromSignup = <Redirect from="/signup" to="/user" />;
   }
   let redirectFromUser = null;
   if (userIsLoggedIn === false) {
-    redirectFromUser = <Redirect from="/user" to="/beta/login" />;
+    redirectFromUser = <Redirect from="/user" to="/login" />;
   }
   return (
     <Layout mode={userIsLoggedIn ? "user" : "visitor"}>
@@ -52,14 +52,16 @@ function App() {
         <Route exact path="/bugReport" component={BugReport} />
         <Route exact path="/forgotPassword/:token" component={ForgotPassword} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/beta/login" component={Login} />
+        {/* <Route exact path="/beta/login" component={Login} />
         <Route exact path="/beta/signup" component={Signup} />
-        <Route exact path="/signup" component={BetaSignup} />
-        <Route
+        <Route exact path="/beta" component={BetaSignup} /> */}
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        {/* <Route
           exact
           path="/betaSignupSuccess"
           component={BetaSignupConfirmation}
-        />
+        /> */}
         <Route path="/" component={NotFound} />
       </Switch>
     </Layout>

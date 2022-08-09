@@ -44,12 +44,18 @@ const TestList = (props) => {
     } else {
       history.push(`/user/test/${id}`);
     }
-    
   };
 
   if (props.tests) {
-    tests = Object.keys(props.tests).map((testKey) => {
-      let test = props.tests[testKey];
+    let testEntries = Object.entries(props.tests);
+    let sortedTests = testEntries.sort((a, b) => {
+      let x = a[1].name.toLowerCase();
+      let y = b[1].name.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+    tests = sortedTests.map((testEntry) => {
+      let testKey = testEntry[0];
+      let test = testEntry[1];
       let status = test.status;
       let score = null;
       let buttonInfo = "Take test";

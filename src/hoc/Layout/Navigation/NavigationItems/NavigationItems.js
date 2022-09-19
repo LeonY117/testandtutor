@@ -17,12 +17,12 @@ const navigationItems = (props) => {
     <ul className={classes.navigationItems}>
       <li className={classes.navigationItem}>
         <NavLink to="/login" className={classes.loginLink}>
-          Sign in
+          Log in
         </NavLink>
       </li>
       <li className={classes.navigationItem}>
         <NavLink to="/signup" className={classes.getStartedLink}>
-          Get started
+          Sign up
         </NavLink>
       </li>
     </ul>

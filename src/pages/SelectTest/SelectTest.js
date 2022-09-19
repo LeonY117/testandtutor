@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import classes from "./SelectTest.module.css";
 
 import Content from "hoc/Content/Content";
-import Card from "components/UI/Card/Card";
 import Loading from "components/Loading/Loading";
-import TestList from "pages/SelectTest/TestList/TestList";
+import TestLists from "components/TestLists/TestLists";
 
 import axios from "store/axios";
 import AuthContext from "store/auth-context";
@@ -27,6 +25,8 @@ const SelectTest = () => {
         for (const test of responseData) {
           testsCopy[test.id] = {};
           testsCopy[test.id]["name"] = test.title;
+          // TODO: this should come from the backend
+          testsCopy[test.id]["topic"] = test.title.split(" ")[0];
           testsCopy[test.id]["status"] = test.last_attempt
             ? "finished"
             : "unfinished";
@@ -45,45 +45,10 @@ const SelectTest = () => {
       });
   }, [authCtx]);
 
-  const completeTestObj = {};
-  const incompleteTestObj = {};
-
-  for (const testId in tests) {
-    let test = tests[testId];
-    if (test.status === "finished") {
-      completeTestObj[testId] = test;
-    } else if (test.status === "unfinished") {
-      incompleteTestObj[testId] = test;
-    }
-  }
-
-  const completeTestList = (
-    <React.Fragment>
-      <p className={classes.testTitle}>Completed Tests</p>
-      <TestList tests={completeTestObj} />
-    </React.Fragment>
-  );
-
-  const incompleteTestList = (
-    <React.Fragment>
-      <p className={classes.testTitle}>Incomplete Tests</p>
-      <TestList tests={incompleteTestObj} />
-    </React.Fragment>
-  );
-
-  const testListCard = (
-    <div className={classes.selectTest}>
-      <Card pageWrapper>
-        {Object.keys(completeTestObj).length > 0 && completeTestList}
-        {Object.keys(incompleteTestObj).length > 0 && incompleteTestList}
-      </Card>
-    </div>
-  );
-
   return (
     <Content withNav>
       {isLoading && <Loading />}
-      {!isLoading && testListCard}
+      {!isLoading && <TestLists tests={tests} />}
     </Content>
   );
 };

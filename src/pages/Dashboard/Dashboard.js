@@ -4,11 +4,10 @@ import axios from "axios";
 import classes from "./Dashboard.module.css";
 
 import Content from "hoc/Content/Content";
-import Card from "components/UI/Card/Card";
 import Loading from "components/Loading/Loading";
 import Overview from "./Overview/Overview";
 import TopicBreakdown from "./TopicBreakdown/TopicBreakdown";
-import TestList from "pages/SelectTest/TestList/TestList";
+import TestLists from "components/TestLists/TestLists";
 
 import axiosInstance from "store/axios";
 import AuthContext from "store/auth-context";
@@ -93,6 +92,8 @@ const Dashboard = (props) => {
             for (const test of selectTestResponseData) {
               testsCopy[test.id] = {};
               testsCopy[test.id]["name"] = test.title;
+              // TODO: this should come from the backend
+              testsCopy[test.id]["topic"] = test.title.split(" ")[0];
               testsCopy[test.id]["status"] = test.last_attempt
                 ? "finished"
                 : "unfinished";
@@ -123,43 +124,6 @@ const Dashboard = (props) => {
     );
   }
 
-  // TODO: Filter to 5 most recent tests
-  // or get recent tests from user/userprofile
-  const completeTestObj = {};
-  const incompleteTestObj = {};
-
-  for (const testId in tests) {
-    let test = tests[testId];
-    if (test.status === "finished") {
-      completeTestObj[testId] = test;
-    } else if (test.status === "unfinished") {
-      incompleteTestObj[testId] = test;
-    }
-  }
-
-  const completeTestList = (
-    <React.Fragment>
-      <p className={classes.testTitle}>Completed Tests</p>
-      <TestList tests={completeTestObj} />
-    </React.Fragment>
-  );
-
-  const incompleteTestList = (
-    <React.Fragment>
-      <p className={classes.testTitle}>Incomplete Tests</p>
-      <TestList tests={incompleteTestObj} />
-    </React.Fragment>
-  );
-
-  // TODO: potentially make this into a new component or combine
-  // with 'pages/SelectTest'
-  const testListCard = (
-    <Card>
-      {Object.keys(completeTestObj).length > 0 && completeTestList}
-      {Object.keys(incompleteTestObj).length > 0 && incompleteTestList}
-    </Card>
-  );
-
   const dashboard = (
     <div>
       <div className={classes.userGreeting}>
@@ -180,7 +144,9 @@ const Dashboard = (props) => {
       <section className={classes.breakdownWrapper}>
         <TopicBreakdown subtopics={userData.subtopics} />
       </section>
-      <section className={classes.selectTestWrapper}>{testListCard}</section>
+      <section className={classes.selectTestWrapper}>
+        <TestLists tests={tests} />
+      </section>
     </div>
   );
   return (

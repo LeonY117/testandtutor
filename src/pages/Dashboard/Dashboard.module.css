@@ -31,8 +31,19 @@
   font-weight: bold;
 }
 
+.dropdownWrapper {
+  max-width: 20rem;
+  margin: 2rem 0;
+  /* margin-right: auto; */
+}
+
 @media (max-width: 600px) {
   .newUserPrompt {
     font-size: 0.9rem;
+  }
+  .dropdownWrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
   }
 }

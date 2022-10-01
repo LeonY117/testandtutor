@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import classes from "./TestLists.module.css";
+import React, { useState } from 'react';
+import classes from './TestLists.module.css';
 
-import Card from "components/UI/Card/Card";
-import Select from "components/UI/Select/Select";
-import TestList from "./TestList/TestList";
+import Card from 'components/UI/Card/Card';
+import Select from 'components/UI/Select/Select';
+import TestList from './TestList/TestList';
 
 const TestLists = (props) => {
   const tests = props.tests;
 
-  const [selectedTopic, setSelectedTopic] = useState("Algebra");
+  const [selectedTopic, setSelectedTopic] = useState('Algebra');
   // TODO: this should be retrieved from context
   const topics = [
-    "All Tests",
-    "Algebra",
-    "Functions",
-    "Statistics",
-    "Trigonometry",
-    "Calculus",
+    'All Tests',
+    'Algebra',
+    'Functions',
+    'Statistics',
+    'Trigonometry',
+    'Calculus',
   ];
 
   const selectChangedHandler = (e) => {
@@ -30,12 +30,12 @@ const TestLists = (props) => {
 
   for (const testId in tests) {
     let test = tests[testId];
-    if (test.status === "finished") {
-      if (selectedTopic === "All Tests" || test.topic === selectedTopic) {
+    if (test.status === 'finished') {
+      if (selectedTopic === 'All Tests' || test.topic === selectedTopic) {
         completeTestObj[testId] = test;
       }
-    } else if (test.status === "unfinished") {
-      if (selectedTopic === "All Tests" || test.topic === selectedTopic) {
+    } else if (test.status === 'unfinished') {
+      if (selectedTopic === 'All Tests' || test.topic === selectedTopic) {
         incompleteTestObj[testId] = test;
       }
     }
@@ -63,7 +63,6 @@ const TestLists = (props) => {
             options={topics}
             round
             changed={selectChangedHandler}
-            default={"Algebra"}
             selected={selectedTopic}
           />
         </div>

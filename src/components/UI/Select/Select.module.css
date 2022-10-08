@@ -1,0 +1,86 @@
+@import "App.module.css";
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  font: inherit;
+  border: 1px solid var(--grey-highlight);
+  border-radius: 0.15em;
+  margin: 1px 0;
+  padding: 1em 1.5em;
+  width: 100%;
+  background-color: white;
+}
+
+.select::-ms-expand {
+  display: none;
+}
+
+.select:focus {
+  outline: none;
+  margin: 0;
+  border: 2px solid var(--blue);
+}
+
+.large {
+  padding: 1em 1.5em;
+}
+
+.medium {
+  padding: 0.5em 1em;
+}
+
+.small {
+  padding: 0.3em 0.5em;
+}
+
+.narrow {
+  display: inline-block;
+  width: auto;
+}
+
+.option {
+  font: inherit;
+  padding: 1em 1.5em;
+  border: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.customArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.2em;
+  display: block;
+  background: white;
+  height: 30%;
+  width: 1.7em;
+  pointer-events: none;
+  border-radius: 15em;
+  /* border: 1px solid lightgrey; */
+}
+
+.customArrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: solid grey;
+  border-width: 0 0.15em 0.15em 0;
+  display: inline-block;
+  padding: 8%; /* determines arrow size */
+  transform: translate(-50%, -50%) rotate(45deg);
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.customArrow[hide="true"]::after {
+  display: none;
+}
+
+.round {
+  border-radius: 15em;
+}

@@ -1,9 +1,24 @@
-.Card {
+.card {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
   box-shadow: 5px 5px 10px rgba(200, 200, 200, 25);
   background-color: white;
-  padding: 2rem;
-  box-sizing: border-box
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+.blurShadow {
+  box-shadow: 15px 15px 40px rgba(225, 225, 225, 10);
+}
+
+.round {
+  border-radius: 4rem;
+}
+
+@media (max-width: 600px) {
+  .pageWrapper {
+    padding: 1rem;
+    box-shadow: none;
+  }
 }

@@ -1,0 +1,49 @@
+@import "App.module.css";
+
+.userGreeting {
+  margin-top: 1rem;
+}
+
+.newUserPrompt {
+  font-size: 1rem;
+  color: white;
+  background: var(--grey-highlight);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5em;
+  /* font-weight: bold; */
+}
+
+.overviewWrapper {
+  margin: 2rem 0;
+}
+
+.breakdownWrapper {
+  margin-top: 5rem;
+}
+
+.selectTestWrapper {
+  margin-top: 5rem;
+}
+
+.testTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dropdownWrapper {
+  max-width: 20rem;
+  margin: 2rem 0;
+  /* margin-right: auto; */
+}
+
+@media (max-width: 600px) {
+  .newUserPrompt {
+    font-size: 0.9rem;
+  }
+  .dropdownWrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+}

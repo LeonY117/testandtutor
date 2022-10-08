@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Test & Tutor - Personalised Study Planner for IB Mathematics"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -15,6 +15,30 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FWZKZ5YK0Y"
+    ></script>
+    <script>
+      // TODO: Fix this with proper way of disabling google analytics
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out
+
+      let host = window.location.hostname;
+      // Disable analytics for dev mode
+      // TODO: also do it for admins
+      if (host != "localhost") {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-FWZKZ5YK0Y");
+      }
+    </script>
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,6 +48,17 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script>
+      window.MathJax = {
+        startup: {
+          ready: () => {
+            MathJax.startup.defaultReady();
+            // MathJax is initialized and you can trigger a typeset.
+          },
+        },
+      };
+    </script>
+
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
@@ -34,19 +69,26 @@
         messageStyle: "none"
       });
     </script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 
     <script
       type="text/javascript"
-      async
+      sync
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
     ></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"
+    />
 
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Test and Tutor</title>
   </head>
   <body>

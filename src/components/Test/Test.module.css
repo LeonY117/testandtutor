@@ -1,12 +1,9 @@
-.Test {
-  margin-top: 10rem;
-}
-
 .QuestionMarkschemeWrapper {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   align-items: space-between;
+  font-size: inherit;
 }
 
 .QuestionWrapper {
@@ -15,8 +12,37 @@
   /* overflow: hidden; */
 }
 
+.questionTitleLabelWrapper {
+  /* display: flex; */
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1em 0;
+}
+
+.questionTitle {
+  /* display: inline-block; */
+  /* margin: 0; */
+  margin-right: 1em;
+}
+
 .MarkschemeWrapper {
   flex: 1 1 50%;
   min-width: 48%;
   /* overflow: hidden; */
+}
+
+.paginationWrapper {
+  margin-bottom: 2rem;
+}
+
+.markschemeTableWrapper {
+  display: block;
+  margin: auto;
+  max-width: 70%;
+}
+
+@media (max-width: 1000px) {
+  .QuestionMarkschemeWrapper {
+    flex-direction: column;
+  }
 }

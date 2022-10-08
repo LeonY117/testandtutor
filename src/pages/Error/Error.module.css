@@ -1,0 +1,15 @@
+.error {
+  margin: 20rem 0;
+  text-align: center;
+}
+
+.errorDescription {
+  display: block;
+  font-weight: bold;
+  color: grey;
+}
+
+.redirectLink {
+  text-decoration: none;
+  color: #3366ff;
+}

@@ -1,0 +1,21 @@
+.paginationWrapper {
+  margin: 2rem 0;
+}
+
+.completeButtonWrapper {
+  width: 10rem;
+  margin: auto;
+}
+
+.modalContentWrapper {
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .paginationWrapper {
+    font-size: 0.8rem;
+  }
+  .testWrapper {
+    font-size: 0.8rem;
+  }
+}

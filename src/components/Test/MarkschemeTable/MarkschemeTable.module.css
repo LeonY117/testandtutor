@@ -1,5 +1,11 @@
 .Table {
-    display:flex;
-    margin: auto;
-    margin-top: 1rem;
+  display: flex;
+  /* margin: 0.2rem; */
+  flex-wrap: wrap;
+}
+
+.cellWrapper {
+  font: inherit;
+  width: 7em;
+  margin: 0 0.2em 0.5em 0.2em;
 }

@@ -1,20 +1,36 @@
 .Cell {
+  font: inherit;
   display: flex;
   flex-direction: column;
-  width: 5rem;
+  width: 100%;
+  min-width: 3em;
   justify-content: center;
+  position: relative;
+  /* font-size: 1rem;/ controls the dim */
+  /* border: 1px solid red; */
+}
+
+.labelWrapper {
   position: relative;
 }
 
 .Label {
   /* width: 100%; */
-  padding: 1rem 1rem;
-  /* height: 1rem; */
-  /* background: lightblue;   */
-  border: 1px solid grey;
+  box-sizing: content-box;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  /* height: 1em; */
+  /* border: 1px solid transparent; */
+  background: #505050;
+  color: white;
   margin: 0;
   margin-left: -1px;
-  font-weight: 600;
+  position: relative;
+}
+
+.Label[blue="true"] {
+  background: #3e4d84;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -30,35 +46,43 @@ input[type="number"] {
 }
 
 .InputWrapper {
-  box-sizing: border-box;
   border: 1px solid grey;
-  margin: 0;
-  margin-top: -1px;
+  /* margin: 0 -1px; */
+  /* margin-top: -1px; */
   margin-left: -1px;
   position: relative;
-  height: 3rem;
+  height: 2.5em;
 }
 
 .Input {
   box-sizing: border-box;
-  padding: 1rem 1rem;
+  padding: 0.8em 0;
+  padding-left: 2.5em;
   border: none;
-  margin: 0;
   width: 100%;
   font-size: 1em;
   /* background: pink; */
   height: 100%;
+  background-color: transparent;
+  z-index: 1;
+  position: relative;
 }
 
 .Max {
   font-family: Arial, Helvetica, sans-serif;
   position: absolute;
-  /* padding: 1rem; */
-  left: 2rem;
+  /* padding: 1em; */
+  left: 3.5em;
   top: 50%;
   /* height: 100%; */
   transform: translateY(-50%);
   font-size: 1em;
   color: grey;
-  /* background: lightgreen; */
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

@@ -1,113 +1,71 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import Cookies from "js-cookie";
-import Layout from "./hoc/Layout/Layout";
-import User from "./containers/User/User";
-import Login from "./containers/Login/Login";
-import Logout from "./containers/Logout/Logout";
-import Signup from "./containers/Signup/Signup";
-import SelectTest from "./containers/SelectTest/SelectTest";
-import TestPaper from "./containers/TestPaper/TestPaper";
-import Landing from "./components/Landing/Landing";
-// import axios from "./axios";
+import Layout from "hoc/Layout/Layout";
 
-class App extends Component {
-  constructor() {
-    super();
-    if (Cookies.get("userId")) {
-      this.state = { loggedIn: true };
-    } else {
-      this.state = { loggedIn: false };
-    }
+import Landing from "pages/Landing/Landing";
+import Dashboard from "pages/Dashboard/Dashboard";
+// import BetaSignup from "pages/BetaSignup/BetaSignup";
+// import BetaSignupConfirmation from "pages/BetaSignup/BetaSignupConfirmation";
+import Login from "pages/Login/Login";
+import Logout from "pages/Logout/Logout";
+import Signup from "pages/Signup/Signup";
+import Settings from "pages/Settings/Settings";
+import SelectTest from "pages/SelectTest/SelectTest";
+import TestPaper from "pages/TestPaper/TestPaper";
+import TestSubmitConfirm from "pages/TestSubmitConfirm/TestSubmitConfirm";
+import BugReport from "pages/BugReport/BugReport";
+import NotFound from "pages/Error/NotFound";
+import ForgotPassword from "pages/ForgotPassword/ForgotPassword";
+
+import AuthContext from "./store/auth-context";
+
+function App() {
+  const authCtx = useContext(AuthContext);
+  const userIsLoggedIn = authCtx.isLoggedIn;
+
+  let redirectFromLogin = null;
+  if (userIsLoggedIn) {
+    redirectFromLogin = <Redirect from="/login" to="/user" />;
   }
+  let redirectFromSignup = null;
 
-  loginSuccessHandler = (id) => {
-    // console.log(this.state.loggedIn);
-    // Cookies.set("userId", id, { expires: (1 / 1440) * 0.5 });
-
-    this.setState({
-      loggedIn: true,
-    });
-  };
-
-  logoutHandler = () => {
-    Cookies.remove("userId");
-    Cookies.remove("refreshToken");
-    this.setState({
-      loggedIn: false,
-    });
-  };
-
-  sessionExpired = () => {
-    this.setState({ loggedIn: false });
-  };
-
-  render() {
-    let redirectFromLogin = null;
-    // shouldn't be ever clicked as there are no login links availble once user logs in
-    if (this.state.loggedIn) {
-      redirectFromLogin = <Redirect from="/login" to="/user/profile" />;
-    }
-    let redirectFromUser = null;
-    if (this.state.loggedIn === false) {
-      redirectFromUser = <Redirect from="/user" to="/login" />;
-    }
-    return (
-      <Layout mode={this.state.loggedIn ? "user" : "visitor"}>
-        <Switch>
-          {redirectFromUser}
-          {redirectFromLogin}
-          <Route path="/" exact component={Landing} />
-          <Route
-            path="/login"
-            render={(props) => (
-              <Login
-                {...props}
-                loginSuccessHandler={this.loginSuccessHandler}
-              />
-            )}
-          />
-          <Route
-            path="/signup"
-            render={(props) => (
-              <Signup
-                {...props}
-                loginSuccessHandler={this.loginSuccessHandler}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/user/test"
-            render={(props) => (
-              <SelectTest {...props} expired={this.sessionExpired} />
-            )}
-          />
-          <Route
-            exact
-            path="/user/test/:id"
-            render={(props) => (
-              <TestPaper {...props} expired={this.sessionExpired} />
-            )}
-          />
-          <Route
-            path="/user"
-            render={(props) => (
-              <User {...props} expired={this.sessionExpired} />
-            )}
-          />
-
-          <Route
-            path="/logout"
-            render={(props) => (
-              <Logout {...props} loggedOut={this.logoutHandler} />
-            )}
-          />
-        </Switch>
-      </Layout>
-    );
+  if (userIsLoggedIn) {
+    redirectFromSignup = <Redirect from="/signup" to="/user" />;
   }
+  let redirectFromUser = null;
+  if (userIsLoggedIn === false) {
+    redirectFromUser = <Redirect from="/user" to="/login" />;
+  }
+  return (
+    <Layout mode={userIsLoggedIn ? "user" : "visitor"}>
+      <Switch>
+        {redirectFromUser}
+        {redirectFromSignup}
+        {redirectFromLogin}
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/user/test" component={SelectTest} />
+        <Route exact path="/user/test/:id" component={TestPaper} />
+        <Route exact path="/user/testSubmitted" component={TestSubmitConfirm} />
+        <Route exact path="/user" component={Dashboard} />
+        <Route exact path="/user/settings" component={Settings} />
+        <Route exact path="/bugReport" component={BugReport} />
+        <Route exact path="/forgotPassword/:token" component={ForgotPassword} />
+        <Route exact path="/logout" component={Logout} />
+        {/* <Route exact path="/beta/login" component={Login} />
+        <Route exact path="/beta/signup" component={Signup} />
+        <Route exact path="/beta" component={BetaSignup} /> */}
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        {/* <Route
+          exact
+          path="/betaSignupSuccess"
+          component={BetaSignupConfirmation}
+        /> */}
+        <Route path="/" component={NotFound} />
+      </Switch>
+    </Layout>
+  );
 }
 
 export default App;

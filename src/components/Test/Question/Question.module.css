@@ -1,5 +1,6 @@
 .MaxMarks {
   font-family: "Computer Modern Serif";
+  font-size: inherit;
   margin: 0;
   margin-bottom: 1rem;
 }

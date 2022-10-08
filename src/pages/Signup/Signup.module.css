@@ -1,0 +1,117 @@
+.inputWrapper,
+.buttonWrapper,
+.selectWrapper {
+  font-size: 1rem;
+}
+
+.cardWrapper {
+  width: 25rem;
+  margin: auto;
+}
+
+.signup {
+  margin: 5rem 2rem 3rem 2rem;
+}
+
+.signup > h1 {
+  display: block;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.inputs {
+  margin-bottom: 1rem;
+}
+
+.passwordInput {
+  margin-top: 1rem;
+  position: relative;
+  /* background: lightgreen; */
+}
+
+.passwordInput > span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1em;
+  z-index: 2;
+}
+
+.showPasswordToggler {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  font-size: 0.9em;
+  color: #3456bf;
+}
+
+.showPasswordToggler:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.passwordInstructions {
+  display: inline-block;
+  color: grey;
+  margin: 0.3rem 0 0.5rem 0;
+  padding: 0 0.3rem;
+  font-size: 0.7rem;
+}
+
+.emailWarning {
+  text-align: center;
+  display: block;
+  color: red;
+  margin: 0.3em auto 0.5em auto;
+  padding: 0 0.3em;
+  font-size: 0.7em;
+}
+
+.passwordInstructions[warning="true"] {
+  color: red;
+}
+
+.newsletterPrompter {
+  text-align: center;
+  padding: 0 1rem;
+  margin: 1rem auto;
+}
+
+.loginPrompter {
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: black;
+  margin: 1rem 0;
+}
+
+.loginLink {
+  margin: 0;
+  display: inline-block;
+  color: #3456bf;
+}
+
+.warning {
+  font-size: 0.7rem;
+  color: red;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  /* .inputWrapper,
+  .buttonWrapper,
+  .selectWrapper {
+    font-size: 0.9rem;
+  } */
+
+  .cardWrapper {
+    width: 100%;
+    max-width: 19rem;
+  }
+
+  .signup {
+    margin: 5rem 0 3rem 0;
+  }
+  
+}

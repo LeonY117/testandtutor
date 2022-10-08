@@ -1,0 +1,22 @@
+.questionLabels {
+  display: inline-block;
+  margin: 0;
+  text-align: left;
+}
+
+.labelWrapper {
+  display: inline-block;
+  width: 4em;
+}
+
+.paperLabel {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: grey;
+  /* background: grey; */
+  border: 0.2em solid grey;
+  padding: 0.3em 0.2em;
+  border-radius: 0.3em;
+}

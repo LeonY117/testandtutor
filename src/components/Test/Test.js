@@ -1,10 +1,12 @@
 import React from "react";
 import classes from "./Test.module.css";
-import Card from "../../components/UI/Card/Card";
-import Content from "../../hoc/Content/Content";
+
+import QuestionLabels from "./QuestionLabels/QuestionLabels";
 import Question from "./Question/Question";
 import Markscheme from "./Markscheme/Markscheme";
 import MarkschemeTable from "./MarkschemeTable/MarkschemeTable";
+
+import Card from "components/UI/Card/Card";
 
 //
 
@@ -19,43 +21,48 @@ showMarkscheme
 inputChanged: for updating table cells
 
 */
-const test = (props) => {
+const Test = (props) => {
+  // const [isLoading, setIsLoading] = useState(true);
+  const selectedQuestion = props.selectedQuestion;
   let renderedQuestions = null;
+  let question = props.testBody[selectedQuestion]; // 0-indexed
+
   if (props.testBody) {
-    renderedQuestions = props.testBody.map((question, key) => {
-      return (
-        <div key={key} style={{ marginBottom: "2rem" }}>
-          <Card>
-            <div className={classes.QuestionMarkschemeWrapper}>
-              <div className={classes.QuestionWrapper}>
-                <h2>Question {parseInt(key) + 1}</h2>
-                <Question questionData={question} />
-              </div>
-              {props.showMarkscheme ? (
-                <div className={classes.MarkschemeWrapper}>
-                  <h2>Markscheme</h2>
-                  <Markscheme markschemeData={question.markscheme} />
-                  <MarkschemeTable
-                    inputChanged={props.inputChanged}
-                    userMarks={props.userMarks}
-                    questionNumber={parseInt(key)+1}
-                  />
-                </div>
-              ) : null}
+    renderedQuestions = (
+      <Card pageWrapper>
+        <div className={classes.QuestionMarkschemeWrapper}>
+          <div className={classes.QuestionWrapper}>
+            <div className={classes.questionTitleLabelWrapper}>
+              <QuestionLabels paper_number={question.paper_number} />
+              <h2 className={classes.questionTitle}>
+                Question {parseInt(selectedQuestion + 1)}
+              </h2>
             </div>
-          </Card>
+            <Question questionData={question} />
+          </div>
+          {props.showMarkscheme && (
+            <div className={classes.MarkschemeWrapper}>
+              <h2>Markscheme</h2>
+              <Markscheme markschemeData={question.markscheme} />
+            </div>
+          )}
         </div>
-      );
-    });
+        {props.showMarkscheme && (
+          <div className={classes.markschemeTableWrapper}>
+            <MarkschemeTable
+              inputChanged={props.inputChanged}
+              userMarks={props.userMarks}
+              questionNumber={parseInt(selectedQuestion + 1)}
+            />
+          </div>
+        )}
+      </Card>
+    );
   } else {
     renderedQuestions = <p>Something went wrong</p>;
   }
 
-  return (
-    <Content>
-      <div className={classes.Test}>{renderedQuestions}</div>
-    </Content>
-  );
+  return <div className={classes.Test}>{renderedQuestions}</div>;
 };
 
-export default test;
+export default Test;

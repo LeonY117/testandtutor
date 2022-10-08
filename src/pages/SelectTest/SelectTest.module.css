@@ -1,0 +1,19 @@
+.testTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.dropdownWrapper {
+  max-width: 20rem;
+  margin: 2rem 0;
+  /* margin-right: auto; */
+}
+
+@media (max-width: 600px) {
+  .dropdownWrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+}

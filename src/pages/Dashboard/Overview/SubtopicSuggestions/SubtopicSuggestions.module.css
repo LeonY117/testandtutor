@@ -1,0 +1,18 @@
+.subtopics {
+  height: 15rem;
+  overflow-y: scroll;
+}
+
+.subtopic {
+  display: block;
+  border-radius: 8px;
+  color: white;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem 0;
+  /* background: blue; */
+}
+
+.subtopic > p {
+  margin: 0;
+  font-size: 0.9rem;
+}

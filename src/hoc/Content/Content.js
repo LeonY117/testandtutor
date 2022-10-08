@@ -1,8 +1,12 @@
 import React from 'react';
 import classes from './Content.module.css'
 
-const content = (props) => {
-    return ( <div className={classes.Content}>{props.children}</div> );
+const Content = (props) => {
+    let classArray = [classes.content]
+    if (props.withNav) {
+        classArray.push(classes.withNav) 
+    }
+    return ( <div className={classArray.join(' ')}>{props.children}</div> );
 }
  
-export default content;
+export default Content;

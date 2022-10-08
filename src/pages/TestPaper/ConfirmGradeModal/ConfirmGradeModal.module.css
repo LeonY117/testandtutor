@@ -1,0 +1,55 @@
+.confirmGrade {
+  height: 100%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableWrapper {
+  max-height: 15rem;
+  margin-bottom: 1rem;
+  overflow-y: scroll;
+}
+
+.questionScores {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.questionTotalWrapper {
+  font: inherit;
+  min-width: 7em;
+  width: 7em;
+  margin: 0 0.2em 0.5em 0.2em; /* to match with markschemeTable */
+}
+
+.questionPartWrapper {
+  width: 100%;
+}
+
+.totalScore {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.total {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.fraction {
+  display: inline-block;
+}
+/* .testotalScore {
+  font-size: 0.8rem;
+  width: 10rem;
+  margin: auto;
+} */
+
+.buttonWrapper {
+  width: 10rem;
+  margin: 1rem auto 2rem auto;
+  font-size: 0.9rem;
+}

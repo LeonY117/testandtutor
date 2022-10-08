@@ -1,0 +1,43 @@
+.Footer {
+  margin-top: 5rem;
+  padding: 0 2rem;
+  height: 10rem;
+  background-color: #120042;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FooterLogo {
+  /* padding-top: 50px; */
+  height: 3rem;
+  margin-right: 2rem;
+  color: white;
+}
+
+.FooterItems {
+  /* background-color: pink; */
+  padding-right: 3rem;
+  color: white;
+}
+
+.buttonWrapper {
+  float: right;
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .Footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 1rem;
+  }
+  .FooterLogo {
+    /* padding-top: 50px; */
+    height: 2.5rem;
+  }
+}
